@@ -1,15 +1,15 @@
-@php
+<?php
     $channel = core()->getCurrentChannel();
-@endphp
+?>
 
 <!-- SEO Meta Content -->
-@push ('meta')
-    <meta name="title" content="{{ $channel->home_seo['meta_title'] ?? '' }}" />
-    <meta name="description" content="{{ $channel->home_seo['meta_description'] ?? '' }}" />
-    <meta name="keywords" content="{{ $channel->home_seo['meta_keywords'] ?? '' }}" />
-@endPush
+<?php $__env->startPush('meta'); ?>
+    <meta name="title" content="<?php echo e($channel->home_seo['meta_title'] ?? ''); ?>" />
+    <meta name="description" content="<?php echo e($channel->home_seo['meta_description'] ?? ''); ?>" />
+    <meta name="keywords" content="<?php echo e($channel->home_seo['meta_keywords'] ?? ''); ?>" />
+<?php $__env->stopPush(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
     :root {
         --primary-black: #000000;
@@ -293,17 +293,27 @@
         }
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-<x-shop::layouts>
+<?php if (isset($component)) { $__componentOriginal2643b7d197f48caff2f606750db81304 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal2643b7d197f48caff2f606750db81304 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.layouts.index','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('shop::layouts'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
     <!-- Page Title -->
-    <x-slot:title>
-        {{ $channel->home_seo['meta_title'] ?? '' }}
-    </x-slot>
+     <?php $__env->slot('title', null, []); ?> 
+        <?php echo e($channel->home_seo['meta_title'] ?? ''); ?>
+
+     <?php $__env->endSlot(); ?>
 
     <!-- Hero Slider Section -->
     <section class="hero-slider">
-        @php
+        <?php
             $heroSlides = [
                 [
                     'title' => 'НОВИНКИ',
@@ -337,17 +347,17 @@
                     ];
                 })->toArray();
             }
-        @endphp
+        ?>
 
         <!-- Slides -->
-        @foreach($heroSlides as $index => $slide)
-            <div class="hero-slide {{ $index === 0 ? 'active' : '' }}" 
-                 style="background-color: {{ $slide['bg_color'] ?? '#a8d5e2' }};"
-                 data-slide="{{ $index }}">
+        <?php $__currentLoopData = $heroSlides; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $slide): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="hero-slide <?php echo e($index === 0 ? 'active' : ''); ?>" 
+                 style="background-color: <?php echo e($slide['bg_color'] ?? '#a8d5e2'); ?>;"
+                 data-slide="<?php echo e($index); ?>">
                 <div class="hero-content-wrapper">
                     <div class="hero-text-content">
-                        <h1 class="hero-title">{{ $slide['title'] }}</h1>
-                        <a href="{{ $slide['link'] }}" class="hero-btn">
+                        <h1 class="hero-title"><?php echo e($slide['title']); ?></h1>
+                        <a href="<?php echo e($slide['link']); ?>" class="hero-btn">
                             СМОТРЕТЬ ВСЕ
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -355,14 +365,14 @@
                         </a>
                     </div>
                     <div class="hero-image-content">
-                        <img src="{{ $slide['image'] }}" alt="{{ $slide['title'] }}">
+                        <img src="<?php echo e($slide['image']); ?>" alt="<?php echo e($slide['title']); ?>">
                     </div>
                 </div>
             </div>
-        @endforeach
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
         <!-- Navigation Arrows -->
-        @if(count($heroSlides) > 1)
+        <?php if(count($heroSlides) > 1): ?>
             <button class="hero-nav-arrow left" onclick="changeSlide(-1)">
                 <svg viewBox="0 0 24 24">
                     <path d="M15 18l-6-6 6-6"/>
@@ -377,25 +387,40 @@
 
             <!-- Pagination Dots -->
             <div class="hero-pagination">
-                @foreach($heroSlides as $index => $slide)
-                    <div class="hero-pagination-dot {{ $index === 0 ? 'active' : '' }}" 
-                         onclick="goToSlide({{ $index }})"
-                         data-dot="{{ $index }}">
+                <?php $__currentLoopData = $heroSlides; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $slide): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="hero-pagination-dot <?php echo e($index === 0 ? 'active' : ''); ?>" 
+                         onclick="goToSlide(<?php echo e($index); ?>)"
+                         data-dot="<?php echo e($index); ?>">
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
-        @endif
+        <?php endif; ?>
     </section>
 
     <!-- New Products Section -->
     <section class="container mx-auto px-8 py-16 max-sm:px-4">
         <h2 class="section-title">НОВИНКИ</h2>
 
-        <x-shop::products.carousel
-            title=""
-            :src="route('shop.api.products.index', ['sort' => 'created_at', 'order' => 'desc', 'limit' => 8])"
-            :navigation-link="route('shop.search.index', ['sort' => 'created_at'])"
-        />
+        <?php if (isset($component)) { $__componentOriginalc7b94830d947988d2b7058066254da2b = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc7b94830d947988d2b7058066254da2b = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.products.carousel','data' => ['title' => '','src' => route('shop.api.products.index', ['sort' => 'created_at', 'order' => 'desc', 'limit' => 8]),'navigationLink' => route('shop.search.index', ['sort' => 'created_at'])]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('shop::products.carousel'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => '','src' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('shop.api.products.index', ['sort' => 'created_at', 'order' => 'desc', 'limit' => 8])),'navigation-link' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('shop.search.index', ['sort' => 'created_at']))]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc7b94830d947988d2b7058066254da2b)): ?>
+<?php $attributes = $__attributesOriginalc7b94830d947988d2b7058066254da2b; ?>
+<?php unset($__attributesOriginalc7b94830d947988d2b7058066254da2b); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc7b94830d947988d2b7058066254da2b)): ?>
+<?php $component = $__componentOriginalc7b94830d947988d2b7058066254da2b; ?>
+<?php unset($__componentOriginalc7b94830d947988d2b7058066254da2b); ?>
+<?php endif; ?>
     </section>
 
     <!-- Promo Block Section -->
@@ -412,7 +437,7 @@
                     Воспользуйтесь нашими специальными предложениями и скидками на избранные товары.
                     Качественная продукция по лучшим ценам для вас и вашей семьи.
                 </p>
-                <a href="{{ route('shop.search.index') }}"
+                <a href="<?php echo e(route('shop.search.index')); ?>"
                    style="display: inline-block; margin-top: 1.5rem; padding: 12px 30px; background: var(--primary-green); color: white; text-decoration: none; border-radius: 4px; font-weight: 600;">
                     Узнать больше
                 </a>
@@ -425,18 +450,18 @@
         <h2 class="section-title">ПОПУЛЯРНЫЕ КАТЕГОРИИ</h2>
 
         <div class="category-grid">
-            @foreach($categories->take(6) as $category)
-                <a href="{{ $category['url'] }}" class="category-card">
-                    @if($category['logo_path'])
-                        <img src="{{ Storage::url($category['logo_path']) }}" alt="{{ $category['name'] }}">
-                    @else
-                        <img src="https://placehold.co/400x300/e5e5e5/666666?text={{ urlencode($category['name']) }}" alt="{{ $category['name'] }}">
-                    @endif
+            <?php $__currentLoopData = $categories->take(6); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <a href="<?php echo e($category['url']); ?>" class="category-card">
+                    <?php if($category['logo_path']): ?>
+                        <img src="<?php echo e(Storage::url($category['logo_path'])); ?>" alt="<?php echo e($category['name']); ?>">
+                    <?php else: ?>
+                        <img src="https://placehold.co/400x300/e5e5e5/666666?text=<?php echo e(urlencode($category['name'])); ?>" alt="<?php echo e($category['name']); ?>">
+                    <?php endif; ?>
                     <div class="category-card-overlay">
-                        <h3 style="font-size: 1.5rem; font-weight: 600;">{{ $category['name'] }}</h3>
+                        <h3 style="font-size: 1.5rem; font-weight: 600;"><?php echo e($category['name']); ?></h3>
                     </div>
                 </a>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </section>
 
@@ -453,43 +478,84 @@
     </section>
 
     <!-- Additional customizations from admin -->
-    @foreach ($customizations as $customization)
-        @php ($data = $customization->options) @endphp
+    <?php $__currentLoopData = $customizations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customization): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php ($data = $customization->options) ?>
 
-        @switch ($customization->type)
-            @case ($customization::STATIC_CONTENT)
-                @if (! empty($data['css']))
-                    @push ('styles')
+        <?php switch($customization->type):
+            case ($customization::STATIC_CONTENT): ?>
+                <?php if(! empty($data['css'])): ?>
+                    <?php $__env->startPush('styles'); ?>
                         <style>
-                            {{ $data['css'] }}
+                            <?php echo e($data['css']); ?>
+
                         </style>
-                    @endpush
-                @endif
+                    <?php $__env->stopPush(); ?>
+                <?php endif; ?>
 
-                @if (! empty($data['html']))
-                    {!! $data['html'] !!}
-                @endif
+                <?php if(! empty($data['html'])): ?>
+                    <?php echo $data['html']; ?>
 
-                @break
-            @case ($customization::CATEGORY_CAROUSEL)
-                <x-shop::categories.carousel
-                    :title="$data['title'] ?? ''"
-                    :src="route('shop.api.categories.index', $data['filters'] ?? [])"
-                    :navigation-link="route('shop.home.index')"
-                />
-                @break
-            @case ($customization::PRODUCT_CAROUSEL)
-                <x-shop::products.carousel
-                    :title="$data['title'] ?? ''"
-                    :src="route('shop.api.products.index', $data['filters'] ?? [])"
-                    :navigation-link="route('shop.search.index', $data['filters'] ?? [])"
-                />
-                @break
-        @endswitch
-    @endforeach
-</x-shop::layouts>
+                <?php endif; ?>
 
-@push('scripts')
+                <?php break; ?>
+            <?php case ($customization::CATEGORY_CAROUSEL): ?>
+                <?php if (isset($component)) { $__componentOriginal55b1251dd0fd6403a4d59156278578f2 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal55b1251dd0fd6403a4d59156278578f2 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.categories.carousel','data' => ['title' => $data['title'] ?? '','src' => route('shop.api.categories.index', $data['filters'] ?? []),'navigationLink' => route('shop.home.index')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('shop::categories.carousel'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($data['title'] ?? ''),'src' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('shop.api.categories.index', $data['filters'] ?? [])),'navigation-link' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('shop.home.index'))]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal55b1251dd0fd6403a4d59156278578f2)): ?>
+<?php $attributes = $__attributesOriginal55b1251dd0fd6403a4d59156278578f2; ?>
+<?php unset($__attributesOriginal55b1251dd0fd6403a4d59156278578f2); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal55b1251dd0fd6403a4d59156278578f2)): ?>
+<?php $component = $__componentOriginal55b1251dd0fd6403a4d59156278578f2; ?>
+<?php unset($__componentOriginal55b1251dd0fd6403a4d59156278578f2); ?>
+<?php endif; ?>
+                <?php break; ?>
+            <?php case ($customization::PRODUCT_CAROUSEL): ?>
+                <?php if (isset($component)) { $__componentOriginalc7b94830d947988d2b7058066254da2b = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc7b94830d947988d2b7058066254da2b = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.products.carousel','data' => ['title' => $data['title'] ?? '','src' => route('shop.api.products.index', $data['filters'] ?? []),'navigationLink' => route('shop.search.index', $data['filters'] ?? [])]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('shop::products.carousel'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($data['title'] ?? ''),'src' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('shop.api.products.index', $data['filters'] ?? [])),'navigation-link' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('shop.search.index', $data['filters'] ?? []))]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc7b94830d947988d2b7058066254da2b)): ?>
+<?php $attributes = $__attributesOriginalc7b94830d947988d2b7058066254da2b; ?>
+<?php unset($__attributesOriginalc7b94830d947988d2b7058066254da2b); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc7b94830d947988d2b7058066254da2b)): ?>
+<?php $component = $__componentOriginalc7b94830d947988d2b7058066254da2b; ?>
+<?php unset($__componentOriginalc7b94830d947988d2b7058066254da2b); ?>
+<?php endif; ?>
+                <?php break; ?>
+        <?php endswitch; ?>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal2643b7d197f48caff2f606750db81304)): ?>
+<?php $attributes = $__attributesOriginal2643b7d197f48caff2f606750db81304; ?>
+<?php unset($__attributesOriginal2643b7d197f48caff2f606750db81304); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal2643b7d197f48caff2f606750db81304)): ?>
+<?php $component = $__componentOriginal2643b7d197f48caff2f606750db81304; ?>
+<?php unset($__componentOriginal2643b7d197f48caff2f606750db81304); ?>
+<?php endif; ?>
+
+<?php $__env->startPush('scripts'); ?>
 <script>
     let currentSlide = 0;
     let autoPlayInterval;
@@ -570,6 +636,6 @@
         if (touchEndX > touchStartX + 50) changeSlide(-1);
     }
 
-    localStorage.setItem('categories', JSON.stringify(@json($categories)));
+    localStorage.setItem('categories', JSON.stringify(<?php echo json_encode($categories, 15, 512) ?>));
 </script>
-@endpush
+<?php $__env->stopPush(); ?><?php /**PATH D:\Work\sonya_site\sonya_shop\packages\Webkul\Shop\src/resources/views/home/index.blade.php ENDPATH**/ ?>

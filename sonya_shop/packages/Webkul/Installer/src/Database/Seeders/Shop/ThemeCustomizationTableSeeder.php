@@ -44,16 +44,17 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'channel_id' => 1,
                     'created_at' => $now,
                     'updated_at' => $now,
-                ], [
-                    'id'         => 2,
-                    'type'       => 'static_content',
-                    'name'       => trans('installer::app.seeders.shop.theme-customizations.offer-information.name', [], $defaultLocale),
-                    'sort_order' => 2,
-                    'status'     => 1,
-                    'channel_id' => 1,
-                    'created_at' => $now,
-                    'updated_at' => $now,
-                ], [
+                ], //[
+                //     'id'         => 2,
+                //     'type'       => 'static_content',
+                //     'name'       => trans('installer::app.seeders.shop.theme-customizations.offer-information.name', [], $defaultLocale),
+                //     'sort_order' => 2,
+                //     'status'     => 1,
+                //     'channel_id' => 1,
+                //     'created_at' => $now,
+                //     'updated_at' => $now,
+                // ], 
+                [
                     'id'         => 3,
                     'type'       => 'category_carousel',
                     'name'       => trans('installer::app.seeders.shop.theme-customizations.categories-collections.name', [], $defaultLocale),
