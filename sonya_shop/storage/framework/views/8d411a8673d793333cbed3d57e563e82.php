@@ -2,7 +2,7 @@
     <div <?php echo e($attributes->merge(['class' => 'shimmer'])); ?>></div>
 </v-shimmer-image>
 
-<?php if (! $__env->hasRenderedOnce('751a4ab8-981d-4137-8468-6847725c0aee')): $__env->markAsRenderedOnce('751a4ab8-981d-4137-8468-6847725c0aee');
+<?php if (! $__env->hasRenderedOnce('d7df6061-204d-4f0a-8777-a05be2b646c5')): $__env->markAsRenderedOnce('d7df6061-204d-4f0a-8777-a05be2b646c5');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"

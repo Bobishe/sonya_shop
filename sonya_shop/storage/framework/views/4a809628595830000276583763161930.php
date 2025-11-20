@@ -47,14 +47,8 @@
                 <?php echo view_render_event('bagisto.shop.components.layouts.header.mobile.compare.before'); ?>
 
 
-                <?php if($showCompare): ?>
-                    <a
-                        href="<?php echo e(route('shop.compare.index')); ?>"
-                        aria-label="<?php echo app('translator')->get('shop::app.components.layouts.header.mobile.compare'); ?>"
-                    >
-                        <span class="icon-compare cursor-pointer text-2xl"></span>
-                    </a>
-                <?php endif; ?>
+                
+                
 
                 <?php echo view_render_event('bagisto.shop.components.layouts.header.mobile.compare.after'); ?>
 
@@ -69,181 +63,11 @@
                 <?php echo view_render_event('bagisto.shop.components.layouts.header.mobile.mini_cart.after'); ?>
 
 
-                <!-- For Large screens -->
-                <div class="max-md:hidden">
-                    <?php if (isset($component)) { $__componentOriginal6eb652d0a4a36e6466d8d4f363feb553 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal6eb652d0a4a36e6466d8d4f363feb553 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.dropdown.index','data' => ['position' => 'bottom-'.e(core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left').'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('shop::dropdown'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['position' => 'bottom-'.e(core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left').'']); ?>
-                         <?php $__env->slot('toggle', null, []); ?> 
-                            <span class="icon-users cursor-pointer text-2xl"></span>
-                         <?php $__env->endSlot(); ?>
+                
+                
 
-                        <!-- Guest Dropdown -->
-                        <?php if(auth()->guard('customer')->guest()): ?>
-                             <?php $__env->slot('content', null, []); ?> 
-                                <div class="grid gap-2.5">
-                                    <p class="font-dmserif text-xl">
-                                        <?php echo app('translator')->get('shop::app.components.layouts.header.mobile.welcome-guest'); ?>
-                                    </p>
-
-                                    <p class="text-sm">
-                                        <?php echo app('translator')->get('shop::app.components.layouts.header.mobile.dropdown-text'); ?>
-                                    </p>
-                                </div>
-
-                                <p class="mt-3 w-full border border-zinc-200"></p>
-
-                                <?php echo view_render_event('bagisto.shop.components.layouts.header.mobile.index.customers_action.before'); ?>
-
-
-                                <div class="mt-6 flex gap-4">
-                                    <?php echo view_render_event('bagisto.shop.components.layouts.header.mobile.index.sign_in_button.before'); ?>
-
-
-                                    <a
-                                        href="<?php echo e(route('shop.customer.session.create')); ?>"
-                                        class="m-0 mx-auto block w-max cursor-pointer rounded-2xl bg-navyBlue px-7 py-4 text-center text-base font-medium text-white ltr:ml-0 rtl:mr-0"
-                                    >
-                                        <?php echo app('translator')->get('shop::app.components.layouts.header.mobile.sign-in'); ?>
-                                    </a>
-
-                                    <a
-                                        href="<?php echo e(route('shop.customers.register.index')); ?>"
-                                        class="m-0 mx-auto block w-max cursor-pointer rounded-2xl border-2 border-navyBlue bg-white px-7 py-3.5 text-center text-base font-medium text-navyBlue ltr:ml-0 rtl:mr-0"
-                                    >
-                                        <?php echo app('translator')->get('shop::app.components.layouts.header.mobile.sign-up'); ?>
-                                    </a>
-
-                                    <?php echo view_render_event('bagisto.shop.components.layouts.header.mobile.index.sign_in_button.after'); ?>
-
-                                </div>
-
-                                <?php echo view_render_event('bagisto.shop.components.layouts.header.mobile.index.customers_action.after'); ?>
-
-                             <?php $__env->endSlot(); ?>
-                        <?php endif; ?>
-
-                        <!-- Customers Dropdown -->
-                        <?php if(auth()->guard('customer')->check()): ?>
-                             <?php $__env->slot('content', null, ['class' => '!p-0']); ?> 
-                                <div class="grid gap-2.5 p-5 pb-0">
-                                    <p class="font-dmserif text-xl">
-                                        <?php echo app('translator')->get('shop::app.components.layouts.header.mobile.welcome'); ?>’
-                                        <?php echo e(auth()->guard('customer')->user()->first_name); ?>
-
-                                    </p>
-
-                                    <p class="text-sm">
-                                        <?php echo app('translator')->get('shop::app.components.layouts.header.mobile.dropdown-text'); ?>
-                                    </p>
-                                </div>
-
-                                <p class="mt-3 w-full border border-zinc-200"></p>
-
-                                <div class="mt-2.5 grid gap-1 pb-2.5">
-                                    <?php echo view_render_event('bagisto.shop.components.layouts.header.mobile.index.profile_dropdown.links.before'); ?>
-
-
-                                    <a
-                                        class="cursor-pointer px-5 py-2 text-base"
-                                        href="<?php echo e(route('shop.customers.account.profile.index')); ?>"
-                                    >
-                                        <?php echo app('translator')->get('shop::app.components.layouts.header.mobile.profile'); ?>
-                                    </a>
-
-                                    <a
-                                        class="cursor-pointer px-5 py-2 text-base"
-                                        href="<?php echo e(route('shop.customers.account.orders.index')); ?>"
-                                    >
-                                        <?php echo app('translator')->get('shop::app.components.layouts.header.mobile.orders'); ?>
-                                    </a>
-
-                                    <?php if($showWishlist): ?>
-                                        <a
-                                            class="cursor-pointer px-5 py-2 text-base"
-                                            href="<?php echo e(route('shop.customers.account.wishlist.index')); ?>"
-                                        >
-                                            <?php echo app('translator')->get('shop::app.components.layouts.header.mobile.wishlist'); ?>
-                                        </a>
-                                    <?php endif; ?>
-
-                                    <!--Customers logout-->
-                                    <?php if(auth()->guard('customer')->check()): ?>
-                                        <?php if (isset($component)) { $__componentOriginal4d3fcee3e355fb6c8889181b04f357cc = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal4d3fcee3e355fb6c8889181b04f357cc = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.form.index','data' => ['method' => 'DELETE','action' => ''.e(route('shop.customer.session.destroy')).'','id' => 'customerLogout']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('shop::form'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['method' => 'DELETE','action' => ''.e(route('shop.customer.session.destroy')).'','id' => 'customerLogout']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal4d3fcee3e355fb6c8889181b04f357cc)): ?>
-<?php $attributes = $__attributesOriginal4d3fcee3e355fb6c8889181b04f357cc; ?>
-<?php unset($__attributesOriginal4d3fcee3e355fb6c8889181b04f357cc); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal4d3fcee3e355fb6c8889181b04f357cc)): ?>
-<?php $component = $__componentOriginal4d3fcee3e355fb6c8889181b04f357cc; ?>
-<?php unset($__componentOriginal4d3fcee3e355fb6c8889181b04f357cc); ?>
-<?php endif; ?>
-
-                                        <a
-                                            class="cursor-pointer px-5 py-2 text-base"
-                                            href="<?php echo e(route('shop.customer.session.destroy')); ?>"
-                                            onclick="event.preventDefault(); document.getElementById('customerLogout').submit();"
-                                        >
-                                            <?php echo app('translator')->get('shop::app.components.layouts.header.mobile.logout'); ?>
-                                        </a>
-                                    <?php endif; ?>
-
-                                    <?php echo view_render_event('bagisto.shop.components.layouts.header.mobile.index.profile_dropdown.links.after'); ?>
-
-                                </div>
-                             <?php $__env->endSlot(); ?>
-                        <?php endif; ?>
-                     <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal6eb652d0a4a36e6466d8d4f363feb553)): ?>
-<?php $attributes = $__attributesOriginal6eb652d0a4a36e6466d8d4f363feb553; ?>
-<?php unset($__attributesOriginal6eb652d0a4a36e6466d8d4f363feb553); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal6eb652d0a4a36e6466d8d4f363feb553)): ?>
-<?php $component = $__componentOriginal6eb652d0a4a36e6466d8d4f363feb553; ?>
-<?php unset($__componentOriginal6eb652d0a4a36e6466d8d4f363feb553); ?>
-<?php endif; ?>
-                </div>
-
-                <!-- For Medium and small screen -->
-                <div class="md:hidden">
-                    <?php if(auth()->guard('customer')->guest()): ?>
-                        <a
-                            href="<?php echo e(route('shop.customer.session.create')); ?>"
-                            aria-label="<?php echo app('translator')->get('shop::app.components.layouts.header.mobile.account'); ?>"
-                        >
-                            <span class="icon-users cursor-pointer text-2xl"></span>
-                        </a>
-                    <?php endif; ?>
-
-                    <!-- Customers Dropdown -->
-                    <?php if(auth()->guard('customer')->check()): ?>
-                        <a
-                            href="<?php echo e(route('shop.customers.account.index')); ?>"
-                            aria-label="<?php echo app('translator')->get('shop::app.components.layouts.header.mobile.account'); ?>"
-                        >
-                            <span class="icon-users cursor-pointer text-2xl"></span>
-                        </a>
-                    <?php endif; ?>
-                </div>
+                
+                
             </div>
         </div>
     </div>
@@ -282,7 +106,7 @@
 
 </div>
 
-<?php if (! $__env->hasRenderedOnce('406ae436-efc4-4007-b318-abf7b759c7d2')): $__env->markAsRenderedOnce('406ae436-efc4-4007-b318-abf7b759c7d2');
+<?php if (! $__env->hasRenderedOnce('5913d31a-70fe-4b9a-a1e6-1f1990225338')): $__env->markAsRenderedOnce('5913d31a-70fe-4b9a-a1e6-1f1990225338');
 $__env->startPush('scripts'); ?>
     <script type="text/x-template" id="v-mobile-drawer-template">
         <?php if (isset($component)) { $__componentOriginal2b3e2da8ab003ef79d854b1862e64fc8 = $component; } ?>
@@ -313,36 +137,8 @@ $__env->startPush('scripts'); ?>
              <?php $__env->endSlot(); ?>
 
              <?php $__env->slot('content', null, ['class' => '!p-0']); ?> 
-                <!-- Account Profile Hero Section -->
-                <div class="border-b border-zinc-200 p-4">
-                    <div class="grid grid-cols-[auto_1fr] items-center gap-4 rounded-xl border border-zinc-200 p-2.5">
-                        <div>
-                            <img
-                                src="<?php echo e(auth()->user()?->image_url ??  bagisto_asset('images/user-placeholder.png')); ?>"
-                                class="h-[60px] w-[60px] rounded-full max-md:rounded-full"
-                            >
-                        </div>
-
-                        <?php if(auth()->guard('customer')->guest()): ?>
-                            <a
-                                href="<?php echo e(route('shop.customer.session.create')); ?>"
-                                class="flex text-base font-medium"
-                            >
-                                <?php echo app('translator')->get('shop::app.components.layouts.header.mobile.login'); ?>
-
-                                <i class="icon-double-arrow text-2xl ltr:ml-2.5 rtl:mr-2.5"></i>
-                            </a>
-                        <?php endif; ?>
-
-                        <?php if(auth()->guard('customer')->check()): ?>
-                            <div class="flex flex-col justify-between gap-2.5 max-md:gap-0">
-                                <p class="font-mediums break-all text-2xl max-md:text-xl">Hello! <?php echo e(auth()->user()?->first_name); ?></p>
-
-                                <p class="text-zinc-500 no-underline max-md:text-sm"><?php echo e(auth()->user()?->email); ?></p>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
+                
+                
 
                 <?php echo view_render_event('bagisto.shop.components.layouts.header.mobile.drawer.categories.before'); ?>
 

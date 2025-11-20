@@ -5,7 +5,7 @@
 >
 </v-product-card>
 
-<?php if (! $__env->hasRenderedOnce('4b7b0b7e-a960-40f7-befe-4f8890ec81d5')): $__env->markAsRenderedOnce('4b7b0b7e-a960-40f7-befe-4f8890ec81d5');
+<?php if (! $__env->hasRenderedOnce('59196e3e-2545-4ad6-aa8d-4ac33c3f6d51')): $__env->markAsRenderedOnce('59196e3e-2545-4ad6-aa8d-4ac33c3f6d51');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"
@@ -129,17 +129,7 @@ $__env->startPush('scripts'); ?>
                         <?php echo view_render_event('bagisto.shop.components.products.card.wishlist_option.before'); ?>
 
 
-                        <?php if(core()->getConfigData('customer.settings.wishlist.wishlist_option')): ?>
-                            <span
-                                class="absolute top-2.5 flex h-6 w-6 items-center justify-center rounded-full border border-zinc-200 bg-white text-lg md:hidden ltr:right-1.5 rtl:left-1.5"
-                                role="button"
-                                aria-label="<?php echo app('translator')->get('shop::app.components.products.card.add-to-wishlist'); ?>"
-                                tabindex="0"
-                                :class="product.is_wishlist ? 'icon-heart-fill text-red-500' : 'icon-heart'"
-                                @click="addToWishlist()"
-                            >
-                            </span>
-                        <?php endif; ?>
+                        
 
                         <?php echo view_render_event('bagisto.shop.components.products.card.wishlist_option.after'); ?>
 
@@ -147,16 +137,8 @@ $__env->startPush('scripts'); ?>
                         <?php echo view_render_event('bagisto.shop.components.products.card.compare_option.before'); ?>
 
 
-                        <?php if(core()->getConfigData('catalog.products.settings.compare_option')): ?>
-                            <span
-                                class="icon-compare absolute top-10 flex h-6 w-6 items-center justify-center rounded-full border border-zinc-200 bg-white text-lg sm:hidden ltr:right-1.5 rtl:left-1.5"
-                                role="button"
-                                aria-label="<?php echo app('translator')->get('shop::app.components.products.card.add-to-compare'); ?>"
-                                tabindex="0"
-                                @click="addToCompare(product.id)"
-                            >
-                            </span>
-                        <?php endif; ?>
+                        
+                        
 
                         <?php echo view_render_event('bagisto.shop.components.products.card.compare_option.after'); ?>
 
@@ -213,17 +195,7 @@ $__env->startPush('scripts'); ?>
                     <?php echo view_render_event('bagisto.shop.components.products.card.wishlist_option.before'); ?>
 
 
-                    <?php if(core()->getConfigData('customer.settings.wishlist.wishlist_option')): ?>
-                        <span
-                            class="cursor-pointer p-2.5 text-2xl max-sm:hidden"
-                            role="button"
-                            aria-label="<?php echo app('translator')->get('shop::app.components.products.card.add-to-wishlist'); ?>"
-                            tabindex="0"
-                            :class="product.is_wishlist ? 'icon-heart-fill text-red-600' : 'icon-heart'"
-                            @click="addToWishlist()"
-                        >
-                        </span>
-                    <?php endif; ?>
+                    
 
                     <?php echo view_render_event('bagisto.shop.components.products.card.wishlist_option.after'); ?>
 
@@ -304,17 +276,7 @@ $__env->startPush('scripts'); ?>
                         <?php echo view_render_event('bagisto.shop.components.products.card.wishlist_option.before'); ?>
 
 
-                        <?php if(core()->getConfigData('customer.settings.wishlist.wishlist_option')): ?>
-                            <span
-                                class="absolute top-5 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-md bg-white text-2xl ltr:right-5 rtl:left-5"
-                                role="button"
-                                aria-label="<?php echo app('translator')->get('shop::app.components.products.card.add-to-wishlist'); ?>"
-                                tabindex="0"
-                                :class="product.is_wishlist ? 'icon-heart-fill text-red-600' : 'icon-heart'"
-                                @click="addToWishlist()"
-                            >
-                            </span>
-                        <?php endif; ?>
+                        
 
                         <?php echo view_render_event('bagisto.shop.components.products.card.wishlist_option.after'); ?>
 
@@ -322,16 +284,8 @@ $__env->startPush('scripts'); ?>
                         <?php echo view_render_event('bagisto.shop.components.products.card.compare_option.before'); ?>
 
 
-                        <?php if(core()->getConfigData('catalog.products.settings.compare_option')): ?>
-                            <span
-                                class="icon-compare absolute top-16 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-md bg-white text-2xl ltr:right-5 rtl:left-5"
-                                role="button"
-                                aria-label="<?php echo app('translator')->get('shop::app.components.products.card.add-to-compare'); ?>"
-                                tabindex="0"
-                                @click="addToCompare(product.id)"
-                            >
-                            </span>
-                        <?php endif; ?>
+                        
+                        
 
                         <?php echo view_render_event('bagisto.shop.components.products.card.compare_option.after'); ?>
 
@@ -481,21 +435,21 @@ $__env->startPush('scripts'); ?>
             },
 
             methods: {
-                addToWishlist() {
-                    if (this.isCustomer) {
-                        this.$axios.post(`<?php echo e(route('shop.api.customers.account.wishlist.store')); ?>`, {
-                                product_id: this.product.id
-                            })
-                            .then(response => {
-                                this.product.is_wishlist = ! this.product.is_wishlist;
+                // addToWishlist() {
+                //     if (this.isCustomer) {
+                //         this.$axios.post(`<?php echo e(route('shop.api.customers.account.wishlist.store')); ?>`, {
+                //                 product_id: this.product.id
+                //             })
+                //             .then(response => {
+                //                 this.product.is_wishlist = ! this.product.is_wishlist;
 
-                                this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
-                            })
-                            .catch(error => {});
-                        } else {
-                            window.location.href = "<?php echo e(route('shop.customer.session.index')); ?>";
-                        }
-                },
+                //                 this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                //             })
+                //             .catch(error => {});
+                //         } else {
+                //             window.location.href = "<?php echo e(route('shop.customer.session.index')); ?>";
+                //         }
+                // },
 
                 addToCompare(productId) {
                     /**
