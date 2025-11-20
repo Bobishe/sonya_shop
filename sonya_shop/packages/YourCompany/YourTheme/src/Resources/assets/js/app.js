@@ -208,12 +208,14 @@
 
         openMenu() {
             addClass(this.menu, 'active');
+            addClass(this.toggle, 'active');
             this.isOpen = true;
             document.body.style.overflow = 'hidden';
         }
 
         closeMenu() {
             removeClass(this.menu, 'active');
+            removeClass(this.toggle, 'active');
             this.isOpen = false;
             document.body.style.overflow = '';
         }
