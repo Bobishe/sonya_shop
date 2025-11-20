@@ -102,8 +102,8 @@
 
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.compare.before') !!}
 
-            <!-- Compare -->
-            @if(core()->getConfigData('catalog.products.settings.compare_option'))
+            {{-- COMMENTED: Compare button in desktop header --}}
+            {{-- @if(core()->getConfigData('catalog.products.settings.compare_option'))
                 <a
                     href="{{ route('shop.compare.index') }}"
                     aria-label="@lang('shop::app.components.layouts.header.desktop.bottom.compare')"
@@ -113,7 +113,7 @@
                         role="presentation"
                     ></span>
                 </a>
-            @endif
+            @endif --}}
 
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.compare.after') !!}
 

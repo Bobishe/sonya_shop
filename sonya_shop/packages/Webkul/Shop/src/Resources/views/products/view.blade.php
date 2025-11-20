@@ -144,15 +144,15 @@
                     </x-shop::tabs.item>
                 @endif
 
-                <!-- Reviews Tab -->
-                <x-shop::tabs.item
+                {{-- COMMENTED: Reviews Tab --}}
+                {{-- <x-shop::tabs.item
                     id="review-tab"
                     class="container mt-[60px] !p-0"
                     :title="trans('shop::app.products.view.review')"
                     :is-selected="false"
                 >
                     @include('shop::products.view.reviews')
-                </x-shop::tabs.item>
+                </x-shop::tabs.item> --}}
             </x-shop::tabs>
         </div>
     </div>
@@ -233,8 +233,8 @@
             </x-shop::accordion>
         @endif
 
-        <!-- Reviews Accordion -->
-        <x-shop::accordion
+        {{-- COMMENTED: Reviews Accordion --}}
+        {{-- <x-shop::accordion
             class="max-md:border-none"
             :is-active="false"
         >
@@ -250,7 +250,7 @@
             <x-slot:content>
                 @include('shop::products.view.reviews')
             </x-slot>
-        </x-shop::accordion>
+        </x-shop::accordion> --}}
     </div>
 
     <v-product-associations />
@@ -435,8 +435,8 @@
 
                                 {!! view_render_event('bagisto.shop.products.view.additional_actions.before', ['product' => $product]) !!}
 
-                                <!-- Share Buttons -->
-                                <div class="mt-10 flex gap-9 max-md:mt-4 max-md:flex-wrap max-sm:justify-center max-sm:gap-3">
+                                {{-- COMMENTED: Share Buttons (Compare) --}}
+                                {{-- <div class="mt-10 flex gap-9 max-md:mt-4 max-md:flex-wrap max-sm:justify-center max-sm:gap-3">
                                     {!! view_render_event('bagisto.shop.products.view.compare.before', ['product' => $product]) !!}
 
                                     <div
@@ -456,7 +456,7 @@
                                     </div>
 
                                     {!! view_render_event('bagisto.shop.products.view.compare.after', ['product' => $product]) !!}
-                                </div>
+                                </div> --}}
 
                                 {!! view_render_event('bagisto.shop.products.view.additional_actions.after', ['product' => $product]) !!}
                             </div>
