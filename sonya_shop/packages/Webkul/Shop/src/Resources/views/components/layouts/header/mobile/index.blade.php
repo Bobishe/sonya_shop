@@ -42,14 +42,15 @@
             <div class="flex items-center gap-x-5 max-md:gap-x-4">
                 {!! view_render_event('bagisto.shop.components.layouts.header.mobile.compare.before') !!}
 
-                @if($showCompare)
+                {{-- COMMENTED: Compare button in mobile header --}}
+                {{-- @if($showCompare)
                     <a
                         href="{{ route('shop.compare.index') }}"
                         aria-label="@lang('shop::app.components.layouts.header.mobile.compare')"
                     >
                         <span class="icon-compare cursor-pointer text-2xl"></span>
                     </a>
-                @endif
+                @endif --}}
 
                 {!! view_render_event('bagisto.shop.components.layouts.header.mobile.compare.after') !!}
 
