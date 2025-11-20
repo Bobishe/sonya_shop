@@ -204,35 +204,6 @@
         </div>
     </section>
 
-    {{-- Newsletter Section --}}
-    <section class="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2 class="newsletter-title">Подпишитесь на новости</h2>
-                <p class="newsletter-description">
-                    Узнавайте первыми о новых коллекциях, эксклюзивных предложениях и специальных акциях
-                </p>
-                <form action="#" method="POST" class="newsletter-form">
-                    @csrf
-                    <div class="form-group">
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Введите ваш email"
-                            required
-                            class="newsletter-input"
-                        >
-                        <button type="submit" class="newsletter-btn">Подписаться</button>
-                    </div>
-                    <p class="newsletter-note">
-                        Нажимая кнопку "Подписаться", вы соглашаетесь с
-                        <a href="#">политикой конфиденциальности</a>
-                    </p>
-                </form>
-            </div>
-        </div>
-    </section>
-
     {{-- Advantages Section --}}
     <section class="advantages">
         <div class="container">
