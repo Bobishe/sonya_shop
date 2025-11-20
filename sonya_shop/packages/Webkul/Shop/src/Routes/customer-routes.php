@@ -14,10 +14,15 @@ use Webkul\Shop\Http\Controllers\Customer\ResetPasswordController;
 use Webkul\Shop\Http\Controllers\Customer\SessionController;
 use Webkul\Shop\Http\Controllers\DataGridController;
 
+/**
+ * ВРЕМЕННО ОТКЛЮЧЕНО: Функционал авторизации, регистрации и личного кабинета
+ * TODO: Раскомментировать когда будет необходимо добавить авторизацию
+ */
+/*
 Route::prefix('customer')->group(function () {
     /**
      * Forgot password routes.
-     */
+     * /
     Route::controller(ForgotPasswordController::class)->prefix('forgot-password')->group(function () {
         Route::get('', 'create')->name('shop.customers.forgot_password.create');
 
@@ -26,7 +31,7 @@ Route::prefix('customer')->group(function () {
 
     /**
      * Reset password routes.
-     */
+     * /
     Route::controller(ResetPasswordController::class)->prefix('reset-password')->group(function () {
         Route::get('{token}', 'create')->name('shop.customers.reset_password.create');
 
@@ -35,7 +40,7 @@ Route::prefix('customer')->group(function () {
 
     /**
      * Login routes.
-     */
+     * /
     Route::controller(SessionController::class)->prefix('login')->group(function () {
         Route::get('', 'index')->name('shop.customer.session.index');
 
@@ -44,7 +49,7 @@ Route::prefix('customer')->group(function () {
 
     /**
      * Registration routes.
-     */
+     * /
     Route::controller(RegistrationController::class)->group(function () {
         Route::prefix('register')->group(function () {
             Route::get('', 'index')->name('shop.customers.register.index');
@@ -54,7 +59,7 @@ Route::prefix('customer')->group(function () {
 
         /**
          * Customer verification routes.
-         */
+         * /
         Route::get('verify-account/{token}', 'verifyAccount')->name('shop.customers.verify');
 
         Route::get('resend/verification/{email}', 'resendVerificationEmail')->name('shop.customers.resend.verification_email');
@@ -63,33 +68,33 @@ Route::prefix('customer')->group(function () {
     /**
      * Customer authenticated routes. All the below routes only be accessible
      * if customer is authenticated.
-     */
+     * /
     Route::group(['middleware' => ['customer', NoCacheMiddleware::class]], function () {
         /**
          * Datagrid routes.
-         */
+         * /
         Route::get('datagrid/look-up', [DataGridController::class, 'lookUp'])->name('shop.customer.datagrid.look_up');
 
         /**
          * Logout.
-         */
+         * /
         Route::delete('logout', [SessionController::class, 'destroy'])->name('shop.customer.session.destroy');
 
         /**
          * Customer account. All the below routes are related to
          * customer account details.
-         */
+         * /
         Route::prefix('account')->group(function () {
             Route::get('', [CustomerController::class, 'account'])->name('shop.customers.account.index');
 
             /**
              * Wishlist.
-             */
+             * /
             Route::get('wishlist', [WishlistController::class, 'index'])->name('shop.customers.account.wishlist.index');
 
             /**
              * Profile.
-             */
+             * /
             Route::controller(CustomerController::class)->group(function () {
                 Route::prefix('profile')->group(function () {
                     Route::get('', 'index')->name('shop.customers.account.profile.index');
@@ -106,7 +111,7 @@ Route::prefix('customer')->group(function () {
 
             /**
              * GDPR.
-             */
+             * /
             Route::controller(GDPRController::class)->prefix('gdpr')->group(function () {
                 Route::get('', 'index')->name('shop.customers.account.gdpr.index');
 
@@ -121,13 +126,13 @@ Route::prefix('customer')->group(function () {
 
             /**
              * Cookie consent.
-             */
+             * /
             Route::get('your-cookie-consent-preferences', [GDPRController::class, 'cookieConsent'])
                 ->name('shop.customers.gdpr.cookie-consent');
 
             /**
              * Addresses.
-             */
+             * /
             Route::controller(AddressController::class)->prefix('addresses')->group(function () {
                 Route::get('', 'index')->name('shop.customers.account.addresses.index');
 
@@ -146,7 +151,7 @@ Route::prefix('customer')->group(function () {
 
             /**
              * Orders.
-             */
+             * /
             Route::controller(OrderController::class)->prefix('orders')->group(function () {
                 Route::get('', 'index')->name('shop.customers.account.orders.index');
 
@@ -161,7 +166,7 @@ Route::prefix('customer')->group(function () {
 
             /**
              * Downloadable products.
-             */
+             * /
             Route::controller(DownloadableProductController::class)->prefix('downloadable-products')->group(function () {
                 Route::get('', 'index')->name('shop.customers.account.downloadable_products.index');
 
@@ -170,3 +175,4 @@ Route::prefix('customer')->group(function () {
         });
     });
 });
+*/

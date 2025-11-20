@@ -62,12 +62,14 @@
                         </svg>
                     </button>
 
-                    <a href="{{ route('customer.session.index') }}" class="icon-link account" aria-label="Account">
+                    {{-- Временно отключено: Функционал авторизации и личного кабинета --}}
+                    {{-- TODO: Раскомментировать когда будет необходимо добавить авторизацию --}}
+                    {{-- <a href="{{ route('customer.session.index') }}" class="icon-link account" aria-label="Account">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
                         </svg>
-                    </a>
+                    </a> --}}
 
                     <a href="#" class="icon-link wishlist" aria-label="Wishlist">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
