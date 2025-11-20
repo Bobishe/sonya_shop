@@ -84,7 +84,7 @@
 
                         {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.before') !!}
 
-                        @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
+                        {{-- @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
                             <span
                                 class="absolute top-2.5 flex h-6 w-6 items-center justify-center rounded-full border border-zinc-200 bg-white text-lg md:hidden ltr:right-1.5 rtl:left-1.5"
                                 role="button"
@@ -94,7 +94,7 @@
                                 @click="addToWishlist()"
                             >
                             </span>
-                        @endif
+                        @endif --}}
 
                         {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.after') !!}
 
@@ -158,7 +158,7 @@
 
                     {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.before') !!}
 
-                    @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
+                    {{-- @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
                         <span
                             class="cursor-pointer p-2.5 text-2xl max-sm:hidden"
                             role="button"
@@ -168,7 +168,7 @@
                             @click="addToWishlist()"
                         >
                         </span>
-                    @endif
+                    @endif --}}
 
                     {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.after') !!}
 
@@ -232,7 +232,7 @@
 
                         {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.before') !!}
 
-                        @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
+                        {{-- @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
                             <span
                                 class="absolute top-5 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-md bg-white text-2xl ltr:right-5 rtl:left-5"
                                 role="button"
@@ -242,7 +242,7 @@
                                 @click="addToWishlist()"
                             >
                             </span>
-                        @endif
+                        @endif --}}
 
                         {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.after') !!}
 
@@ -355,21 +355,21 @@
             },
 
             methods: {
-                addToWishlist() {
-                    if (this.isCustomer) {
-                        this.$axios.post(`{{ route('shop.api.customers.account.wishlist.store') }}`, {
-                                product_id: this.product.id
-                            })
-                            .then(response => {
-                                this.product.is_wishlist = ! this.product.is_wishlist;
+                // addToWishlist() {
+                //     if (this.isCustomer) {
+                //         this.$axios.post(`{{ route('shop.api.customers.account.wishlist.store') }}`, {
+                //                 product_id: this.product.id
+                //             })
+                //             .then(response => {
+                //                 this.product.is_wishlist = ! this.product.is_wishlist;
 
-                                this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
-                            })
-                            .catch(error => {});
-                        } else {
-                            window.location.href = "{{ route('shop.customer.session.index')}}";
-                        }
-                },
+                //                 this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                //             })
+                //             .catch(error => {});
+                //         } else {
+                //             window.location.href = "{{ route('shop.customer.session.index')}}";
+                //         }
+                // },
 
                 addToCompare(productId) {
                     /**
