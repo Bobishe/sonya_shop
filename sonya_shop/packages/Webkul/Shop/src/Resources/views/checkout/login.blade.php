@@ -1,11 +1,11 @@
-<!-- Checkout Login Vue JS Component -->
-<v-checkout-login>
+{{-- COMMENTED: Checkout Login Link --}}
+{{-- <v-checkout-login>
     <div class="flex items-center">
         <span class="cursor-pointer text-base font-medium text-blue-700">
             @lang('shop::app.checkout.login.title')
         </span>
     </div>
-</v-checkout-login>
+</v-checkout-login> --}}
 
 @pushOnce('scripts')
     {!! \Webkul\Customer\Facades\Captcha::renderJS() !!}

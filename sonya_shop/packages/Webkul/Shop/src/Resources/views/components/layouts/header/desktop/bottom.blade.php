@@ -128,8 +128,8 @@
 
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.profile.before') !!}
 
-            <!-- user profile -->
-            <x-shop::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
+            {{-- COMMENTED: User profile dropdown (login/register/account) --}}
+            {{-- <x-shop::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
                 <x-slot:toggle>
                     <span
                         class="icon-users inline-block cursor-pointer text-2xl"
@@ -139,7 +139,6 @@
                     ></span>
                 </x-slot>
 
-                <!-- Guest Dropdown -->
                 @guest('customer')
                     <x-slot:content>
                         <div class="grid gap-2.5">
@@ -180,12 +179,11 @@
                     </x-slot>
                 @endguest
 
-                <!-- Customers Dropdown -->
                 @auth('customer')
                     <x-slot:content class="!p-0">
                         <div class="grid gap-2.5 p-5 pb-0">
                             <p class="font-dmserif text-xl">
-                                @lang('shop::app.components.layouts.header.desktop.bottom.welcome')’
+                                @lang('shop::app.components.layouts.header.desktop.bottom.welcome')'
                                 {{ auth()->guard('customer')->user()->first_name }}
                             </p>
 
@@ -222,7 +220,6 @@
                                 </a>
                             @endif
 
-                            <!--Customers logout-->
                             @auth('customer')
                                 <x-shop::form
                                     method="DELETE"
@@ -243,7 +240,7 @@
                         </div>
                     </x-slot>
                 @endauth
-            </x-shop::dropdown>
+            </x-shop::dropdown> --}}
 
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.profile.after') !!}
         </div>
