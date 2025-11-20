@@ -118,11 +118,11 @@
             </div>
 
             <!-- Product Information Section -->
-            <div class="-mt-9 grid max-w-[291px] translate-y-9 content-start gap-2.5 bg-white p-2.5 transition-transform duration-300 ease-out group-hover:-translate-y-0 group-hover:rounded-t-lg max-md:relative max-md:mt-0 max-md:translate-y-0 max-md:gap-0 max-md:px-0 max-md:py-1.5 max-sm:min-w-[170px] max-sm:max-w-[192px]">
+            <div class="-mt-9 text-center grid max-w-[291px] translate-y-9 content-start gap-2.5 bg-white p-2.5 transition-transform duration-300 ease-out group-hover:-translate-y-0 group-hover:rounded-t-lg max-md:relative max-md:mt-0 max-md:translate-y-0 max-md:gap-0 max-md:px-0 max-md:py-1.5 max-sm:min-w-[170px] max-sm:max-w-[192px]">
 
                 {!! view_render_event('bagisto.shop.components.products.card.name.before') !!}
 
-                <p class="break-all text-base font-medium max-md:mb-1.5 max-md:max-w-56 max-md:whitespace-break-spaces max-md:leading-6 max-sm:max-w-[192px] max-sm:text-sm max-sm:leading-4">
+                <p class="text-center break-all text-base font-medium max-md:mb-1.5 max-md:max-w-56 max-md:whitespace-break-spaces max-md:leading-6 max-sm:max-w-[192px] max-sm:text-sm max-sm:leading-4">
                     @{{ product.name }}
                 </p>
 
@@ -132,8 +132,9 @@
                 {!! view_render_event('bagisto.shop.components.products.card.price.before') !!}
 
                 <div
-                    class="flex items-center gap-2.5 text-lg font-semibold max-sm:text-sm max-sm:leading-6"
+                    class="m-auto flex items-center gap-2.5 text-lg font-normal max-sm:text-sm max-sm:leading-6"
                     v-html="product.price_html"
+                    style="font-weight: normal !important; font-size: 14px;"
                 >
                 </div>
 
@@ -173,7 +174,7 @@
 
                     {!! view_render_event('bagisto.shop.components.products.card.compare_option.before') !!}
 
-                    @if (core()->getConfigData('catalog.products.settings.compare_option'))
+                    <!-- @if (core()->getConfigData('catalog.products.settings.compare_option'))
                         <span
                             class="icon-compare cursor-pointer p-2.5 text-2xl max-sm:hidden"
                             role="button"
@@ -182,7 +183,7 @@
                             @click="addToCompare(product.id)"
                         >
                         </span>
-                    @endif
+                    @endif -->
 
                     {!! view_render_event('bagisto.shop.components.products.card.compare_option.after') !!}
                 </div>

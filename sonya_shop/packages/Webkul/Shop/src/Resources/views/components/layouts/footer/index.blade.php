@@ -28,11 +28,11 @@
             @if ($customization?->options)
                 @foreach ($customization->options as $footerLinkSection)
                     <ul class="grid gap-5 text-sm">
-                        @php
+                        <!-- @php
                             usort($footerLinkSection, function ($a, $b) {
                                 return $a['sort_order'] - $b['sort_order'];
                             });
-                        @endphp
+                        @endphp -->
 
                         @foreach ($footerLinkSection as $link)
                             <li>
@@ -59,11 +59,11 @@
                 @if ($customization?->options)
                     @foreach ($customization->options as $footerLinkSection)
                         <ul class="grid gap-5 text-sm">
-                            @php
+                            <!-- @php
                                 usort($footerLinkSection, function ($a, $b) {
                                     return $a['sort_order'] - $b['sort_order'];
                                 });
-                            @endphp
+                            @endphp -->
 
                             @foreach ($footerLinkSection as $link)
                                 <li>
@@ -80,10 +80,10 @@
             </x-slot>
         </x-shop::accordion>
 
-        {!! view_render_event('bagisto.shop.layout.footer.newsletter_subscription.before') !!}
+        <!-- {!! view_render_event('bagisto.shop.layout.footer.newsletter_subscription.before') !!} -->
 
         <!-- News Letter subscription -->
-        @if (core()->getConfigData('customer.settings.newsletter.subscription'))
+        <!-- @if (core()->getConfigData('customer.settings.newsletter.subscription'))
             <div class="grid gap-2.5">
                 <p
                     class="max-w-[288px] text-3xl italic leading-[45px] text-black max-md:text-2xl max-sm:text-lg"
@@ -125,12 +125,12 @@
                     </x-shop::form>
                 </div>
             </div>
-        @endif
+        @endif -->
 
-        {!! view_render_event('bagisto.shop.layout.footer.newsletter_subscription.after') !!}
+        <!-- {!! view_render_event('bagisto.shop.layout.footer.newsletter_subscription.after') !!} -->
     </div>
 
-    <div class="flex justify-between bg-black px-[60px] py-3.5 max-md:justify-center max-sm:px-5">
+    <!-- <div class="flex justify-between bg-black px-[60px] py-3.5 max-md:justify-center max-sm:px-5">
         {!! view_render_event('bagisto.shop.layout.footer.footer_text.before') !!}
 
         <p class="text-sm text-white max-md:text-center">
@@ -138,7 +138,7 @@
         </p>
 
         {!! view_render_event('bagisto.shop.layout.footer.footer_text.after') !!}
-    </div>
+    </div> -->
 </footer>
 
 {!! view_render_event('bagisto.shop.layout.footer.after') !!}

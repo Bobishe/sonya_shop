@@ -1,12 +1,41 @@
-@props(['options'])
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
 
-<v-carousel :images="{{ json_encode($options['images'] ?? []) }}">
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames((['options']));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter((['options']), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars); ?>
+
+<v-carousel :images="<?php echo e(json_encode($options['images'] ?? [])); ?>">
     <div class="overflow-hidden">
         <div class="shimmer aspect-[2.743/1] max-h-screen w-screen"></div>
     </div>
 </v-carousel>
 
-@pushOnce('styles')
+<?php if (! $__env->hasRenderedOnce('f858baec-9780-4127-8d92-940c650b909f')): $__env->markAsRenderedOnce('f858baec-9780-4127-8d92-940c650b909f');
+$__env->startPush('styles'); ?>
 <style>
     .hero-carousel-nav {
         position: absolute;
@@ -61,9 +90,10 @@
         }
     }
 </style>
-@endpushOnce
+<?php $__env->stopPush(); endif; ?>
 
-@pushOnce('scripts')
+<?php if (! $__env->hasRenderedOnce('8daef1a6-c720-4043-98a9-adffdd728a27')): $__env->markAsRenderedOnce('8daef1a6-c720-4043-98a9-adffdd728a27');
+$__env->startPush('scripts'); ?>
     <script
         type="text/x-template"
         id="v-carousel-template"
@@ -81,22 +111,36 @@
                     @click="visitLink(image)"
                     ref="slide"
                 >
-                    <x-shop::media.images.lazy
-                        class="aspect-[2.743/1] max-h-full w-full max-w-full select-none transition-transform duration-300 ease-in-out will-change-transform"
-                        ::lazy="index === 0 ? false : true"
-                        ::src="image.image"
-                        ::srcset="image.image + ' 1920w, ' + image.image.replace('storage', 'cache/large') + ' 1280w,' + image.image.replace('storage', 'cache/medium') + ' 1024w, ' + image.image.replace('storage', 'cache/small') + ' 525w'"
-                        ::sizes="
-                            '(max-width: 525px) 525px, ' +
-                            '(max-width: 1024px) 1024px, ' +
-                            '(max-width: 1600px) 1280px, ' +
-                            '1920px'
-                        "
-                        ::alt="image?.title || 'Carousel Image ' + (index + 1)"
-                        tabindex="0"
-                        ::fetchpriority="index === 0 ? 'high' : 'low'"
-                        ::decoding="index === 0 ? 'sync' : 'async'"
-                    />
+                    <?php if (isset($component)) { $__componentOriginal3657c70d06ebc8c078f4ecac2ea1a848 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3657c70d06ebc8c078f4ecac2ea1a848 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.media.images.lazy','data' => ['class' => 'aspect-[2.743/1] max-h-full w-full max-w-full select-none transition-transform duration-300 ease-in-out will-change-transform',':lazy' => 'index === 0 ? false : true',':src' => 'image.image',':srcset' => 'image.image + \' 1920w, \' + image.image.replace(\'storage\', \'cache/large\') + \' 1280w,\' + image.image.replace(\'storage\', \'cache/medium\') + \' 1024w, \' + image.image.replace(\'storage\', \'cache/small\') + \' 525w\'',':sizes' => '
+                            \'(max-width: 525px) 525px, \' +
+                            \'(max-width: 1024px) 1024px, \' +
+                            \'(max-width: 1600px) 1280px, \' +
+                            \'1920px\'
+                        ',':alt' => 'image?.title || \'Carousel Image \' + (index + 1)','tabindex' => '0',':fetchpriority' => 'index === 0 ? \'high\' : \'low\'',':decoding' => 'index === 0 ? \'sync\' : \'async\'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('shop::media.images.lazy'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'aspect-[2.743/1] max-h-full w-full max-w-full select-none transition-transform duration-300 ease-in-out will-change-transform',':lazy' => 'index === 0 ? false : true',':src' => 'image.image',':srcset' => 'image.image + \' 1920w, \' + image.image.replace(\'storage\', \'cache/large\') + \' 1280w,\' + image.image.replace(\'storage\', \'cache/medium\') + \' 1024w, \' + image.image.replace(\'storage\', \'cache/small\') + \' 525w\'',':sizes' => '
+                            \'(max-width: 525px) 525px, \' +
+                            \'(max-width: 1024px) 1024px, \' +
+                            \'(max-width: 1600px) 1280px, \' +
+                            \'1920px\'
+                        ',':alt' => 'image?.title || \'Carousel Image \' + (index + 1)','tabindex' => '0',':fetchpriority' => 'index === 0 ? \'high\' : \'low\'',':decoding' => 'index === 0 ? \'sync\' : \'async\'']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3657c70d06ebc8c078f4ecac2ea1a848)): ?>
+<?php $attributes = $__attributesOriginal3657c70d06ebc8c078f4ecac2ea1a848; ?>
+<?php unset($__attributesOriginal3657c70d06ebc8c078f4ecac2ea1a848); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3657c70d06ebc8c078f4ecac2ea1a848)): ?>
+<?php $component = $__componentOriginal3657c70d06ebc8c078f4ecac2ea1a848; ?>
+<?php unset($__componentOriginal3657c70d06ebc8c078f4ecac2ea1a848); ?>
+<?php endif; ?>
                 </div>
             </div>
 
@@ -108,7 +152,7 @@
                     'cursor-pointer': direction == 'ltr' ? currentIndex > 0 : currentIndex <= 0
                 }"
                 role="button"
-                aria-label="@lang('shop::components.carousel.previous')"
+                aria-label="<?php echo app('translator')->get('shop::components.carousel.previous'); ?>"
                 tabindex="0"
                 v-if="images?.length >= 2"
                 @click="navigate('prev')"
@@ -125,7 +169,7 @@
                     'cursor-pointer': direction == 'rtl' ? currentIndex < 0 : currentIndex >= 0
                 }"
                 role="button"
-                aria-label="@lang('shop::components.carousel.next')"
+                aria-label="<?php echo app('translator')->get('shop::components.carousel.next'); ?>"
                 tabindex="0"
                 v-if="images?.length >= 2"
                 @click="navigate('next')"
@@ -350,4 +394,4 @@
             },
         });
     </script>
-@endpushOnce
+<?php $__env->stopPush(); endif; ?><?php /**PATH D:\Work\sonya_site\sonya_shop\packages\Webkul\Shop\src/resources/views/components/carousel/index.blade.php ENDPATH**/ ?>

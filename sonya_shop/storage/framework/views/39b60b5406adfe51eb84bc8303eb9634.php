@@ -25,23 +25,23 @@
 <?php endif; ?>
 </v-products-carousel>
 
-<?php if (! $__env->hasRenderedOnce('d1eee576-3b93-4a64-89bf-898ab926b9c2')): $__env->markAsRenderedOnce('d1eee576-3b93-4a64-89bf-898ab926b9c2');
+<?php if (! $__env->hasRenderedOnce('8da5f56a-7a38-418b-bde1-c73b58b2ff85')): $__env->markAsRenderedOnce('8da5f56a-7a38-418b-bde1-c73b58b2ff85');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"
         id="v-products-carousel-template"
     >
         <div
-            class="container mt-20 max-lg:px-8 max-md:mt-8 max-sm:mt-7 max-sm:!px-4"
+            class="text-center container mt-20 max-lg:px-8 max-md:mt-8 max-sm:mt-7 max-sm:!px-4"
             v-if="! isLoading && products.length"
         >
             <div class="flex justify-between">
-                <h2 class="font-dmserif text-3xl max-md:text-2xl max-sm:text-xl">
+                <h2 class="m-auto font-dmserif text-3xl max-md:text-2xl max-sm:text-xl">
                     {{ title }}
                 </h2>
 
                 <div class="flex items-center justify-between gap-8">
-                    <a
+                    <!-- <a
                         :href="navigationLink"
                         class="hidden max-lg:flex"
                         v-if="navigationLink"
@@ -51,7 +51,7 @@ $__env->startPush('scripts'); ?>
 
                             <span class="icon-arrow-right text-2xl max-md:text-lg max-sm:text-sm"></span>
                         </p>
-                    </a>
+                    </a> -->
 
                     <template v-if="products.length > 3">
                         <span

@@ -29,11 +29,11 @@
             <?php if($customization?->options): ?>
                 <?php $__currentLoopData = $customization->options; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $footerLinkSection): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <ul class="grid gap-5 text-sm">
-                        <?php
+                        <!-- <?php
                             usort($footerLinkSection, function ($a, $b) {
                                 return $a['sort_order'] - $b['sort_order'];
                             });
-                        ?>
+                        ?> -->
 
                         <?php $__currentLoopData = $footerLinkSection; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $link): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li>
@@ -67,11 +67,11 @@
                 <?php if($customization?->options): ?>
                     <?php $__currentLoopData = $customization->options; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $footerLinkSection): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <ul class="grid gap-5 text-sm">
-                            <?php
+                            <!-- <?php
                                 usort($footerLinkSection, function ($a, $b) {
                                     return $a['sort_order'] - $b['sort_order'];
                                 });
-                            ?>
+                            ?> -->
 
                             <?php $__currentLoopData = $footerLinkSection; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $link): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <li>
@@ -98,11 +98,10 @@
 <?php unset($__componentOriginald3ba50c765d00f082351f5b73fecce50); ?>
 <?php endif; ?>
 
-        <?php echo view_render_event('bagisto.shop.layout.footer.newsletter_subscription.before'); ?>
-
+        <!-- <?php echo view_render_event('bagisto.shop.layout.footer.newsletter_subscription.before'); ?> -->
 
         <!-- News Letter subscription -->
-        <?php if(core()->getConfigData('customer.settings.newsletter.subscription')): ?>
+        <!-- <?php if(core()->getConfigData('customer.settings.newsletter.subscription')): ?>
             <div class="grid gap-2.5">
                 <p
                     class="max-w-[288px] text-3xl italic leading-[45px] text-black max-md:text-2xl max-sm:text-lg"
@@ -189,13 +188,12 @@
 <?php endif; ?>
                 </div>
             </div>
-        <?php endif; ?>
+        <?php endif; ?> -->
 
-        <?php echo view_render_event('bagisto.shop.layout.footer.newsletter_subscription.after'); ?>
-
+        <!-- <?php echo view_render_event('bagisto.shop.layout.footer.newsletter_subscription.after'); ?> -->
     </div>
 
-    <div class="flex justify-between bg-black px-[60px] py-3.5 max-md:justify-center max-sm:px-5">
+    <!-- <div class="flex justify-between bg-black px-[60px] py-3.5 max-md:justify-center max-sm:px-5">
         <?php echo view_render_event('bagisto.shop.layout.footer.footer_text.before'); ?>
 
 
@@ -205,7 +203,7 @@
 
         <?php echo view_render_event('bagisto.shop.layout.footer.footer_text.after'); ?>
 
-    </div>
+    </div> -->
 </footer>
 
 <?php echo view_render_event('bagisto.shop.layout.footer.after'); ?>

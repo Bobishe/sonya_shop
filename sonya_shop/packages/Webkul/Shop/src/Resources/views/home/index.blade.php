@@ -4,460 +4,50 @@
 
 <!-- SEO Meta Content -->
 @push ('meta')
-    <meta name="title" content="{{ $channel->home_seo['meta_title'] ?? '' }}" />
-    <meta name="description" content="{{ $channel->home_seo['meta_description'] ?? '' }}" />
-    <meta name="keywords" content="{{ $channel->home_seo['meta_keywords'] ?? '' }}" />
+    <meta
+        name="title"
+        content="{{ $channel->home_seo['meta_title'] ?? '' }}"
+    />
+
+    <meta
+        name="description"
+        content="{{ $channel->home_seo['meta_description'] ?? '' }}"
+    />
+
+    <meta
+        name="keywords"
+        content="{{ $channel->home_seo['meta_keywords'] ?? '' }}"
+    />
 @endPush
 
-@push('styles')
-<style>
-    :root {
-        --primary-black: #000000;
-        --primary-green: #659c44;
-        --primary-white: #ffffff;
-        --hero-bg: #a8d5e2;
-    }
-
-    body {
-        font-family: 'Poppins', sans-serif;
-    }
-
-    /* Hero Slider Styles */
-    .hero-slider {
-        height: 100vh;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .hero-slide {
-        width: 100%;
-        height: 100vh;
-        position: relative;
-        background: var(--hero-bg);
-        display: none;
-    }
-
-    .hero-slide.active {
-        display: flex;
-        align-items: center;
-    }
-
-    .hero-content-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        width: 100%;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 80px;
-        align-items: center;
-        height: 100%;
-    }
-
-    .hero-text-content {
-        z-index: 5;
-    }
-
-    .hero-title {
-        font-size: 5rem;
-        font-weight: 700;
-        color: white;
-        margin-bottom: 2rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-    }
-
-    .hero-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 18px 45px;
-        border: 2px solid white;
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        transition: all 0.3s ease;
-        background: transparent;
-    }
-
-    .hero-btn:hover {
-        background: white;
-        color: var(--hero-bg);
-    }
-
-    .hero-image-content {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        height: 100%;
-    }
-
-    .hero-image-content img {
-        height: 90%;
-        width: auto;
-        object-fit: contain;
-        max-width: 100%;
-    }
-
-    /* Navigation Arrows */
-    .hero-nav-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(255, 255, 255, 0.6);
-        width: 70px;
-        height: 70px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        z-index: 10;
-        border: none;
-    }
-
-    .hero-nav-arrow:hover {
-        background: rgba(255, 255, 255, 0.9);
-    }
-
-    .hero-nav-arrow.left {
-        left: 30px;
-    }
-
-    .hero-nav-arrow.right {
-        right: 30px;
-    }
-
-    .hero-nav-arrow svg {
-        width: 30px;
-        height: 30px;
-        fill: rgba(0, 0, 0, 0.7);
-    }
-
-    /* Pagination Dots */
-    .hero-pagination {
-        position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 12px;
-        z-index: 10;
-    }
-
-    .hero-pagination-dot {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.4);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
-    }
-
-    .hero-pagination-dot:hover {
-        background: rgba(255, 255, 255, 0.7);
-    }
-
-    .hero-pagination-dot.active {
-        background: white;
-        border-color: white;
-        transform: scale(1.2);
-    }
-
-    /* Section Styles */
-    .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--primary-black);
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-
-    .product-card {
-        border: 1px solid #e5e5e5;
-        border-radius: 8px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .product-card:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transform: translateY(-5px);
-    }
-
-    .promo-block {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-        align-items: center;
-        padding: 4rem 0;
-    }
-
-    .category-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-    }
-
-    .category-card {
-        position: relative;
-        height: 300px;
-        border-radius: 8px;
-        overflow: hidden;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .category-card:hover {
-        transform: scale(1.05);
-    }
-
-    .category-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .category-card-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-        padding: 2rem;
-        color: white;
-    }
-
-    .about-brand {
-        text-align: center;
-        padding: 4rem 0;
-        background: #f9f9f9;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-        .hero-content-wrapper {
-            padding: 0 40px;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .hero-slider {
-            height: 70vh;
-        }
-
-        .hero-slide {
-            height: 70vh;
-        }
-
-        .hero-content-wrapper {
-            grid-template-columns: 1fr;
-            padding: 0 30px;
-            text-align: center;
-        }
-
-        .hero-image-content {
-            display: none;
-        }
-
-        .hero-title {
-            font-size: 2.5rem;
-        }
-
-        .hero-nav-arrow {
-            width: 50px;
-            height: 50px;
-        }
-
-        .hero-nav-arrow.left {
-            left: 15px;
-        }
-
-        .hero-nav-arrow.right {
-            right: 15px;
-        }
-
-        .promo-block {
-            grid-template-columns: 1fr;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-        }
-    }
-</style>
+@push('scripts')
+    <script>
+        localStorage.setItem('categories', JSON.stringify(@json($categories)));
+    </script>
 @endpush
 
 <x-shop::layouts>
     <!-- Page Title -->
     <x-slot:title>
-        {{ $channel->home_seo['meta_title'] ?? '' }}
+        {{  $channel->home_seo['meta_title'] ?? '' }}
     </x-slot>
 
-    <!-- Hero Slider Section -->
-    <section class="hero-slider">
-        @php
-            $heroSlides = [
-                [
-                    'title' => 'НОВИНКИ',
-                    'link' => route('shop.search.index', ['sort' => 'created_at']),
-                    'bg_color' => '#a8d5e2',
-                    'image' => 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&h=900&fit=crop'
-                ],
-                [
-                    'title' => 'БЕСТСЕЛЛЕРЫ',
-                    'link' => route('shop.search.index'),
-                    'bg_color' => '#e8c4d4',
-                    'image' => 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=900&fit=crop'
-                ],
-                [
-                    'title' => 'VERY SEXY',
-                    'link' => route('shop.search.index'),
-                    'bg_color' => '#d4b5a8',
-                    'image' => 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&h=900&fit=crop'
-                ]
-            ];
-
-            $heroImages = $customizations->where('type', 'image_carousel')->first();
-            
-            if($heroImages && !empty($heroImages->options['images'])) {
-                $heroSlides = collect($heroImages->options['images'])->map(function($img) {
-                    return [
-                        'title' => $img['title'] ?? 'НОВИНКИ',
-                        'link' => $img['link'] ?? '#',
-                        'bg_color' => '#a8d5e2',
-                        'image' => Storage::url($img['image'])
-                    ];
-                })->toArray();
-            }
-        @endphp
-
-        <!-- Slides -->
-        @foreach($heroSlides as $index => $slide)
-            <div class="hero-slide {{ $index === 0 ? 'active' : '' }}" 
-                 style="background-color: {{ $slide['bg_color'] ?? '#a8d5e2' }};"
-                 data-slide="{{ $index }}">
-                <div class="hero-content-wrapper">
-                    <div class="hero-text-content">
-                        <h1 class="hero-title">{{ $slide['title'] }}</h1>
-                        <a href="{{ $slide['link'] }}" class="hero-btn">
-                            СМОТРЕТЬ ВСЕ
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="hero-image-content">
-                        <img src="{{ $slide['image'] }}" alt="{{ $slide['title'] }}">
-                    </div>
-                </div>
-            </div>
-        @endforeach
-
-        <!-- Navigation Arrows -->
-        @if(count($heroSlides) > 1)
-            <button class="hero-nav-arrow left" onclick="changeSlide(-1)">
-                <svg viewBox="0 0 24 24">
-                    <path d="M15 18l-6-6 6-6"/>
-                </svg>
-            </button>
-
-            <button class="hero-nav-arrow right" onclick="changeSlide(1)">
-                <svg viewBox="0 0 24 24">
-                    <path d="M9 18l6-6-6-6"/>
-                </svg>
-            </button>
-
-            <!-- Pagination Dots -->
-            <div class="hero-pagination">
-                @foreach($heroSlides as $index => $slide)
-                    <div class="hero-pagination-dot {{ $index === 0 ? 'active' : '' }}" 
-                         onclick="goToSlide({{ $index }})"
-                         data-dot="{{ $index }}">
-                    </div>
-                @endforeach
-            </div>
-        @endif
-    </section>
-
-    <!-- New Products Section -->
-    <section class="container mx-auto px-8 py-16 max-sm:px-4">
-        <h2 class="section-title">НОВИНКИ</h2>
-
-        <x-shop::products.carousel
-            title=""
-            :src="route('shop.api.products.index', ['sort' => 'created_at', 'order' => 'desc', 'limit' => 8])"
-            :navigation-link="route('shop.search.index', ['sort' => 'created_at'])"
-        />
-    </section>
-
-    <!-- Promo Block Section -->
-    <section class="container mx-auto px-8 max-sm:px-4">
-        <div class="promo-block">
-            <div class="promo-image">
-                <img src="https://placehold.co/800x600/659c44/ffffff?text=Promo" alt="Акция" style="width: 100%; border-radius: 8px;">
-            </div>
-            <div class="promo-content">
-                <h2 style="font-size: 2rem; font-weight: 700; color: var(--primary-green); margin-bottom: 1rem;">
-                    Специальное предложение
-                </h2>
-                <p style="font-size: 1.1rem; line-height: 1.8; color: #333;">
-                    Воспользуйтесь нашими специальными предложениями и скидками на избранные товары.
-                    Качественная продукция по лучшим ценам для вас и вашей семьи.
-                </p>
-                <a href="{{ route('shop.search.index') }}"
-                   style="display: inline-block; margin-top: 1.5rem; padding: 12px 30px; background: var(--primary-green); color: white; text-decoration: none; border-radius: 4px; font-weight: 600;">
-                    Узнать больше
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Popular Categories Section -->
-    <section class="container mx-auto px-8 py-16 max-sm:px-4">
-        <h2 class="section-title">ПОПУЛЯРНЫЕ КАТЕГОРИИ</h2>
-
-        <div class="category-grid">
-            @foreach($categories->take(6) as $category)
-                <a href="{{ $category['url'] }}" class="category-card">
-                    @if($category['logo_path'])
-                        <img src="{{ Storage::url($category['logo_path']) }}" alt="{{ $category['name'] }}">
-                    @else
-                        <img src="https://placehold.co/400x300/e5e5e5/666666?text={{ urlencode($category['name']) }}" alt="{{ $category['name'] }}">
-                    @endif
-                    <div class="category-card-overlay">
-                        <h3 style="font-size: 1.5rem; font-weight: 600;">{{ $category['name'] }}</h3>
-                    </div>
-                </a>
-            @endforeach
-        </div>
-    </section>
-
-    <!-- About Brand Section -->
-    <section class="about-brand">
-        <div class="container mx-auto px-8 max-sm:px-4">
-            <h2 class="section-title">О БРЕНДЕ</h2>
-            <p style="font-size: 1.1rem; line-height: 1.8; color: #666; max-width: 800px; margin: 0 auto;">
-                Мы предлагаем широкий ассортимент качественных товаров для вашего дома и семьи.
-                Наша миссия - сделать покупки удобными и приятными, предоставляя только лучшие продукты
-                по доступным ценам. Доверие наших клиентов - наш главный приоритет.
-            </p>
-        </div>
-    </section>
-
-    <!-- Additional customizations from admin -->
+    <!-- Loop over the theme customization -->
     @foreach ($customizations as $customization)
         @php ($data = $customization->options) @endphp
 
+        <!-- Static content -->
         @switch ($customization->type)
+            @case ($customization::IMAGE_CAROUSEL)
+                <!-- Image Carousel -->
+                <x-shop::carousel
+                    :options="$data"
+                    aria-label="{{ trans('shop::app.home.index.image-carousel') }}"
+                />
+
+                @break
             @case ($customization::STATIC_CONTENT)
+                <!-- push style -->
                 @if (! empty($data['css']))
                     @push ('styles')
                         <style>
@@ -466,110 +56,32 @@
                     @endpush
                 @endif
 
+                <!-- render html -->
                 @if (! empty($data['html']))
                     {!! $data['html'] !!}
                 @endif
 
                 @break
             @case ($customization::CATEGORY_CAROUSEL)
+                <!-- Categories carousel -->
                 <x-shop::categories.carousel
                     :title="$data['title'] ?? ''"
                     :src="route('shop.api.categories.index', $data['filters'] ?? [])"
                     :navigation-link="route('shop.home.index')"
+                    aria-label="{{ trans('shop::app.home.index.categories-carousel') }}"
                 />
+
                 @break
             @case ($customization::PRODUCT_CAROUSEL)
+                <!-- Product Carousel -->
                 <x-shop::products.carousel
                     :title="$data['title'] ?? ''"
                     :src="route('shop.api.products.index', $data['filters'] ?? [])"
                     :navigation-link="route('shop.search.index', $data['filters'] ?? [])"
+                    aria-label="{{ trans('shop::app.home.index.product-carousel') }}"
                 />
+
                 @break
         @endswitch
     @endforeach
 </x-shop::layouts>
-
-@push('scripts')
-<script>
-    let currentSlide = 0;
-    let autoPlayInterval;
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots = document.querySelectorAll('.hero-pagination-dot');
-    const totalSlides = slides.length;
-
-    function showSlide(n) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-
-        if (n >= totalSlides) currentSlide = 0;
-        if (n < 0) currentSlide = totalSlides - 1;
-
-        slides[currentSlide].classList.add('active');
-        if (dots[currentSlide]) {
-            dots[currentSlide].classList.add('active');
-        }
-    }
-
-    function changeSlide(direction) {
-        currentSlide += direction;
-        showSlide(currentSlide);
-        resetAutoPlay();
-    }
-
-    function goToSlide(index) {
-        currentSlide = index;
-        showSlide(currentSlide);
-        resetAutoPlay();
-    }
-
-    function startAutoPlay() {
-        if (totalSlides > 1) {
-            autoPlayInterval = setInterval(() => {
-                currentSlide++;
-                showSlide(currentSlide);
-            }, 5000);
-        }
-    }
-
-    function resetAutoPlay() {
-        clearInterval(autoPlayInterval);
-        startAutoPlay();
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        startAutoPlay();
-    });
-
-    document.querySelector('.hero-slider')?.addEventListener('mouseenter', function() {
-        clearInterval(autoPlayInterval);
-    });
-
-    document.querySelector('.hero-slider')?.addEventListener('mouseleave', function() {
-        startAutoPlay();
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') changeSlide(-1);
-        if (e.key === 'ArrowRight') changeSlide(1);
-    });
-
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    document.querySelector('.hero-slider')?.addEventListener('touchstart', function(e) {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-
-    document.querySelector('.hero-slider')?.addEventListener('touchend', function(e) {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-
-    function handleSwipe() {
-        if (touchEndX < touchStartX - 50) changeSlide(1);
-        if (touchEndX > touchStartX + 50) changeSlide(-1);
-    }
-
-    localStorage.setItem('categories', JSON.stringify(@json($categories)));
-</script>
-@endpush

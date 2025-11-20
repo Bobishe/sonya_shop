@@ -31,7 +31,7 @@ return [
                 'meta-keywords'        => 'Мета-ключові слова',
                 'meta-title'           => 'Мета-заголовок',
                 'name'                 => 'Назва',
-                'new'                  => 'Новинка',
+                'new'                  => 'NEW',
                 'price'                => 'Ціна',
                 'product-number'       => 'Номер продукту',
                 'short-description'    => 'Короткий опис',
