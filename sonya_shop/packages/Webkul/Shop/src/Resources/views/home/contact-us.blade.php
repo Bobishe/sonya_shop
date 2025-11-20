@@ -41,7 +41,7 @@
                     </x-shop::form.control-group>
 
                     <!-- Email -->
-                    <x-shop::form.control-group>
+                    <!-- <x-shop::form.control-group>
                         <x-shop::form.control-group.label class="required">
                             @lang('shop::app.home.contact.email')
                         </x-shop::form.control-group.label>
@@ -59,7 +59,7 @@
                         />
 
                         <x-shop::form.control-group.error control-name="email" />
-                    </x-shop::form.control-group>
+                    </x-shop::form.control-group> -->
 
                     <!-- Contact -->
                     <x-shop::form.control-group>

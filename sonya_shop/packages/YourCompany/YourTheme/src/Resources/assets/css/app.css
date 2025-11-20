@@ -1053,26 +1053,16 @@ a:hover {
 
 .footer-links {
     list-style: none;
-    /* Две колонки для десктопа */
-    column-count: 2;
-    column-gap: var(--spacing-md);
 }
 
 .footer-links li {
     margin-bottom: var(--spacing-sm);
-    /* Выравнивание по ширине */
-    text-align: justify;
-    /* Предотвращение разрыва элементов между колонками */
-    break-inside: avoid;
 }
 
 .footer-links a {
     font-size: 0.875rem;
     color: #999;
     transition: color var(--transition-base);
-    /* Для лучшего выравнивания текста */
-    display: inline-block;
-    width: 100%;
 }
 
 .footer-links a:hover {
@@ -1472,15 +1462,6 @@ a:hover {
     /* Footer */
     .footer-content {
         grid-template-columns: 1fr;
-    }
-
-    /* Сброс колонок для мобильных */
-    .footer-links {
-        column-count: 1;
-    }
-
-    .footer-links li {
-        text-align: left;
     }
 
     .footer-bottom {

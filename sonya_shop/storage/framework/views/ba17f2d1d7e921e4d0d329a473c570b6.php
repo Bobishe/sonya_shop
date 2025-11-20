@@ -86,7 +86,7 @@ unset($__defined_vars); ?>
     <?php endif; ?>
 </v-drawer>
 
-<?php if (! $__env->hasRenderedOnce('c34750aa-2cf2-4428-b46f-678926d47f5b')): $__env->markAsRenderedOnce('c34750aa-2cf2-4428-b46f-678926d47f5b');
+<?php if (! $__env->hasRenderedOnce('b64aadb2-503c-437e-a4e9-0449130fab21')): $__env->markAsRenderedOnce('b64aadb2-503c-437e-a4e9-0449130fab21');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"
