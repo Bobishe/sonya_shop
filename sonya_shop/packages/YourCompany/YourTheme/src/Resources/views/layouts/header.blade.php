@@ -129,16 +129,11 @@
 
             {{-- Navigation Menu --}}
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#">НОВИНКИ</a></li>
-                <li><a href="#">БЕСТСЕЛЛЕРЫ</a></li>
-                <li><a href="#">VERY SEXY</a></li>
-                <li><a href="#">CHRISTMAS DREAMS</a></li>
-                <li><a href="#">БЮСТГАЛЬТЕРЫ И ТРУСЫ</a></li>
-                <li><a href="#">БАЗОВАЯ КОЛЛЕКЦИЯ</a></li>
-                <li><a href="#">БОДИ</a></li>
-                <li><a href="#">ОДЕЖДА</a></li>
-                <li><a href="#">ХЛОПОК</a></li>
-                <li><a href="#">ШЕЛК</a></li>
+                <li><a href="#">Каталог</a></li>
+                <li><a href="#">Покупателям</a></li>
+                <li><a href="#">О бренде</a></li>
+                <li><a href="#">Отзывы</a></li>
+                <li><a href="#">Контакты</a></li>
             </ul>
         </div>
     </nav>
