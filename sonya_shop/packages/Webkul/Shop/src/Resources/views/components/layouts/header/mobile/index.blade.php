@@ -61,14 +61,13 @@
 
                 {!! view_render_event('bagisto.shop.components.layouts.header.mobile.mini_cart.after') !!}
 
-                <!-- For Large screens -->
-                <div class="max-md:hidden">
+                {{-- COMMENTED: User profile dropdown for large screens (login/register/account) --}}
+                {{-- <div class="max-md:hidden">
                     <x-shop::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
                         <x-slot:toggle>
                             <span class="icon-users cursor-pointer text-2xl"></span>
                         </x-slot>
 
-                        <!-- Guest Dropdown -->
                         @guest('customer')
                             <x-slot:content>
                                 <div class="grid gap-2.5">
@@ -109,12 +108,11 @@
                             </x-slot>
                         @endguest
 
-                        <!-- Customers Dropdown -->
                         @auth('customer')
                             <x-slot:content class="!p-0">
                                 <div class="grid gap-2.5 p-5 pb-0">
                                     <p class="font-dmserif text-xl">
-                                        @lang('shop::app.components.layouts.header.mobile.welcome')’
+                                        @lang('shop::app.components.layouts.header.mobile.welcome')'
                                         {{ auth()->guard('customer')->user()->first_name }}
                                     </p>
 
@@ -151,7 +149,6 @@
                                         </a>
                                     @endif
 
-                                    <!--Customers logout-->
                                     @auth('customer')
                                         <x-shop::form
                                             method="DELETE"
@@ -173,10 +170,10 @@
                             </x-slot>
                         @endauth
                     </x-shop::dropdown>
-                </div>
+                </div> --}}
 
-                <!-- For Medium and small screen -->
-                <div class="md:hidden">
+                {{-- COMMENTED: User profile link for small screens (login/account) --}}
+                {{-- <div class="md:hidden">
                     @guest('customer')
                         <a
                             href="{{ route('shop.customer.session.create') }}"
@@ -186,7 +183,6 @@
                         </a>
                     @endguest
 
-                    <!-- Customers Dropdown -->
                     @auth('customer')
                         <a
                             href="{{ route('shop.customers.account.index') }}"
@@ -195,7 +191,7 @@
                             <span class="icon-users cursor-pointer text-2xl"></span>
                         </a>
                     @endauth
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -257,8 +253,8 @@
             </x-slot>
 
             <x-slot:content class="!p-0">
-                <!-- Account Profile Hero Section -->
-                <div class="border-b border-zinc-200 p-4">
+                {{-- COMMENTED: Account Profile Hero Section in mobile drawer --}}
+                {{-- <div class="border-b border-zinc-200 p-4">
                     <div class="grid grid-cols-[auto_1fr] items-center gap-4 rounded-xl border border-zinc-200 p-2.5">
                         <div>
                             <img
@@ -286,7 +282,7 @@
                             </div>
                         @endauth
                     </div>
-                </div>
+                </div> --}}
 
                 {!! view_render_event('bagisto.shop.components.layouts.header.mobile.drawer.categories.before') !!}
 
