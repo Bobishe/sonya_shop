@@ -296,7 +296,7 @@
                                         {{ $product->name }}
                                     </h1>
 
-                                    @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
+                                    {{-- @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
                                         <div
                                             class="flex max-h-[46px] min-h-[46px] min-w-[46px] cursor-pointer items-center justify-center rounded-full border bg-white text-2xl transition-all hover:opacity-[0.8] max-sm:max-h-7 max-sm:min-h-7 max-sm:min-w-7 max-sm:text-base"
                                             role="button"
@@ -306,7 +306,7 @@
                                             @click="addToWishlist"
                                         >
                                         </div>
-                                    @endif
+                                    @endif --}}
                                 </div>
 
                                 {!! view_render_event('bagisto.shop.products.name.after', ['product' => $product]) !!}
@@ -523,21 +523,21 @@
                             });
                     },
 
-                    addToWishlist() {
-                        if (this.isCustomer) {
-                            this.$axios.post('{{ route('shop.api.customers.account.wishlist.store') }}', {
-                                    product_id: "{{ $product->id }}"
-                                })
-                                .then(response => {
-                                    this.isWishlist = ! this.isWishlist;
+                    // addToWishlist() {
+                    //     if (this.isCustomer) {
+                    //         this.$axios.post('{{ route('shop.api.customers.account.wishlist.store') }}', {
+                    //                 product_id: "{{ $product->id }}"
+                    //             })
+                    //             .then(response => {
+                    //                 this.isWishlist = ! this.isWishlist;
 
-                                    this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
-                                })
-                                .catch(error => {});
-                        } else {
-                            window.location.href = "{{ route('shop.customer.session.index')}}";
-                        }
-                    },
+                    //                 this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                    //             })
+                    //             .catch(error => {});
+                    //     } else {
+                    //         window.location.href = "{{ route('shop.customer.session.index')}}";
+                    //     }
+                    // },
 
                     addToCompare(productId) {
                         /**
