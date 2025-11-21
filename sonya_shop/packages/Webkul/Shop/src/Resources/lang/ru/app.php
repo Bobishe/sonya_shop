@@ -850,6 +850,16 @@ return [
         ],
     ],
 
+    'catalog' => [
+        'title'               => 'Каталог',
+        'meta-description'    => 'Просмотреть все категории',
+        'meta-keywords'       => 'каталог, категории, магазин',
+        'empty'               => 'Категории не найдены',
+        'view-category'       => 'Смотреть категорию',
+        'products-count'      => '{0} Нет товаров|{1} :count товар|[2,4] :count товара|[5,*] :count товаров',
+        'subcategories-count' => '{0} Нет подкатегорий|{1} :count подкатегория|[2,4] :count подкатегории|[5,*] :count подкатегорий',
+    ],
+
     'categories' => [
         'filters' => [
             'clear-all' => 'Очистить все',
