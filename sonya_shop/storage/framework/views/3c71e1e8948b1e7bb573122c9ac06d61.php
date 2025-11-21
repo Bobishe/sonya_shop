@@ -55,7 +55,7 @@ unset($__defined_vars); ?>
 <?php endif; ?>
 </v-tabs>
 
-<?php if (! $__env->hasRenderedOnce('ccd57e0b-4b4f-490e-82a8-b1bde4a0f248')): $__env->markAsRenderedOnce('ccd57e0b-4b4f-490e-82a8-b1bde4a0f248');
+<?php if (! $__env->hasRenderedOnce('cb696c60-ca73-4f34-99a9-ccd23dbf73e8')): $__env->markAsRenderedOnce('cb696c60-ca73-4f34-99a9-ccd23dbf73e8');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"

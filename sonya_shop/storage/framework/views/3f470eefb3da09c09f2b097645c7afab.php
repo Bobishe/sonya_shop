@@ -3,24 +3,25 @@
     :key='flash.uid'
     :flash="flash"
     @onRemove="remove($event)"
-/>
+>
+</v-flash-item>
 
-<?php if (! $__env->hasRenderedOnce('2c153d26-5a93-475a-b05b-b91b8bea56ad')): $__env->markAsRenderedOnce('2c153d26-5a93-475a-b05b-b91b8bea56ad');
+<?php if (! $__env->hasRenderedOnce('91de1506-bdb3-47af-a1ea-e27ca1f984ff')): $__env->markAsRenderedOnce('91de1506-bdb3-47af-a1ea-e27ca1f984ff');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"
         id="v-flash-item-template"
     >
         <div
-            class="flex w-max max-w-[408px] justify-between gap-12 rounded-lg px-5 py-3 max-sm:max-w-80 max-sm:items-center max-sm:gap-2 max-sm:p-3"
+            class="flex w-max justify-between gap-12 rounded-full p-3"
             :style="typeStyles[flash.type]['container']"
         >
             <p
-                class="flex items-center break-words text-sm"
+                class="flex items-center break-all text-sm"
                 :style="typeStyles[flash.type]['message']"
             >
                 <span
-                    class="icon-toast-done text-2xl ltr:mr-2.5 rtl:ml-2.5"
+                    class="icon-toast-done rounded-full bg-white text-2xl dark:bg-gray-900 ltr:mr-2.5 rtl:ml-2.5"
                     :class="iconClasses[flash.type]"
                     :style="typeStyles[flash.type]['icon']"
                 ></span>
@@ -29,10 +30,12 @@ $__env->startPush('scripts'); ?>
             </p>
 
 			<span
-                class="icon-cancel max-h-4 max-w-4 cursor-pointer"
-                :style="typeStyles[flash.type]['icon']"
+                class="cursor-pointer underline"
+                :style="typeStyles[flash.type]['message']"
                 @click="remove"
-            ></span>
+            >
+                Close
+            </span>
         </div>
     </script>
 
@@ -45,46 +48,46 @@ $__env->startPush('scripts'); ?>
             data() {
                 return {
                     iconClasses: {
-                        success: 'icon-toast-done',
+                        success: 'icon-done',
 
-                        error: 'icon-toast-error',
+                        error: 'icon-cancel-1',
 
-                        warning: 'icon-toast-exclamation-mark',
+                        warning: 'icon-information',
 
-                        info: 'icon-toast-info',
+                        info: 'icon-processing',
                     },
 
                     typeStyles: {
                         success: {
-                            container: 'background: #D4EDDA',
+                            container: 'background: #059669',
 
-                            message: 'color: #155721',
+                            message: 'color: #FFFFFF',
 
-                            icon: 'color: #155721'
+                            icon: 'color: #059669'
                         },
 
                         error: {
-                            container: 'background: #F8D7DA',
+                            container: 'background: #EF4444',
 
-                            message: 'color: #721C24',
+                            message: 'color: #FFFFFF',
 
-                            icon: 'color: #721C24'
+                            icon: 'color: #EF4444'
                         },
 
                         warning: {
-                            container: 'background: #FFF3CD',
+                            container: 'background: #FACC15',
 
-                            message: 'color: #856404',
+                            message: 'color: #1F2937',
 
-                            icon: 'color: #856404'
+                            icon: 'color: #FACC15'
                         },
 
                         info: {
-                            container: 'background: #E2E3E5',
+                            container: 'background: #0284C7',
 
-                            message: 'color: #383D41',
+                            message: 'color: #FFFFFF',
 
-                            icon: 'color: #383D41'
+                            icon: 'color: #0284C7'
                         },
                     },
                 };
@@ -106,4 +109,4 @@ $__env->startPush('scripts'); ?>
         });
     </script>
 <?php $__env->stopPush(); endif; ?>
-<?php /**PATH D:\Work\sonya_site\sonya_shop\packages\Webkul\Shop\src/resources/views/components/flash-group/item.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\Work\sonya_site\sonya_shop\packages\Webkul\Admin\src/resources/views/components/flash-group/item.blade.php ENDPATH**/ ?>

@@ -1,6 +1,6 @@
 <v-button <?php echo e($attributes); ?>></v-button>
 
-<?php if (! $__env->hasRenderedOnce('4c7e7836-83c1-40eb-a9e0-64993b709b5e')): $__env->markAsRenderedOnce('4c7e7836-83c1-40eb-a9e0-64993b709b5e');
+<?php if (! $__env->hasRenderedOnce('8a26e176-5867-468d-b505-05ace53d803e')): $__env->markAsRenderedOnce('8a26e176-5867-468d-b505-05ace53d803e');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"
@@ -19,7 +19,7 @@ $__env->startPush('scripts'); ?>
         >
             <!-- Spinner -->
             <svg
-                class="text-blue absolute h-5 w-5 animate-spin"
+                class="absolute h-5 w-5 animate-spin"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none" 
                 aria-hidden="true"
@@ -61,4 +61,4 @@ $__env->startPush('scripts'); ?>
             },
         });
     </script>
-<?php $__env->stopPush(); endif; ?><?php /**PATH D:\Work\sonya_site\sonya_shop\packages\Webkul\Shop\src/resources/views/components/button/index.blade.php ENDPATH**/ ?>
+<?php $__env->stopPush(); endif; ?><?php /**PATH D:\Work\sonya_site\sonya_shop\packages\Webkul\Admin\src/resources/views/components/button/index.blade.php ENDPATH**/ ?>

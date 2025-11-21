@@ -2,8 +2,8 @@
 
 $__newAttributes = [];
 $__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
-    'name'  => '',
-    'entity' => null,
+    'name'        => null,
+    'controlName' => '',
 ]));
 
 foreach ($attributes->all() as $__key => $__value) {
@@ -20,8 +20,8 @@ unset($__propNames);
 unset($__newAttributes);
 
 foreach (array_filter(([
-    'name'  => '',
-    'entity' => null,
+    'name'        => null,
+    'controlName' => '',
 ]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
     $$__key = $$__key ?? $__value;
 }
@@ -34,10 +34,17 @@ foreach ($attributes->all() as $__key => $__value) {
 
 unset($__defined_vars); ?>
 
-<div class="mt-[34px] flex justify-start max-lg:hidden">
-    <div class="flex items-center gap-x-3.5">        
-        <?php echo e(Breadcrumbs::view('shop::partials.breadcrumbs', $name, $entity)); ?>
+<v-error-message
+    <?php echo e($attributes); ?>
 
-    </div>
-</div>
-<?php /**PATH D:\Work\sonya_site\sonya_shop\packages\Webkul\Shop\src/resources/views/components/breadcrumbs/index.blade.php ENDPATH**/ ?>
+    name="<?php echo e($name ?? $controlName); ?>"
+    v-slot="{ message }"
+>
+    <p
+        <?php echo e($attributes->merge(['class' => 'mt-1 text-xs italic text-red-600'])); ?>
+
+        v-text="message"
+    >
+    </p>
+</v-error-message>
+<?php /**PATH D:\Work\sonya_site\sonya_shop\packages\Webkul\Admin\src/resources/views/components/form/control-group/error.blade.php ENDPATH**/ ?>
