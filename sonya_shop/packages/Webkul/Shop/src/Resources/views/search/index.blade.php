@@ -27,10 +27,25 @@
             @include('shop::search.images.results')
         @endif
 
-        <div class="mt-8 flex items-center justify-between max-md:mt-5">
-            <h2 class="text-2xl font-medium max-sm:text-base">
-                <span v-text="'{{ preg_replace('/[,\\"\\\']+/', '', $title) }}'" ></span>
-            </h2>
+        <div class="mt-8 max-md:mt-5">
+            <v-desktop-category>
+                <div class="flex items-center gap-5">
+                    <span
+                        class="shimmer h-6 w-20 rounded"
+                        role="presentation"
+                    ></span>
+
+                    <span
+                        class="shimmer h-6 w-20 rounded"
+                        role="presentation"
+                    ></span>
+
+                    <span
+                        class="shimmer h-6 w-20 rounded"
+                        role="presentation"
+                    ></span>
+                </div>
+            </v-desktop-category>
         </div>
 
         @if ($searchInstead)
