@@ -1,4 +1,4 @@
-{!! view_render_event('bagisto.shop.categories.view.filters.before') !!}
+{{-- {!! view_render_event('bagisto.shop.categories.view.filters.before') !!}
 
 <!-- Desktop Filters Navigation -->
 <div v-if="! isMobile">
@@ -101,9 +101,9 @@
     </x-shop::drawer>
 </div>
 
-{!! view_render_event('bagisto.shop.categories.view.filters.after') !!}
+{!! view_render_event('bagisto.shop.categories.view.filters.after') !!} --}}
 
-@pushOnce('scripts')
+{{-- @pushOnce('scripts')
     <!-- Filters Vue template -->
     <script
         type="text/x-template"
@@ -143,10 +143,10 @@
                 </v-filter-item>
             </div>
         </template>
-    </script>
+    </script> --}}
 
     <!-- Filter Item Vue template -->
-    <script
+    {{-- <script
         type="text/x-template"
         id="v-filter-item-template"
     >
@@ -598,4 +598,4 @@
             },
         });
     </script>
-@endPushOnce
+@endPushOnce --}}
