@@ -23,7 +23,7 @@
 
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.after') !!}
 
-        {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.category.before') !!}
+        <!-- {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.category.before') !!}
 
         <v-desktop-category>
             <div class="flex items-center gap-5">
@@ -42,7 +42,7 @@
                     role="presentation"
                 ></span>
             </div>
-        </v-desktop-category>
+        </v-desktop-category> -->
 
         <!-- Static Navigation Links -->
         <div class="flex items-center">

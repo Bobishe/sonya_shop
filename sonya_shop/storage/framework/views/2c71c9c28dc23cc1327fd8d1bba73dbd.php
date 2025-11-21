@@ -171,7 +171,7 @@
 <?php echo view_render_event('bagisto.shop.categories.view.filters.after'); ?>
 
 
-<?php if (! $__env->hasRenderedOnce('beb914ef-d1fa-4394-bc3a-757b907c44f1')): $__env->markAsRenderedOnce('beb914ef-d1fa-4394-bc3a-757b907c44f1');
+<?php if (! $__env->hasRenderedOnce('6fe3de8b-0fa3-4d04-9805-1dcae85db785')): $__env->markAsRenderedOnce('6fe3de8b-0fa3-4d04-9805-1dcae85db785');
 $__env->startPush('scripts'); ?>
     <!-- Filters Vue template -->
     <script

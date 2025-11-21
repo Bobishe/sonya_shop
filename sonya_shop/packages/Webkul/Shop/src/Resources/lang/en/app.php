@@ -850,16 +850,6 @@ return [
         ],
     ],
 
-    'catalog' => [
-        'title'               => 'Catalog',
-        'meta-description'    => 'Browse all categories',
-        'meta-keywords'       => 'catalog, categories, shop',
-        'empty'               => 'No categories available',
-        'view-category'       => 'View category',
-        'products-count'      => '{0} No products|{1} :count product|[2,*] :count products',
-        'subcategories-count' => '{0} No subcategories|{1} :count subcategory|[2,*] :count subcategories',
-    ],
-
     'categories' => [
         'filters' => [
             'clear-all' => 'Clear All',

@@ -26,7 +26,7 @@
         <?php echo view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.after'); ?>
 
 
-        <?php echo view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.category.before'); ?>
+        <!-- <?php echo view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.category.before'); ?>
 
 
         <v-desktop-category>
@@ -46,12 +46,12 @@
                     role="presentation"
                 ></span>
             </div>
-        </v-desktop-category>
+        </v-desktop-category> -->
 
         <!-- Static Navigation Links -->
         <div class="flex items-center">
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/catalog" class="inline-block px-5 uppercase font-semibold text-black">
                     Каталог
                 </a>
             </div>
@@ -172,7 +172,7 @@
     </div>
 </div>
 
-<?php if (! $__env->hasRenderedOnce('ca455834-cf31-4c72-b24e-23fbc3c184e8')): $__env->markAsRenderedOnce('ca455834-cf31-4c72-b24e-23fbc3c184e8');
+<?php if (! $__env->hasRenderedOnce('6566c1c7-cece-4f2b-9d9d-eeea32bfb0b6')): $__env->markAsRenderedOnce('6566c1c7-cece-4f2b-9d9d-eeea32bfb0b6');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"

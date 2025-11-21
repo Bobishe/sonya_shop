@@ -402,7 +402,7 @@
             >
                 <!-- First level view -->
                 <div class="h-full w-full flex-shrink-0 overflow-auto px-6">
-                    <div class="py-4">
+                    <!-- <div class="py-4">
                         <div
                             v-for="category in categories"
                             :key="category.id"
@@ -414,7 +414,6 @@
                                 </a>
                             </div>
 
-                            <!-- Second Level Categories -->
                             <div v-if="category.children && category.children.length" >
                                 <div
                                     v-for="secondLevelCategory in category.children"
@@ -436,10 +435,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Static Navigation Links -->
-                    <div class="border-t border-zinc-200 py-4">
+                    <div class="border-zinc-200 py-4">
                         <div class="grid gap-2">
                             <a href="/page/catalog" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
                                 Каталог

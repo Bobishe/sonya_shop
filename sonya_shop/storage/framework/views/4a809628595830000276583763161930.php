@@ -106,7 +106,7 @@
 
 </div>
 
-<?php if (! $__env->hasRenderedOnce('d7987df4-1113-4983-ab77-8d57a62e37a7')): $__env->markAsRenderedOnce('d7987df4-1113-4983-ab77-8d57a62e37a7');
+<?php if (! $__env->hasRenderedOnce('5c87be62-7d96-4e22-b04b-053946014a3a')): $__env->markAsRenderedOnce('5c87be62-7d96-4e22-b04b-053946014a3a');
 $__env->startPush('scripts'); ?>
     <script type="text/x-template" id="v-mobile-drawer-template">
         <?php if (isset($component)) { $__componentOriginal2b3e2da8ab003ef79d854b1862e64fc8 = $component; } ?>
@@ -299,7 +299,7 @@ $__env->startPush('scripts'); ?>
             >
                 <!-- First level view -->
                 <div class="h-full w-full flex-shrink-0 overflow-auto px-6">
-                    <div class="py-4">
+                    <!-- <div class="py-4">
                         <div
                             v-for="category in categories"
                             :key="category.id"
@@ -311,7 +311,6 @@ $__env->startPush('scripts'); ?>
                                 </a>
                             </div>
 
-                            <!-- Second Level Categories -->
                             <div v-if="category.children && category.children.length" >
                                 <div
                                     v-for="secondLevelCategory in category.children"
@@ -333,12 +332,12 @@ $__env->startPush('scripts'); ?>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Static Navigation Links -->
-                    <div class="border-t border-zinc-200 py-4">
+                    <div class="border-zinc-200 py-4">
                         <div class="grid gap-2">
-                            <a href="/page/about-us" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                            <a href="/page/catalog" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
                                 Каталог
                             </a>
 
