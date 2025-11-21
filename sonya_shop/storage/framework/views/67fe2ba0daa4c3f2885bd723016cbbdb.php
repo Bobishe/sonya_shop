@@ -104,7 +104,7 @@
 <?php endif; ?>
     </v-search>
 
-    <?php if (! $__env->hasRenderedOnce('e4390613-bc2a-4c9e-baaf-46263a01f8d5')): $__env->markAsRenderedOnce('e4390613-bc2a-4c9e-baaf-46263a01f8d5');
+    <?php if (! $__env->hasRenderedOnce('77bbbbd4-a72c-41b0-8d40-843a49a890e8')): $__env->markAsRenderedOnce('77bbbbd4-a72c-41b0-8d40-843a49a890e8');
 $__env->startPush('scripts'); ?>
         <script
             type="text/x-template"
@@ -113,7 +113,7 @@ $__env->startPush('scripts'); ?>
             <div class="container px-[60px] max-lg:px-8 max-sm:px-4">
                 <div class="flex items-start gap-10 max-lg:gap-5 md:mt-10">
                     <!-- Product Listing Filters -->
-                    <?php echo $__env->make('shop::categories.filters', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+                    
 
                     <!-- Product Listing Container -->
                     <div class="flex-1">
@@ -202,7 +202,7 @@ $__env->startPush('scripts'); ?>
                         <div v-else>
                             <!-- Product Card Shimmer Effect -->
                             <template v-if="isLoading">
-                                <div class="mt-8 grid grid-cols-3 gap-8 max-1060:grid-cols-2 max-md:gap-x-4 max-sm:mt-5 max-sm:justify-items-center max-sm:gap-y-5">
+                                <div class="mt-8 grid grid-cols-4 gap-8 max-1060:grid-cols-2 max-md:gap-x-4 max-sm:mt-5 max-sm:justify-items-center max-sm:gap-y-5">
                                     <?php if (isset($component)) { $__componentOriginal63d85b8bc2d72394bd433a79cbb59384 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal63d85b8bc2d72394bd433a79cbb59384 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.shimmer.products.cards.grid','data' => ['count' => '12']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -229,7 +229,7 @@ $__env->startPush('scripts'); ?>
                             <!-- Product Card Listing -->
                             <template v-else>
                                 <template v-if="products.length">
-                                    <div class="mt-8 grid grid-cols-3 gap-8 max-1060:grid-cols-2 max-md:mt-5 max-md:justify-items-center max-md:gap-x-4 max-md:gap-y-5">
+                                    <div class="mt-8 grid grid-cols-4 gap-8 max-1060:grid-cols-2 max-md:mt-5 max-md:justify-items-center max-md:gap-x-4 max-md:gap-y-5">
                                         <?php if (isset($component)) { $__componentOriginalce4ea8dd577f45125a0fa9f371a55f23 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalce4ea8dd577f45125a0fa9f371a55f23 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.products.card','data' => [':mode' => '\'grid\'','vFor' => 'product in products','navigationLink' => route('shop.search.index')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
