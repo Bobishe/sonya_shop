@@ -29,7 +29,7 @@
 
         <div class="mt-8 max-md:mt-5">
             <v-desktop-category>
-                <div class="flex items-center gap-5">
+                <div class="flex items-center justify-center gap-5">
                     <span
                         class="shimmer h-6 w-20 rounded"
                         role="presentation"

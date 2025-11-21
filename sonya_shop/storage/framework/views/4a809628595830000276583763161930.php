@@ -106,7 +106,7 @@
 
 </div>
 
-<?php if (! $__env->hasRenderedOnce('7c01e1f4-2878-4f1f-b5e1-a4ccab3170ce')): $__env->markAsRenderedOnce('7c01e1f4-2878-4f1f-b5e1-a4ccab3170ce');
+<?php if (! $__env->hasRenderedOnce('9b0c559b-bfec-4e9d-90ba-9770eb670857')): $__env->markAsRenderedOnce('9b0c559b-bfec-4e9d-90ba-9770eb670857');
 $__env->startPush('scripts'); ?>
     <script type="text/x-template" id="v-mobile-drawer-template">
         <?php if (isset($component)) { $__componentOriginal2b3e2da8ab003ef79d854b1862e64fc8 = $component; } ?>
@@ -337,7 +337,7 @@ $__env->startPush('scripts'); ?>
                     <!-- Static Navigation Links -->
                     <div class="border-zinc-200 py-4">
                         <div class="grid gap-2">
-                            <a href="/page/catalog" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                            <a href="/search" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
                                 Каталог
                             </a>
 

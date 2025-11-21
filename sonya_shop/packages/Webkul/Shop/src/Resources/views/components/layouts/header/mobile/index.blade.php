@@ -440,7 +440,7 @@
                     <!-- Static Navigation Links -->
                     <div class="border-zinc-200 py-4">
                         <div class="grid gap-2">
-                            <a href="/page/catalog" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                            <a href="/search" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
                                 Каталог
                             </a>
 

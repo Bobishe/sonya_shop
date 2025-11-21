@@ -49,33 +49,33 @@
         </v-desktop-category> -->
 
         <!-- Static Navigation Links -->
-        <div class="flex items-center">
+        <div class="flex items-center ">
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="/page/catalog" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/search" class="inline-block px-5 uppercase font-dmserif text-black">
                     Каталог
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-dmserif text-black">
                     Покупателям
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="/page/about-us" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/about-us" class="inline-block px-5 uppercase font-dmserif text-black">
                     О бренде
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-dmserif text-black">
                     Отзывы
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-dmserif text-black">
                     Контакты
                 </a>
             </div>
@@ -172,7 +172,7 @@
     </div>
 </div>
 
-<?php if (! $__env->hasRenderedOnce('9089a6db-fb04-4b37-8321-db37a33003cd')): $__env->markAsRenderedOnce('9089a6db-fb04-4b37-8321-db37a33003cd');
+<?php if (! $__env->hasRenderedOnce('f2bae339-cf04-497d-bc1e-2c8889b693ac')): $__env->markAsRenderedOnce('f2bae339-cf04-497d-bc1e-2c8889b693ac');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"
@@ -211,7 +211,7 @@ $__env->startPush('scripts'); ?>
                 <span>
                     <a
                         :href="category.url"
-                        class="inline-block px-5 uppercase font-semibold text-black"
+                        class="inline-block px-5 uppercase font-dmserif text-black"
                     >
                         {{ category.name }}
                     </a>
@@ -262,7 +262,7 @@ $__env->startPush('scripts'); ?>
                     class="flex h-[77px] cursor-pointer items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]"
                     @click="toggleCategoryDrawer"
                 >
-                    <span class="flex items-center gap-1 px-5 uppercase font-semibold text-black">
+                    <span class="flex items-center gap-1 px-5 uppercase font-dmserif text-black">
                         <span class="icon-hamburger text-xl"></span>
 
                         <?php echo app('translator')->get('shop::app.components.layouts.header.desktop.bottom.all'); ?>
@@ -277,7 +277,7 @@ $__env->startPush('scripts'); ?>
                     <span>
                         <a
                             :href="category.url"
-                            class="inline-block px-5 uppercase font-semibold text-black"
+                            class="inline-block px-5 uppercase font-dmserif text-black"
                         >
                             {{ category.name }}
                         </a>

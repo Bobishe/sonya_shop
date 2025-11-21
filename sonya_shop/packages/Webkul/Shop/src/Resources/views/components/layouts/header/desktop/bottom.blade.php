@@ -45,33 +45,33 @@
         </v-desktop-category> -->
 
         <!-- Static Navigation Links -->
-        <div class="flex items-center">
+        <div class="flex items-center ">
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="/page/catalog" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/search" class="inline-block px-5 uppercase font-dmserif text-black">
                     Каталог
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-dmserif text-black">
                     Покупателям
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="/page/about-us" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/about-us" class="inline-block px-5 uppercase font-dmserif text-black">
                     О бренде
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-dmserif text-black">
                     Отзывы
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-dmserif text-black">
                     Контакты
                 </a>
             </div>
@@ -318,7 +318,7 @@
                 <span>
                     <a
                         :href="category.url"
-                        class="inline-block px-5 uppercase font-semibold text-black"
+                        class="inline-block px-5 uppercase font-dmserif text-black"
                     >
                         @{{ category.name }}
                     </a>
@@ -369,7 +369,7 @@
                     class="flex h-[77px] cursor-pointer items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]"
                     @click="toggleCategoryDrawer"
                 >
-                    <span class="flex items-center gap-1 px-5 uppercase font-semibold text-black">
+                    <span class="flex items-center gap-1 px-5 uppercase font-dmserif text-black">
                         <span class="icon-hamburger text-xl"></span>
 
                         @lang('shop::app.components.layouts.header.desktop.bottom.all')
@@ -384,7 +384,7 @@
                     <span>
                         <a
                             :href="category.url"
-                            class="inline-block px-5 uppercase font-semibold text-black"
+                            class="inline-block px-5 uppercase font-dmserif text-black"
                         >
                             @{{ category.name }}
                         </a>

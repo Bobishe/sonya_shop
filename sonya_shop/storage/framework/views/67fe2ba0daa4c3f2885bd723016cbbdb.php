@@ -37,10 +37,25 @@
             <?php echo $__env->make('shop::search.images.results', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
         <?php endif; ?>
 
-        <div class="mt-8 flex items-center justify-between max-md:mt-5">
-            <h2 class="text-2xl font-medium max-sm:text-base">
-                <span v-text="'<?php echo e(preg_replace('/[,\\"\\\']+/', '', $title)); ?>'" ></span>
-            </h2>
+        <div class="mt-8 max-md:mt-5">
+            <v-desktop-category>
+                <div class="flex items-center justify-center gap-5">
+                    <span
+                        class="shimmer h-6 w-20 rounded"
+                        role="presentation"
+                    ></span>
+
+                    <span
+                        class="shimmer h-6 w-20 rounded"
+                        role="presentation"
+                    ></span>
+
+                    <span
+                        class="shimmer h-6 w-20 rounded"
+                        role="presentation"
+                    ></span>
+                </div>
+            </v-desktop-category>
         </div>
 
         <?php if($searchInstead): ?>
@@ -104,7 +119,7 @@
 <?php endif; ?>
     </v-search>
 
-    <?php if (! $__env->hasRenderedOnce('77bbbbd4-a72c-41b0-8d40-843a49a890e8')): $__env->markAsRenderedOnce('77bbbbd4-a72c-41b0-8d40-843a49a890e8');
+    <?php if (! $__env->hasRenderedOnce('d12ea7ec-4708-4dc1-b01a-452c21b84f08')): $__env->markAsRenderedOnce('d12ea7ec-4708-4dc1-b01a-452c21b84f08');
 $__env->startPush('scripts'); ?>
         <script
             type="text/x-template"
