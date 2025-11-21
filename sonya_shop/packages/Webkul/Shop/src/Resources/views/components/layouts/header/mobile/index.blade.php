@@ -441,23 +441,23 @@
                     <!-- Static Navigation Links -->
                     <div class="border-t border-zinc-200 py-4">
                         <div class="grid gap-2">
-                            <a href="#" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                            <a href="/page/catalog" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
                                 Каталог
                             </a>
 
-                            <a href="#" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                            <a href="/page/about-us" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
                                 Покупателям
                             </a>
 
-                            <a href="#" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                            <a href="/page/about-us" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
                                 О бренде
                             </a>
 
-                            <a href="#" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                            <a href="/page/about-us" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
                                 Отзывы
                             </a>
 
-                            <a href="#" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                            <a href="/page/contacts" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
                                 Контакты
                             </a>
                         </div>

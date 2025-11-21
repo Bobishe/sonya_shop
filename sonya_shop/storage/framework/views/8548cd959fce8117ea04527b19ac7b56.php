@@ -1,6 +1,6 @@
 <v-tinymce <?php echo e($attributes); ?>></v-tinymce>
 
-<?php if (! $__env->hasRenderedOnce('a46b027c-ebe7-445c-9fa2-00b1015207a0')): $__env->markAsRenderedOnce('a46b027c-ebe7-445c-9fa2-00b1015207a0');
+<?php if (! $__env->hasRenderedOnce('dcb30ed5-97c6-4ddc-9fec-eb364730bf8c')): $__env->markAsRenderedOnce('dcb30ed5-97c6-4ddc-9fec-eb364730bf8c');
 $__env->startPush('scripts'); ?>
     <!--
         TODO (@devansh-webkul): Only this portion is pending; it just needs to be integrated using the Vite bundler. Currently,

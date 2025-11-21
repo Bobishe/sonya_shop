@@ -48,6 +48,39 @@
             </div>
         </v-desktop-category>
 
+        <!-- Static Navigation Links -->
+        <div class="flex items-center">
+            <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
+                    Каталог
+                </a>
+            </div>
+
+            <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
+                    Покупателям
+                </a>
+            </div>
+
+            <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
+                <a href="/page/about-us" class="inline-block px-5 uppercase font-semibold text-black">
+                    О бренде
+                </a>
+            </div>
+
+            <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
+                    Отзывы
+                </a>
+            </div>
+
+            <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
+                    Контакты
+                </a>
+            </div>
+        </div>
+
         <?php echo view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.category.after'); ?>
 
     </div>
@@ -139,7 +172,7 @@
     </div>
 </div>
 
-<?php if (! $__env->hasRenderedOnce('7aa40ee6-90a1-46e0-95eb-60fb7eee5ac1')): $__env->markAsRenderedOnce('7aa40ee6-90a1-46e0-95eb-60fb7eee5ac1');
+<?php if (! $__env->hasRenderedOnce('ca455834-cf31-4c72-b24e-23fbc3c184e8')): $__env->markAsRenderedOnce('ca455834-cf31-4c72-b24e-23fbc3c184e8');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"

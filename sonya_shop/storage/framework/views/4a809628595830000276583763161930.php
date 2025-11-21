@@ -106,7 +106,7 @@
 
 </div>
 
-<?php if (! $__env->hasRenderedOnce('a478acef-7e65-46cf-aa54-95b95f6aa0ac')): $__env->markAsRenderedOnce('a478acef-7e65-46cf-aa54-95b95f6aa0ac');
+<?php if (! $__env->hasRenderedOnce('d7987df4-1113-4983-ab77-8d57a62e37a7')): $__env->markAsRenderedOnce('d7987df4-1113-4983-ab77-8d57a62e37a7');
 $__env->startPush('scripts'); ?>
     <script type="text/x-template" id="v-mobile-drawer-template">
         <?php if (isset($component)) { $__componentOriginal2b3e2da8ab003ef79d854b1862e64fc8 = $component; } ?>
@@ -332,6 +332,31 @@ $__env->startPush('scripts'); ?>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Static Navigation Links -->
+                    <div class="border-t border-zinc-200 py-4">
+                        <div class="grid gap-2">
+                            <a href="/page/about-us" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                                Каталог
+                            </a>
+
+                            <a href="/page/about-us" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                                Покупателям
+                            </a>
+
+                            <a href="/page/about-us" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                                О бренде
+                            </a>
+
+                            <a href="/page/about-us" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                                Отзывы
+                            </a>
+
+                            <a href="/page/contacts" class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100">
+                                Контакты
+                            </a>
                         </div>
                     </div>
                 </div>

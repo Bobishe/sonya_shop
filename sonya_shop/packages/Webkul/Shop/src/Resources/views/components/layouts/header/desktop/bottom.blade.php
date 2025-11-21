@@ -47,31 +47,31 @@
         <!-- Static Navigation Links -->
         <div class="flex items-center">
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="#" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/catalog" class="inline-block px-5 uppercase font-semibold text-black">
                     Каталог
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="#" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
                     Покупателям
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="#" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/about-us" class="inline-block px-5 uppercase font-semibold text-black">
                     О бренде
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="#" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
                     Отзывы
                 </a>
             </div>
 
             <div class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]">
-                <a href="#" class="inline-block px-5 uppercase font-semibold text-black">
+                <a href="/page/contacts" class="inline-block px-5 uppercase font-semibold text-black">
                     Контакты
                 </a>
             </div>
