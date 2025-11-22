@@ -5,7 +5,7 @@
 >
 </v-product-card>
 
-<?php if (! $__env->hasRenderedOnce('b20c888f-c840-48ae-976d-02c5de1ad224')): $__env->markAsRenderedOnce('b20c888f-c840-48ae-976d-02c5de1ad224');
+<?php if (! $__env->hasRenderedOnce('8d9e76c1-7e5b-4036-b0d7-27a64416e0e0')): $__env->markAsRenderedOnce('8d9e76c1-7e5b-4036-b0d7-27a64416e0e0');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"
@@ -16,7 +16,7 @@ $__env->startPush('scripts'); ?>
             class="1180:transtion-all group w-full rounded-md 1180:relative 1180:grid 1180:content-start 1180:overflow-hidden 1180:duration-300 1180:hover:shadow-[0_5px_10px_rgba(0,0,0,0.1)]"
             v-if="mode != 'list'"
         >
-            <div class="relative max-h-[300px] max-w-[291px] overflow-hidden max-md:max-h-60 max-md:max-w-full max-md:rounded-lg max-sm:max-h-[200px] max-sm:max-w-full">
+            <div class="relative max-h-[340px] max-w-[291px] overflow-hidden max-md:max-h-[280px] max-md:max-w-full max-md:rounded-lg max-sm:max-h-[240px] max-sm:max-w-full">
                 <?php echo view_render_event('bagisto.shop.components.products.card.image.before'); ?>
 
 
@@ -30,7 +30,7 @@ $__env->startPush('scripts'); ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.media.images.lazy','data' => ['class' => 'after:content-[\' \'] relative bg-zinc-100 transition-all duration-300 after:block after:pb-[calc(100%+9px)] group-hover:scale-105',':src' => 'product.base_image.medium_image_url',':srcset' => '`
                             ${product.base_image.small_image_url} 150w,
                             ${product.base_image.medium_image_url} 300w,
-                        `','sizes' => '(max-width: 768px) 150px, (max-width: 1200px) 300px, 600px',':key' => 'product.id',':index' => 'product.id','width' => '291','height' => '300',':alt' => 'product.name']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+                        `','sizes' => '(max-width: 768px) 150px, (max-width: 1200px) 300px, 600px',':key' => 'product.id',':index' => 'product.id','width' => '291','height' => '340',':alt' => 'product.name']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('shop::media.images.lazy'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -40,7 +40,7 @@ $__env->startPush('scripts'); ?>
 <?php $component->withAttributes(['class' => 'after:content-[\' \'] relative bg-zinc-100 transition-all duration-300 after:block after:pb-[calc(100%+9px)] group-hover:scale-105',':src' => 'product.base_image.medium_image_url',':srcset' => '`
                             ${product.base_image.small_image_url} 150w,
                             ${product.base_image.medium_image_url} 300w,
-                        `','sizes' => '(max-width: 768px) 150px, (max-width: 1200px) 300px, 600px',':key' => 'product.id',':index' => 'product.id','width' => '291','height' => '300',':alt' => 'product.name']); ?>
+                        `','sizes' => '(max-width: 768px) 150px, (max-width: 1200px) 300px, 600px',':key' => 'product.id',':index' => 'product.id','width' => '291','height' => '340',':alt' => 'product.name']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal3657c70d06ebc8c078f4ecac2ea1a848)): ?>
@@ -225,7 +225,7 @@ $__env->startPush('scripts'); ?>
             class="relative flex max-w-max grid-cols-2 gap-4 overflow-hidden rounded max-sm:flex-wrap"
             v-else
         >
-            <div class="group relative max-h-[258px] max-w-[250px] overflow-hidden">
+            <div class="group relative max-h-[298px] max-w-[250px] overflow-hidden">
 
                 <?php echo view_render_event('bagisto.shop.components.products.card.image.before'); ?>
 
@@ -233,14 +233,14 @@ $__env->startPush('scripts'); ?>
                 <a :href="`<?php echo e(route('shop.product_or_category.index', '')); ?>/${product.url_key}`">
                     <?php if (isset($component)) { $__componentOriginal3657c70d06ebc8c078f4ecac2ea1a848 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal3657c70d06ebc8c078f4ecac2ea1a848 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.media.images.lazy','data' => ['class' => 'after:content-[\' \'] relative min-w-[250px] bg-zinc-100 transition-all duration-300 after:block after:pb-[calc(100%+9px)] group-hover:scale-105',':src' => 'product.base_image.medium_image_url',':key' => 'product.id',':index' => 'product.id','width' => '291','height' => '300',':alt' => 'product.name']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.media.images.lazy','data' => ['class' => 'after:content-[\' \'] relative min-w-[250px] bg-zinc-100 transition-all duration-300 after:block after:pb-[calc(100%+9px)] group-hover:scale-105',':src' => 'product.base_image.medium_image_url',':key' => 'product.id',':index' => 'product.id','width' => '291','height' => '340',':alt' => 'product.name']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('shop::media.images.lazy'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['class' => 'after:content-[\' \'] relative min-w-[250px] bg-zinc-100 transition-all duration-300 after:block after:pb-[calc(100%+9px)] group-hover:scale-105',':src' => 'product.base_image.medium_image_url',':key' => 'product.id',':index' => 'product.id','width' => '291','height' => '300',':alt' => 'product.name']); ?>
+<?php $component->withAttributes(['class' => 'after:content-[\' \'] relative min-w-[250px] bg-zinc-100 transition-all duration-300 after:block after:pb-[calc(100%+9px)] group-hover:scale-105',':src' => 'product.base_image.medium_image_url',':key' => 'product.id',':index' => 'product.id','width' => '291','height' => '340',':alt' => 'product.name']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal3657c70d06ebc8c078f4ecac2ea1a848)): ?>

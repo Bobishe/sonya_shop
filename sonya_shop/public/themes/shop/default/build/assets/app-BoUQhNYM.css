@@ -1158,6 +1158,12 @@ html {
 .mt-9 {
     margin-top: 2.25rem;
 }
+.mt-10 {
+    margin-top: 6.5rem;
+}
+.ms-1 {
+    margin-left: 0.7rem;
+}
 .mt-\[22px\] {
     margin-top: 22px;
 }

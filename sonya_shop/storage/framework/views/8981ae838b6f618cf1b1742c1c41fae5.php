@@ -172,7 +172,7 @@
     </div>
 </div>
 
-<?php if (! $__env->hasRenderedOnce('73d73333-50fe-451c-b2c0-66807f32fd5b')): $__env->markAsRenderedOnce('73d73333-50fe-451c-b2c0-66807f32fd5b');
+<?php if (! $__env->hasRenderedOnce('3647c1cb-0abb-453a-9700-efcb4f06f88c')): $__env->markAsRenderedOnce('3647c1cb-0abb-453a-9700-efcb4f06f88c');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"
@@ -218,7 +218,7 @@ $__env->startPush('scripts'); ?>
                 </span>
 
                 <div
-                    class="pointer-events-none absolute top-[78px] z-[9999] max-h-[580px] w-max max-w-[1260px] translate-y-1 overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t border-[#F3F3F3] bg-white p-9 opacity-0 shadow-[0_6px_6px_1px_rgba(0,0,0,.3)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in ltr:-left-9 rtl:-right-9"
+                    class="pointer-events-none absolute top-[78px] z-[9999] mt-[10vh] max-h-[580px] w-max max-w-[1260px] translate-y-1 overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t-[3px] border-[rgb(108,153,47)] bg-white p-[1.5rem] opacity-0 shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in ltr:-left-9 rtl:-right-9"
                     v-if="category.children && category.children.length"
                 >
                     <div class="flex justify-between gap-x-[70px]">
@@ -227,8 +227,8 @@ $__env->startPush('scripts'); ?>
                             v-for="pairCategoryChildren in pairCategoryChildren(category)"
                         >
                             <template v-for="secondLevelCategory in pairCategoryChildren">
-                                <p class="font-medium text-navyBlue">
-                                    <a :href="secondLevelCategory.url">
+                                <p class="text-[14px] font-normal text-black leading-relaxed">
+                                    <a :href="secondLevelCategory.url" class="hover:text-[rgb(108,153,47)] transition-colors duration-200">
                                         {{ secondLevelCategory.name }}
                                     </a>
                                 </p>
@@ -238,10 +238,10 @@ $__env->startPush('scripts'); ?>
                                     v-if="secondLevelCategory.children && secondLevelCategory.children.length"
                                 >
                                     <li
-                                        class="text-sm font-medium text-zinc-500"
+                                        class="text-[14px] font-normal text-black leading-relaxed"
                                         v-for="thirdLevelCategory in secondLevelCategory.children"
                                     >
-                                        <a :href="thirdLevelCategory.url">
+                                        <a :href="thirdLevelCategory.url" class="hover:text-[rgb(108,153,47)] transition-colors duration-200 cursor-pointer">
                                             {{ thirdLevelCategory.name }}
                                         </a>
                                     </li>
@@ -285,7 +285,7 @@ $__env->startPush('scripts'); ?>
 
                     <!-- Dropdown for each category -->
                     <div
-                        class="pointer-events-none absolute top-[78px] z-[9999] max-h-[580px] w-max max-w-[1260px] translate-y-1 overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t border-[#F3F3F3] bg-white p-9 opacity-0 shadow-[0_6px_6px_1px_rgba(0,0,0,.3)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in ltr:-left-9 rtl:-right-9"
+                        class="pointer-events-none absolute top-[78px] z-[9999] mt-[10vh] max-h-[580px] w-max max-w-[1260px] translate-y-1 overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t-[3px] border-[rgb(108,153,47)] bg-white p-[1.5rem] opacity-0 shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in ltr:-left-9 rtl:-right-9"
                         v-if="category.children && category.children.length"
                     >
                         <div class="flex justify-between gap-x-[70px]">
@@ -294,8 +294,8 @@ $__env->startPush('scripts'); ?>
                                 v-for="pairCategoryChildren in pairCategoryChildren(category)"
                             >
                                 <template v-for="secondLevelCategory in pairCategoryChildren">
-                                    <p class="font-medium text-navyBlue">
-                                        <a :href="secondLevelCategory.url">
+                                    <p class="text-[14px] font-normal text-black leading-relaxed">
+                                        <a :href="secondLevelCategory.url" class="hover:text-[rgb(108,153,47)] transition-colors duration-200">
                                             {{ secondLevelCategory.name }}
                                         </a>
                                     </p>
@@ -305,10 +305,10 @@ $__env->startPush('scripts'); ?>
                                         v-if="secondLevelCategory.children && secondLevelCategory.children.length"
                                     >
                                         <li
-                                            class="text-sm font-medium text-zinc-500"
+                                            class="text-[14px] font-normal text-black leading-relaxed"
                                             v-for="thirdLevelCategory in secondLevelCategory.children"
                                         >
-                                            <a :href="thirdLevelCategory.url">
+                                            <a :href="thirdLevelCategory.url" class="hover:text-[rgb(108,153,47)] transition-colors duration-200 cursor-pointer">
                                                 {{ thirdLevelCategory.name }}
                                             </a>
                                         </li>

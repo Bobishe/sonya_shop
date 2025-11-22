@@ -1,6 +1,6 @@
 <v-modal-confirm ref="confirmModal"></v-modal-confirm>
 
-<?php if (! $__env->hasRenderedOnce('17e8bed1-05cc-4b0e-953e-440df81abefa')): $__env->markAsRenderedOnce('17e8bed1-05cc-4b0e-953e-440df81abefa');
+<?php if (! $__env->hasRenderedOnce('eee8ecc6-1fdf-42d4-af43-570c78f4687d')): $__env->markAsRenderedOnce('eee8ecc6-1fdf-42d4-af43-570c78f4687d');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"
