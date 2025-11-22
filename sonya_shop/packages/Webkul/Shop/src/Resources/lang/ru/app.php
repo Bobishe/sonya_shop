@@ -804,7 +804,7 @@ return [
             'already-in-compare'     => 'Продукт уже добавлен в список сравнения.',
             'buy-now'                => 'Купить сейчас',
             'compare'                => 'Сравнить',
-            'description'            => 'Описание',
+            'description'            => 'Уход',
             'related-product-title'  => 'Связанные продукты',
             'review'                 => 'Отзывы',
             'tax-inclusive'          => 'Включая все налоги',
