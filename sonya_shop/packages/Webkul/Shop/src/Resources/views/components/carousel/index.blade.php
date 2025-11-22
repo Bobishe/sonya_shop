@@ -50,13 +50,13 @@
             display: none !important;
         }
 
-        /* Высота баннера 50% экрана */
+        /* Высота баннера 100% экрана */
         .mobile-carousel-slide {
-            max-height: 50vh !important;
+            max-height: 100vh !important;
         }
 
         .mobile-carousel-slide img {
-            max-height: 50vh !important;
+            max-height: 100vh !important;
             object-fit: cover;
         }
     }
