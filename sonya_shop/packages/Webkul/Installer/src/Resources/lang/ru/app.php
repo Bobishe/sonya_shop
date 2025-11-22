@@ -21,7 +21,7 @@ return [
                 'brand'                => 'Бренд',
                 'color'                => 'Цвет',
                 'cost'                 => 'Стоимость',
-                'description'          => 'Описание',
+                'description'          => 'Уход',
                 'featured'             => 'Популярный',
                 'guest-checkout'       => 'Гостевой заказ',
                 'height'               => 'Высота',
