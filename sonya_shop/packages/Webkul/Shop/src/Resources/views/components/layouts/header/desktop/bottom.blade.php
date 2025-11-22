@@ -341,7 +341,7 @@
                                 </p>
 
                                 <ul
-                                    class="grid grid-cols-[1fr] gap-3"
+                                    class="flex flex-row gap-3 flex-wrap"
                                     v-if="secondLevelCategory.children && secondLevelCategory.children.length"
                                 >
                                     <li
@@ -408,7 +408,7 @@
                                     </p>
 
                                     <ul
-                                        class="grid grid-cols-[1fr] gap-3"
+                                        class="flex flex-row gap-3 flex-wrap"
                                         v-if="secondLevelCategory.children && secondLevelCategory.children.length"
                                     >
                                         <li
