@@ -55,7 +55,7 @@
                 <div class="container px-[60px] max-lg:px-8 max-md:px-4">
 
                         <div class="mt-8 max-md:mt-5">
-                            <v-category-children category-id="{{ $category->id }}">
+                            <v-search-categories>
                                 <div class="flex items-center justify-center gap-5">
                                     <span
                                         class="shimmer h-6 w-20 rounded"
@@ -72,7 +72,7 @@
                                         role="presentation"
                                     ></span>
                                 </div>
-                            </v-category-children>
+                            </v-search-categories>
                         </div>
                     <div class="flex items-start gap-10 max-lg:gap-5 md:mt-10">
                         <!-- Product Listing Filters -->
@@ -341,7 +341,7 @@
                     },
                 });
 
-                app.component('v-category-children', {
+                app.component('v-search-categories', {
                     template: `
                         <div>
                             <!-- Loading State -->
@@ -368,11 +368,11 @@
                             <!-- Categories Display -->
                             <div
                                 class="flex items-center justify-center"
-                                v-else-if="childCategories.length"
+                                v-else-if="categories.length"
                             >
                                 <div
                                     class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]"
-                                    v-for="category in childCategories"
+                                    v-for="category in categories"
                                     :key="category.id"
                                 >
                                     <span>
@@ -422,17 +422,10 @@
                         </div>
                     `,
 
-                    props: {
-                        categoryId: {
-                            type: String,
-                            required: true
-                        }
-                    },
-
                     data() {
                         return {
                             isLoading: true,
-                            childCategories: []
+                            categories: []
                         }
                     },
 
@@ -444,35 +437,13 @@
                         getCategories() {
                             this.$axios.get("{{ route('shop.api.categories.tree') }}")
                                 .then(response => {
-                                    const allCategories = response.data.data;
-
-                                    // Find current category and get its children
-                                    const currentCategory = this.findCategoryById(allCategories, this.categoryId);
-
-                                    if (currentCategory && currentCategory.children) {
-                                        this.childCategories = currentCategory.children;
-                                    }
-
+                                    this.categories = response.data.data;
                                     this.isLoading = false;
                                 })
                                 .catch(error => {
                                     console.log(error);
                                     this.isLoading = false;
                                 });
-                        },
-
-                        findCategoryById(categories, id) {
-                            for (let category of categories) {
-                                if (category.id == id) {
-                                    return category;
-                                }
-
-                                if (category.children && category.children.length) {
-                                    const found = this.findCategoryById(category.children, id);
-                                    if (found) return found;
-                                }
-                            }
-                            return null;
                         },
 
                         pairCategoryChildren(category) {
