@@ -172,7 +172,7 @@
     </div>
 </div>
 
-<?php if (! $__env->hasRenderedOnce('3647c1cb-0abb-453a-9700-efcb4f06f88c')): $__env->markAsRenderedOnce('3647c1cb-0abb-453a-9700-efcb4f06f88c');
+<?php if (! $__env->hasRenderedOnce('a44267e8-fa65-48e8-8c08-a39dbe2dbeb0')): $__env->markAsRenderedOnce('a44267e8-fa65-48e8-8c08-a39dbe2dbeb0');
 $__env->startPush('scripts'); ?>
     <script
         type="text/x-template"
@@ -234,7 +234,7 @@ $__env->startPush('scripts'); ?>
                                 </p>
 
                                 <ul
-                                    class="grid grid-cols-[1fr] gap-3"
+                                    class="flex flex-row gap-3 flex-wrap"
                                     v-if="secondLevelCategory.children && secondLevelCategory.children.length"
                                 >
                                     <li
@@ -301,7 +301,7 @@ $__env->startPush('scripts'); ?>
                                     </p>
 
                                     <ul
-                                        class="grid grid-cols-[1fr] gap-3"
+                                        class="flex flex-row gap-3 flex-wrap"
                                         v-if="secondLevelCategory.children && secondLevelCategory.children.length"
                                     >
                                         <li

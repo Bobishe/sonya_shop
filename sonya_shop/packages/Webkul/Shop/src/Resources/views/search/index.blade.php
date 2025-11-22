@@ -370,11 +370,10 @@
                                 <div
                                     class="ms-1 mt-10 max-sm:mt-5 p-4 pointer-events-none absolute top-full left-0 z-[9999] mt-[10vh] max-h-[580px] w-max max-w-[1260px] overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t-[3px] border-[rgb(108,153,47)] bg-white p-[1.5rem] opacity-0 shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in"
                                     v-if="category.children && category.children.length"
-                                    
                                 >
-                                    <div class="flex justify-between gap-x-[70px]">
+                                    <div class="flex flex-wrap gap-x-[70px] gap-y-5">
                                         <div
-                                            class="grid w-full min-w-max max-w-[150px] flex-auto grid-cols-[1fr] content-start gap-5"
+                                            class="flex gap-3"
                                             v-for="pairCategoryChildren in pairCategoryChildren(category)"
                                         >
                                             <template v-for="secondLevelCategory in pairCategoryChildren">
@@ -385,7 +384,7 @@
                                                 </p>
 
                                                 <ul
-                                                    class="grid grid-cols-[1fr] gap-3"
+                                                    class="flex flex-wrap gap-x-4 gap-y-2"
                                                     v-if="secondLevelCategory.children && secondLevelCategory.children.length"
                                                 >
                                                     <li

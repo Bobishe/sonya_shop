@@ -22,29 +22,23 @@
     ]);
 ?>
 
-<footer class="mt-9 bg-[#f5f5f5] max-sm:mt-10">
+<footer class="container mt-9 bg-[#f5f5f5] max-sm:mt-10">
     <div class="flex justify-between gap-x-6 gap-y-8 p-[60px] max-1060:flex-col-reverse max-md:gap-5 max-md:p-8 max-sm:px-4 max-sm:py-5">
         <!-- For Desktop View -->
-        <div class="flex flex-wrap items-start gap-24 max-1180:gap-6 max-1060:hidden">
+        <div class="flex mx-auto items-start max-1060:hidden">
             <?php if($customization?->options): ?>
-                <?php $__currentLoopData = $customization->options; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $footerLinkSection): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <ul class="grid gap-5 text-sm">
-                        <!-- <?php
-                            usort($footerLinkSection, function ($a, $b) {
-                                return $a['sort_order'] - $b['sort_order'];
-                            });
-                        ?> -->
-
+                <ul class="flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-2 text-sm">
+                    <?php $__currentLoopData = $customization->options; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $footerLinkSection): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <?php $__currentLoopData = $footerLinkSection; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $link): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li>
-                                <a href="<?php echo e($link['url']); ?>">
+                                <a href="<?php echo e($link['url']); ?>" class="hover:text-[rgb(108,153,47)] transition-colors duration-200">
                                     <?php echo e($link['title']); ?>
 
                                 </a>
                             </li>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </ul>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </ul>
             <?php endif; ?>
         </div>
 

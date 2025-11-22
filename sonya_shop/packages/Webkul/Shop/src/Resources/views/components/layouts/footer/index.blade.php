@@ -21,28 +21,22 @@
     ]);
 @endphp
 
-<footer class="mt-9 bg-[#f5f5f5] max-sm:mt-10">
+<footer class="container mt-9 bg-[#f5f5f5] max-sm:mt-10">
     <div class="flex justify-between gap-x-6 gap-y-8 p-[60px] max-1060:flex-col-reverse max-md:gap-5 max-md:p-8 max-sm:px-4 max-sm:py-5">
         <!-- For Desktop View -->
-        <div class="flex flex-wrap items-start gap-24 max-1180:gap-6 max-1060:hidden">
+        <div class="flex mx-auto items-start max-1060:hidden">
             @if ($customization?->options)
-                @foreach ($customization->options as $footerLinkSection)
-                    <ul class="grid gap-5 text-sm">
-                        <!-- @php
-                            usort($footerLinkSection, function ($a, $b) {
-                                return $a['sort_order'] - $b['sort_order'];
-                            });
-                        @endphp -->
-
+                <ul class="flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-2 text-sm">
+                    @foreach ($customization->options as $footerLinkSection)
                         @foreach ($footerLinkSection as $link)
                             <li>
-                                <a href="{{ $link['url'] }}">
+                                <a href="{{ $link['url'] }}" class="hover:text-[rgb(108,153,47)] transition-colors duration-200">
                                     {{ $link['title'] }}
                                 </a>
                             </li>
                         @endforeach
-                    </ul>
-                @endforeach
+                    @endforeach
+                </ul>
             @endif
         </div>
 
