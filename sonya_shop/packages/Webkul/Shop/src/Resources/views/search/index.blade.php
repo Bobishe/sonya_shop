@@ -368,7 +368,7 @@
                                 </span>
 
                                 <div
-                                    class="pointer-events-none absolute top-full left-0 z-[9999] max-h-[580px] w-max max-w-[1260px] overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t-[3px] border-[rgb(108,153,47)] bg-white p-9 opacity-0 shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in"
+                                    class="pointer-events-none absolute top-full left-0 z-[9999] mt-[10vh] max-h-[580px] w-max max-w-[1260px] overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t-[3px] border-[rgb(108,153,47)] bg-white p-[1.5rem] opacity-0 shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in"
                                     v-if="category.children && category.children.length"
                                 >
                                     <div class="flex justify-between gap-x-[70px]">
