@@ -95,6 +95,37 @@
 
                 {!! view_render_event('bagisto.shop.products.view.description.after', ['product' => $product]) !!}
 
+                <!-- Delivery and Payment Tab -->
+                <x-shop::tabs.item
+                    id="delivery-tab"
+                    class="container mt-[60px] !p-0"
+                    title="Доставка и оплата"
+                    :is-selected="false"
+                >
+                    <div class="container mt-[60px] max-1180:px-5">
+                        <p class="text-lg text-zinc-500 max-1180:text-sm">
+                            Доставка осуществляется транспортной компанией СДЭК и Почтой России, действует по всей территории РФ.<br><br>
+                            В Красноярске заказы доставляются на следующий день после отправления. Сроки доставки в регионы составляют от 1 до 8 дней. Стоимость рассчитывается по тарифам СДЭК и Почты России для вашего адреса.
+                        </p>
+                    </div>
+                </x-shop::tabs.item>
+
+                <!-- What to Do if the Set Doesn't Fit Tab -->
+                <x-shop::tabs.item
+                    id="returns-tab"
+                    class="container mt-[60px] !p-0"
+                    title="Что делать, если комплект не подошел"
+                    :is-selected="false"
+                >
+                    <div class="container mt-[60px] max-1180:px-5">
+                        <p class="text-lg text-zinc-500 max-1180:text-sm">
+                            Если вам не подошел комплект, мы с удовольствием перешьем изделие и подгоним под ваши мерки, чтобы он стал комфортным в носке. Все затраты за доставку и доработки мы возьмем на себя.<br><br>
+                            Как только вы получили комплект, померили и поняли, что вам в нём некомфортно, напишите нам в Тelegram. Опишите проблему и приложите фото/видео, как на вас сидит комплект.<br><br>
+                            Мы отправим вам трек-номер для возврата товара, и вы сможете отнести его в пункт выдачи и отправить нам. Когда доработки будут завершены, мы отправим вам изделие.
+                        </p>
+                    </div>
+                </x-shop::tabs.item>
+
                 <!-- Additional Information Tab -->
                 @if(count($attributeData))
                     <x-shop::tabs.item
@@ -173,6 +204,45 @@
             <x-slot:content class="max-sm:px-0">
                 <div class="mb-5 text-lg text-zinc-500 max-1180:text-sm max-md:mb-1 max-md:px-4">
                     {!! $product->description !!}
+                </div>
+            </x-slot>
+        </x-shop::accordion>
+
+        <!-- Delivery and Payment Accordion -->
+        <x-shop::accordion
+            class="max-md:border-none"
+            :is-active="false"
+        >
+            <x-slot:header class="bg-gray-100 max-md:!py-3 max-sm:!py-2">
+                <p class="text-base font-medium 1180:hidden">
+                    Доставка и оплата
+                </p>
+            </x-slot>
+
+            <x-slot:content class="max-sm:px-0">
+                <div class="mb-5 text-lg text-zinc-500 max-1180:text-sm max-md:mb-1 max-md:px-4">
+                    Доставка осуществляется транспортной компанией СДЭК и Почтой России, действует по всей территории РФ.<br><br>
+                    В Красноярске заказы доставляются на следующий день после отправления. Сроки доставки в регионы составляют от 1 до 8 дней. Стоимость рассчитывается по тарифам СДЭК и Почты России для вашего адреса.
+                </div>
+            </x-slot>
+        </x-shop::accordion>
+
+        <!-- What to Do if the Set Doesn't Fit Accordion -->
+        <x-shop::accordion
+            class="max-md:border-none"
+            :is-active="false"
+        >
+            <x-slot:header class="bg-gray-100 max-md:!py-3 max-sm:!py-2">
+                <p class="text-base font-medium 1180:hidden">
+                    Что делать, если комплект не подошел
+                </p>
+            </x-slot>
+
+            <x-slot:content class="max-sm:px-0">
+                <div class="mb-5 text-lg text-zinc-500 max-1180:text-sm max-md:mb-1 max-md:px-4">
+                    Если вам не подошел комплект, мы с удовольствием перешьем изделие и подгоним под ваши мерки, чтобы он стал комфортным в носке. Все затраты за доставку и доработки мы возьмем на себя.<br><br>
+                    Как только вы получили комплект, померили и поняли, что вам в нём некомфортно, напишите нам в Тelegram. Опишите проблему и приложите фото/видео, как на вас сидит комплект.<br><br>
+                    Мы отправим вам трек-номер для возврата товара, и вы сможете отнести его в пункт выдачи и отправить нам. Когда доработки будут завершены, мы отправим вам изделие.
                 </div>
             </x-slot>
         </x-shop::accordion>
