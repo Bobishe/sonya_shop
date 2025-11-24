@@ -87,7 +87,7 @@
                     :is-selected="true"
                 >
                     <div class="container mt-[60px] max-1180:px-5">
-                        <p class="text-lg text-zinc-500 max-1180:text-sm">
+                        <p class="text-lg  max-1180:text-sm">
                             {!! $product->description !!}
                         </p>
                     </div>
@@ -103,7 +103,7 @@
                     :is-selected="false"
                 >
                     <div class="container mt-[60px] max-1180:px-5">
-                        <p class="text-lg text-zinc-500 max-1180:text-sm">
+                        <p class="text-lg  max-1180:text-sm">
                             Доставка осуществляется транспортной компанией СДЭК и Почтой России, действует по всей территории РФ.<br><br>
                             В Красноярске заказы доставляются на следующий день после отправления. Сроки доставки в регионы составляют от 1 до 8 дней. Стоимость рассчитывается по тарифам СДЭК и Почты России для вашего адреса.
                         </p>
@@ -118,7 +118,7 @@
                     :is-selected="false"
                 >
                     <div class="container mt-[60px] max-1180:px-5">
-                        <p class="text-lg text-zinc-500 max-1180:text-sm">
+                        <p class="text-lg  max-1180:text-sm">
                             Если вам не подошел комплект, мы с удовольствием перешьем изделие и подгоним под ваши мерки, чтобы он стал комфортным в носке. Все затраты за доставку и доработки мы возьмем на себя.<br><br>
                             Как только вы получили комплект, померили и поняли, что вам в нём некомфортно, напишите нам в Тelegram. Опишите проблему и приложите фото/видео, как на вас сидит комплект.<br><br>
                             Мы отправим вам трек-номер для возврата товара, и вы сможете отнести его в пункт выдачи и отправить нам. Когда доработки будут завершены, мы отправим вам изделие.
@@ -163,7 +163,7 @@
                                             </a>
                                         @else
                                             <div class="grid">
-                                                <p class="text-base text-zinc-500">
+                                                <p class="text-base ">
                                                     {!! $customAttributeValue['value'] !!}
                                                 </p>
                                             </div>
@@ -202,7 +202,7 @@
             </x-slot>
 
             <x-slot:content class="max-sm:px-0">
-                <div class="mb-5 text-lg text-zinc-500 max-1180:text-sm max-md:mb-1 max-md:px-4">
+                <div class="mb-5 text-lg  max-1180:text-sm max-md:mb-1 max-md:px-4">
                     {!! $product->description !!}
                 </div>
             </x-slot>
@@ -220,7 +220,7 @@
             </x-slot>
 
             <x-slot:content class="max-sm:px-0">
-                <div class="mb-5 text-lg text-zinc-500 max-1180:text-sm max-md:mb-1 max-md:px-4">
+                <div class="mb-5 text-lg  max-1180:text-sm max-md:mb-1 max-md:px-4">
                     Доставка осуществляется транспортной компанией СДЭК и Почтой России, действует по всей территории РФ.<br><br>
                     В Красноярске заказы доставляются на следующий день после отправления. Сроки доставки в регионы составляют от 1 до 8 дней. Стоимость рассчитывается по тарифам СДЭК и Почты России для вашего адреса.
                 </div>
@@ -239,7 +239,7 @@
             </x-slot>
 
             <x-slot:content class="max-sm:px-0">
-                <div class="mb-5 text-lg text-zinc-500 max-1180:text-sm max-md:mb-1 max-md:px-4">
+                <div class="mb-5 text-lg  max-1180:text-sm max-md:mb-1 max-md:px-4">
                     Если вам не подошел комплект, мы с удовольствием перешьем изделие и подгоним под ваши мерки, чтобы он стал комфортным в носке. Все затраты за доставку и доработки мы возьмем на себя.<br><br>
                     Как только вы получили комплект, померили и поняли, что вам в нём некомфортно, напишите нам в Тelegram. Опишите проблему и приложите фото/видео, как на вас сидит комплект.<br><br>
                     Мы отправим вам трек-номер для возврата товара, и вы сможете отнести его в пункт выдачи и отправить нам. Когда доработки будут завершены, мы отправим вам изделие.
@@ -261,7 +261,7 @@
 
                 <x-slot:content class="max-sm:px-0">
                     <div class="container max-1180:px-5">
-                        <div class="grid max-w-max grid-cols-[auto_1fr] gap-4 text-lg text-zinc-500 max-1180:text-sm">
+                        <div class="grid max-w-max grid-cols-[auto_1fr] gap-4 text-lg  max-1180:text-sm">
                             @foreach ($customAttributeValues as $customAttributeValue)
                                 @if (! empty($customAttributeValue['value']))
                                     <div class="grid">
@@ -290,7 +290,7 @@
                                         </a>
                                     @else
                                         <div class="grid">
-                                            <p class="text-base text-zinc-500">
+                                            <p class="text-base ">
                                                 {{ $customAttributeValue['value'] ?? '-' }}
                                             </p>
                                         </div>
@@ -362,7 +362,7 @@
                                 {!! view_render_event('bagisto.shop.products.name.before', ['product' => $product]) !!}
 
                                 <div class="flex justify-between gap-4">
-                                    <h1 class="break-words text-3xl font-medium max-sm:text-xl">
+                                    <h1 class="font-dmserif break-words text-3xl font-medium max-sm:text-xl">
                                         {{ $product->name }}
                                     </h1>
 
@@ -411,7 +411,7 @@
                                 </p>
 
                                 @if (\Webkul\Tax\Facades\Tax::isInclusiveTaxProductPrices())
-                                    <span class="text-sm font-normal text-zinc-500 max-sm:text-xs">
+                                    <span class="text-sm font-normal  max-sm:text-xs">
                                         (@lang('shop::app.products.view.tax-inclusive'))
                                     </span>
                                 @endif
@@ -419,7 +419,7 @@
                                 @if (count($product->getTypeInstance()->getCustomerGroupPricingOffers()))
                                     <div class="mt-2.5 grid gap-1.5">
                                         @foreach ($product->getTypeInstance()->getCustomerGroupPricingOffers() as $offer)
-                                            <p class="text-zinc-500 [&>*]:text-black">
+                                            <p class=" [&>*]:text-black">
                                                 {!! $offer !!}
                                             </p>
                                         @endforeach
@@ -430,7 +430,7 @@
 
                                 {!! view_render_event('bagisto.shop.products.short_description.before', ['product' => $product]) !!}
 
-                                <p class="mt-6 text-lg text-zinc-500 max-sm:mt-1.5 max-sm:text-sm">
+                                <p class="mt-6 text-lg  max-sm:mt-1.5 max-sm:text-sm">
                                     {!! $product->short_description !!}
                                 </p>
 

@@ -2624,7 +2624,7 @@ html {
 }
 .bg-zinc-100 {
     --tw-bg-opacity: 1;
-    background-color: rgb(244 244 245 / var(--tw-bg-opacity, 1));
+    background-color: rgb(108, 153, 47, 0.24);
 }
 .bg-zinc-200 {
     --tw-bg-opacity: 1;
@@ -3043,7 +3043,7 @@ html {
 }
 .text-gray-900 {
     --tw-text-opacity: 1;
-    color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+    color: rgb(108 153 47 / var(--tw-text-opacity, 1));
 }
 .text-navyBlue {
     --tw-text-opacity: 1;
