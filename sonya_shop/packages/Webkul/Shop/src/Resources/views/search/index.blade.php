@@ -329,66 +329,66 @@
                     <div>
                         <!-- Loading State -->
                         <div
-                            class="flex items-center justify-center gap-5"
+                            class="flex items-center justify-center gap-5 max-md:gap-3"
                             v-if="isLoading"
                         >
                             <span
-                                class="shimmer h-6 w-20 rounded"
+                                class="shimmer h-6 w-20 rounded max-sm:h-5 max-sm:w-16"
                                 role="presentation"
                             ></span>
 
                             <span
-                                class="shimmer h-6 w-20 rounded"
+                                class="shimmer h-6 w-20 rounded max-sm:h-5 max-sm:w-16"
                                 role="presentation"
                             ></span>
 
                             <span
-                                class="shimmer h-6 w-20 rounded"
+                                class="shimmer h-6 w-20 rounded max-sm:h-5 max-sm:w-16"
                                 role="presentation"
                             ></span>
                         </div>
 
                         <!-- Categories Display -->
                         <div
-                            class="flex items-center justify-center"
+                            class="flex items-center justify-center max-lg:flex-wrap max-lg:gap-y-2 max-md:justify-start max-md:overflow-x-auto max-md:flex-nowrap max-md:gap-y-0 max-md:scrollbar-hide"
                             v-else-if="categories.length"
                         >
                             <div
-                                class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44]"
+                                class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44] max-lg:h-[65px] max-md:h-[55px] max-sm:h-[50px] max-md:flex-shrink-0"
                                 v-for="category in categories"
                                 :key="category.id"
                             >
                                 <span>
                                     <a
                                         :href="category.url"
-                                        class="inline-block px-5 uppercase font-dmserif text-black"
+                                        class="inline-block px-5 uppercase font-dmserif text-black max-lg:px-4 max-md:px-3 max-md:text-sm max-sm:px-2 max-sm:text-xs whitespace-nowrap"
                                     >
                                         @{{ category.name }}
                                     </a>
                                 </span>
 
                                 <div
-                                    class="ms-1 mt-10 max-sm:mt-5 p-4 pointer-events-none absolute top-full left-0 z-[9999] mt-[10vh] max-h-[580px] w-max max-w-[1260px] overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t-[3px] border-[rgb(108,153,47)] bg-white p-[1.5rem] opacity-0 shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in"
+                                    class="ms-1 mt-10 max-sm:mt-5 p-4 pointer-events-none absolute top-full left-0 z-[9999] mt-[10vh] max-h-[580px] w-max max-w-[1260px] overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t-[3px] border-[rgb(108,153,47)] bg-white p-[1.5rem] opacity-0 shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in max-lg:max-w-[900px] max-md:max-w-[600px] max-md:p-3 max-sm:max-w-[90vw] max-sm:p-2 max-sm:left-1/2 max-sm:-translate-x-1/2 max-md:max-h-[400px]"
                                     v-if="category.children && category.children.length"
                                 >
-                                    <div class="flex flex-wrap gap-x-[70px] gap-y-5">
+                                    <div class="flex flex-wrap gap-x-[70px] gap-y-5 max-lg:gap-x-[50px] max-md:gap-x-[30px] max-md:gap-y-3 max-sm:gap-x-4 max-sm:gap-y-2">
                                         <div
-                                            class="flex gap-3"
+                                            class="flex gap-3 max-md:gap-2 max-sm:flex-col max-sm:gap-1"
                                             v-for="pairCategoryChildren in pairCategoryChildren(category)"
                                         >
                                             <template v-for="secondLevelCategory in pairCategoryChildren">
-                                                <p class="text-[14px] font-normal text-black leading-relaxed">
+                                                <p class="text-[14px] font-normal text-black leading-relaxed max-md:text-[13px] max-sm:text-[12px]">
                                                     <a :href="secondLevelCategory.url" class="hover:text-[rgb(108,153,47)] transition-colors duration-200">
                                                         @{{ secondLevelCategory.name }}
                                                     </a>
                                                 </p>
 
                                                 <ul
-                                                    class="flex flex-wrap gap-x-4 gap-y-2"
+                                                    class="flex flex-wrap gap-x-4 gap-y-2 max-md:gap-x-3 max-md:gap-y-1 max-sm:gap-x-2"
                                                     v-if="secondLevelCategory.children && secondLevelCategory.children.length"
                                                 >
                                                     <li
-                                                        class="text-[14px] font-normal text-black leading-relaxed"
+                                                        class="text-[14px] font-normal text-black leading-relaxed max-md:text-[13px] max-sm:text-[12px]"
                                                         v-for="thirdLevelCategory in secondLevelCategory.children"
                                                     >
                                                         <a :href="thirdLevelCategory.url" class="hover:text-[rgb(108,153,47)] transition-colors duration-200 cursor-pointer">
