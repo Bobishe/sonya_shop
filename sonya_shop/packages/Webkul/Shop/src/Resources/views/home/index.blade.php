@@ -32,6 +32,20 @@
         {{  $channel->home_seo['meta_title'] ?? '' }}
     </x-slot>
 
+    <!-- Hero Banner Section -->
+    <x-shop::hero-banner
+        title="Фермерское молоко из Горного Алтая"
+        linkText="В каталог"
+        linkUrl="{{ route('shop.search.index') }}"
+        :images="[
+            [
+                'image' => asset('themes/shop/default/images/hero-banner-1.jpg'),
+                'link' => route('shop.search.index'),
+                'title' => 'Фермерское молоко из Горного Алтая'
+            ]
+        ]"
+    />
+
     <!-- Loop over the theme customization -->
     @foreach ($customizations as $customization)
         @php ($data = $customization->options) @endphp
