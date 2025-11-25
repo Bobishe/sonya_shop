@@ -8,6 +8,7 @@
     $showWishlist = (bool) core()->getConfigData('customer.settings.wishlist.wishlist_option');
 @endphp
 
+<v-mobile-header-search>
 <div class="flex flex-wrap gap-4 px-4 pb-4 pt-6 shadow-sm lg:hidden">
     <div class="flex w-full items-center justify-between">
         <!-- Left Navigation -->
@@ -53,6 +54,20 @@
                 @endif --}}
 
                 {!! view_render_event('bagisto.shop.components.layouts.header.mobile.compare.after') !!}
+
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search_toggle.before') !!}
+
+                <!-- Mobile Search Toggle Button -->
+                <button
+                    @click="toggleSearch"
+                    aria-label="@lang('shop::app.components.layouts.header.mobile.search')"
+                    type="button"
+                    class="focus:outline-none"
+                >
+                    <span class="icon-search cursor-pointer text-2xl"></span>
+                </button>
+
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search_toggle.after') !!}
 
                 {!! view_render_event('bagisto.shop.components.layouts.header.mobile.mini_cart.before') !!}
 
@@ -200,7 +215,11 @@
     {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search.before') !!}
 
     <!-- Serach Catalog Form -->
-    <form action="{{ route('shop.search.index') }}" class="flex w-full items-center">
+    <form
+        action="{{ route('shop.search.index') }}"
+        class="flex w-full items-center transition-all duration-300"
+        v-show="isSearchVisible"
+    >
         <label
             for="organic-search"
             class="sr-only"
@@ -217,6 +236,7 @@
                 name="query"
                 value="{{ request('query') }}"
                 placeholder="@lang('shop::app.components.layouts.header.mobile.search-text')"
+                ref="searchInput"
                 required
             >
 
@@ -224,12 +244,56 @@
                 @include('shop::search.images.index')
             @endif
         </div>
+
+        <!-- Close Search Button -->
+        <button
+            type="button"
+            @click="toggleSearch"
+            class="ml-2 focus:outline-none"
+            aria-label="Close search"
+        >
+            <span class="icon-cancel cursor-pointer text-2xl"></span>
+        </button>
     </form>
 
     {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search.after') !!}
 </div>
+</v-mobile-header-search>
 
 @pushOnce('scripts')
+    <script type="text/x-template" id="v-mobile-header-search-template">
+        <div>
+            <slot></slot>
+        </div>
+    </script>
+
+    <script type="module">
+        app.component('v-mobile-header-search', {
+            template: '#v-mobile-header-search-template',
+
+            data() {
+                return {
+                    isSearchVisible: false
+                }
+            },
+
+            methods: {
+                toggleSearch() {
+                    this.isSearchVisible = !this.isSearchVisible;
+
+                    if (this.isSearchVisible) {
+                        this.$nextTick(() => {
+                            const input = this.$el.querySelector('input[name="query"]');
+                            if (input) {
+                                input.focus();
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    </script>
+
     <script type="text/x-template" id="v-mobile-drawer-template">
         <x-shop::drawer
             position="left"
