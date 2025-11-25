@@ -43,6 +43,21 @@
         stroke-width: 3;
     }
 
+    /* Стили для изображений в карусели */
+    .carousel-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        transition: transform 300ms ease-in-out;
+        will-change: transform;
+    }
+
     /* Мобильная версия */
     @media (max-width: 768px) {
         /* Скрываем стрелки на мобильных */
@@ -55,8 +70,8 @@
             height: 70vh !important;
         }
 
-        .mobile-carousel-slide img {
-            height: 70vh !important;
+        .carousel-image {
+            height: 100%;
             object-fit: cover;
         }
     }
@@ -82,7 +97,7 @@
                     ref="slide"
                 >
                     <x-shop::media.images.lazy
-                        class="h-full w-full object-cover select-none transition-transform duration-300 ease-in-out will-change-transform"
+                        class="carousel-image"
                         ::lazy="index === 0 ? false : true"
                         ::src="image.image"
                         ::srcset="image.image + ' 1920w, ' + image.image.replace('storage', 'cache/large') + ' 1280w,' + image.image.replace('storage', 'cache/medium') + ' 1024w, ' + image.image.replace('storage', 'cache/small') + ' 525w'"
