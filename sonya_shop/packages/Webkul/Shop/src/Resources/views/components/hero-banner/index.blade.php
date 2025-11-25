@@ -17,13 +17,13 @@
     </div>
 
     <!-- Блок с каруселью изображений -->
-    <div class="hero-banner-carousel">
+    <!-- <div class="hero-banner-carousel">
         <v-hero-carousel :images="{{ json_encode($images) }}">
             <div class="overflow-hidden">
                 <div class="shimmer hero-carousel-shimmer"></div>
             </div>
         </v-hero-carousel>
-    </div>
+    </div> -->
 </section>
 
 @pushOnce('styles')

@@ -42,6 +42,8 @@
 
      <?php $__env->endSlot(); ?>
 
+    
+
     <!-- Loop over the theme customization -->
     <?php $__currentLoopData = $customizations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customization): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <?php ($data = $customization->options) ?>

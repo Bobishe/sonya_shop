@@ -28,21 +28,142 @@ foreach ($attributes->all() as $__key => $__value) {
 
 unset($__defined_vars); ?>
 
-<v-carousel :images="<?php echo e(json_encode($options['images'] ?? [])); ?>">
-    <div class="overflow-hidden">
-        <div class="shimmer aspect-[2.743/1] max-h-screen w-screen"></div>
+<v-hero-carousel :images="<?php echo e(json_encode($options['images'] ?? [])); ?>">
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="shimmer hero-text-placeholder"></div>
+        </div>
+        <div class="hero-image">
+            <div class="shimmer hero-image-placeholder"></div>
+        </div>
     </div>
-</v-carousel>
+</v-hero-carousel>
 
-<?php if (! $__env->hasRenderedOnce('573e0b21-577c-43e4-811e-58fb56c2e7a2')): $__env->markAsRenderedOnce('573e0b21-577c-43e4-811e-58fb56c2e7a2');
+<?php if (! $__env->hasRenderedOnce('e7eea223-2b2c-478f-9733-615b7c203864')): $__env->markAsRenderedOnce('e7eea223-2b2c-478f-9733-615b7c203864');
 $__env->startPush('styles'); ?>
 <style>
+    /* ===== HERO SECTION ===== */
+    .hero-section {
+        display: flex;
+        flex-direction: row;
+        height: 70vh;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* ===== TEXT CONTENT BLOCK ===== */
+    .hero-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 60px 80px;
+        background-color: #FDF8F5;
+        position: relative;
+    }
+
+    .hero-title {
+        font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+        font-size: clamp(32px, 4vw, 56px);
+        font-weight: 700;
+        font-style: italic;
+        line-height: 1.15;
+        color: #8B2942;
+        margin: 0 0 30px 0;
+        max-width: 500px;
+    }
+
+    .hero-link {
+        font-family: inherit;
+        font-size: 16px;
+        color: #8B2942;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+    }
+
+    .hero-link:hover {
+        opacity: 0.7;
+    }
+
+    /* Декоративный квадрат */
+    .hero-decorator {
+        position: absolute;
+        right: -10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background-color: #8B2942;
+        z-index: 5;
+    }
+
+    /* ===== IMAGE CAROUSEL BLOCK ===== */
+    .hero-image {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        background-color: #FDF8F5;
+    }
+
+    .hero-carousel-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hero-carousel-slider {
+        display: flex;
+        height: 100%;
+        transition: transform 700ms ease-out;
+        will-change: transform;
+    }
+
+    .hero-carousel-slide {
+        flex: 0 0 100%;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    /* Стили для изображения и всех возможных оберток */
+    .hero-carousel-slide > *,
+    .hero-carousel-slide picture,
+    .hero-carousel-slide figure {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-carousel-image,
+    .hero-carousel-slide img {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain !important;
+        object-position: center center !important;
+        display: block;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    /* ===== NAVIGATION ARROWS ===== */
     .hero-carousel-nav {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         background: rgba(255, 255, 255, 0.5);
         border: none;
         cursor: pointer;
@@ -58,79 +179,179 @@ $__env->startPush('styles'); ?>
     }
 
     .hero-carousel-nav.left {
-        left: 30px;
+        left: 20px;
     }
 
     .hero-carousel-nav.right {
-        right: 30px;
+        right: 20px;
     }
 
     .hero-carousel-nav svg {
-        width: 32px;
-        height: 32px;
-        stroke: white;
-        stroke-width: 3;
+        width: 28px;
+        height: 28px;
+        stroke: #333;
+        stroke-width: 2;
     }
 
-    /* Мобильная версия */
+    /* ===== CAROUSEL INDICATORS ===== */
+    .hero-carousel-indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+    }
+
+    .hero-carousel-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .hero-carousel-dot.active {
+        background: #8B2942;
+    }
+
+    /* ===== SHIMMER PLACEHOLDERS ===== */
+    .hero-text-placeholder {
+        width: 80%;
+        height: 200px;
+    }
+
+    .hero-image-placeholder {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* ===== MOBILE STYLES ===== */
     @media (max-width: 768px) {
+        .hero-section {
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .hero-content {
+            order: 1;
+            padding: 40px 24px;
+            flex: 0 0 auto;
+        }
+
+        .hero-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .hero-decorator {
+            right: 0;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hero-image {
+            order: 2;
+            flex: 1 1 0;
+            min-height: 0;
+            height: auto;
+        }
+
+        .hero-carousel-container,
+        .hero-carousel-slider,
+        .hero-carousel-slide {
+            height: 100%;
+        }
+
+        .hero-carousel-image,
+        .hero-carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center center;
+        }
+
         /* Скрываем стрелки на мобильных */
         .hero-carousel-nav {
             display: none !important;
         }
 
-        /* Высота баннера 100% экрана */
-        .mobile-carousel-slide {
-            max-height: 100vh !important;
+        .hero-carousel-indicators {
+            bottom: 15px;
         }
 
-        .mobile-carousel-slide img {
-            max-height: 100vh !important;
-            object-fit: cover;
+        .hero-carousel-dot {
+            width: 8px;
+            height: 8px;
+        }
+    }
+
+    /* ===== TABLET STYLES ===== */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .hero-content {
+            padding: 40px 50px;
+        }
+
+        .hero-title {
+            font-size: 36px;
         }
     }
 </style>
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('71644800-1f91-4528-97bb-e6de3c9a140b')): $__env->markAsRenderedOnce('71644800-1f91-4528-97bb-e6de3c9a140b');
+<?php if (! $__env->hasRenderedOnce('1c3aca64-5c06-488c-8e37-d60c7b149fc8')): $__env->markAsRenderedOnce('1c3aca64-5c06-488c-8e37-d60c7b149fc8');
 $__env->startPush('scripts'); ?>
-    <script
-        type="text/x-template"
-        id="v-carousel-template"
-    >
-        <div class="relative m-auto flex w-full overflow-hidden">
-            <!-- Slider -->
-            <div
-                class="inline-flex translate-x-0 cursor-pointer transition-transform duration-700 ease-out will-change-transform"
-                ref="sliderContainer"
+<script type="text/x-template" id="v-hero-carousel-template">
+    <section class="hero-section">
+        <!-- Text Content Block -->
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Магазин нижнего белья
+            </h1>
+            <a 
+                :href="getCatalogLink()" 
+                class="hero-link"
             >
-                <div
-                    class="max-h-screen w-screen bg-cover bg-no-repeat mobile-carousel-slide"
-                    v-for="(image, index) in images"
-                    :key="index"
-                    @click="visitLink(image)"
-                    ref="slide"
+                В каталог
+            </a>
+            <div class="hero-decorator"></div>
+        </div>
+
+        <!-- Image Carousel Block -->
+        <div class="hero-image">
+            <div class="hero-carousel-container" v-if="images && images.length">
+                <div 
+                    class="hero-carousel-slider"
+                    ref="sliderContainer"
+                    :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
                 >
-                    <?php if (isset($component)) { $__componentOriginal3657c70d06ebc8c078f4ecac2ea1a848 = $component; } ?>
+                    <div
+                        class="hero-carousel-slide"
+                        v-for="(image, index) in images"
+                        :key="index"
+                        @click="visitLink(image)"
+                        @mousedown="handleDragStart"
+                        @touchstart="handleDragStart"
+                        @mouseup="handleDragEnd"
+                        @mouseleave="handleDragEnd"
+                        @touchend="handleDragEnd"
+                        @mousemove="handleDrag"
+                        @touchmove="handleDrag"
+                    >
+                        <?php if (isset($component)) { $__componentOriginal3657c70d06ebc8c078f4ecac2ea1a848 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal3657c70d06ebc8c078f4ecac2ea1a848 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.media.images.lazy','data' => ['class' => 'aspect-[2.743/1] max-h-full w-full max-w-full select-none transition-transform duration-300 ease-in-out will-change-transform',':lazy' => 'index === 0 ? false : true',':src' => 'image.image',':srcset' => 'image.image + \' 1920w, \' + image.image.replace(\'storage\', \'cache/large\') + \' 1280w,\' + image.image.replace(\'storage\', \'cache/medium\') + \' 1024w, \' + image.image.replace(\'storage\', \'cache/small\') + \' 525w\'',':sizes' => '
-                            \'(max-width: 525px) 525px, \' +
-                            \'(max-width: 1024px) 1024px, \' +
-                            \'(max-width: 1600px) 1280px, \' +
-                            \'1920px\'
-                        ',':alt' => 'image?.title || \'Carousel Image \' + (index + 1)','tabindex' => '0',':fetchpriority' => 'index === 0 ? \'high\' : \'low\'',':decoding' => 'index === 0 ? \'sync\' : \'async\'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'shop::components.media.images.lazy','data' => ['class' => 'hero-carousel-image',':lazy' => 'index === 0 ? false : true',':src' => 'image.image',':srcset' => 'image.image + \' 1920w, \' + image.image.replace(\'storage\', \'cache/large\') + \' 1280w,\' + image.image.replace(\'storage\', \'cache/medium\') + \' 1024w, \' + image.image.replace(\'storage\', \'cache/small\') + \' 525w\'','sizes' => '(max-width: 768px) 100vw, 50vw',':alt' => 'image?.title || \'Hero Image \' + (index + 1)',':fetchpriority' => 'index === 0 ? \'high\' : \'low\'',':decoding' => 'index === 0 ? \'sync\' : \'async\'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('shop::media.images.lazy'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['class' => 'aspect-[2.743/1] max-h-full w-full max-w-full select-none transition-transform duration-300 ease-in-out will-change-transform',':lazy' => 'index === 0 ? false : true',':src' => 'image.image',':srcset' => 'image.image + \' 1920w, \' + image.image.replace(\'storage\', \'cache/large\') + \' 1280w,\' + image.image.replace(\'storage\', \'cache/medium\') + \' 1024w, \' + image.image.replace(\'storage\', \'cache/small\') + \' 525w\'',':sizes' => '
-                            \'(max-width: 525px) 525px, \' +
-                            \'(max-width: 1024px) 1024px, \' +
-                            \'(max-width: 1600px) 1280px, \' +
-                            \'1920px\'
-                        ',':alt' => 'image?.title || \'Carousel Image \' + (index + 1)','tabindex' => '0',':fetchpriority' => 'index === 0 ? \'high\' : \'low\'',':decoding' => 'index === 0 ? \'sync\' : \'async\'']); ?>
+<?php $component->withAttributes(['class' => 'hero-carousel-image',':lazy' => 'index === 0 ? false : true',':src' => 'image.image',':srcset' => 'image.image + \' 1920w, \' + image.image.replace(\'storage\', \'cache/large\') + \' 1280w,\' + image.image.replace(\'storage\', \'cache/medium\') + \' 1024w, \' + image.image.replace(\'storage\', \'cache/small\') + \' 525w\'','sizes' => '(max-width: 768px) 100vw, 50vw',':alt' => 'image?.title || \'Hero Image \' + (index + 1)',':fetchpriority' => 'index === 0 ? \'high\' : \'low\'',':decoding' => 'index === 0 ? \'sync\' : \'async\'']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal3657c70d06ebc8c078f4ecac2ea1a848)): ?>
@@ -141,257 +362,165 @@ $__env->startPush('scripts'); ?>
 <?php $component = $__componentOriginal3657c70d06ebc8c078f4ecac2ea1a848; ?>
 <?php unset($__componentOriginal3657c70d06ebc8c078f4ecac2ea1a848); ?>
 <?php endif; ?>
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button
+                    v-if="images.length > 1"
+                    class="hero-carousel-nav left"
+                    @click="navigate('prev')"
+                    aria-label="<?php echo app('translator')->get('shop::components.carousel.previous'); ?>"
+                >
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <button
+                    v-if="images.length > 1"
+                    class="hero-carousel-nav right"
+                    @click="navigate('next')"
+                    aria-label="<?php echo app('translator')->get('shop::components.carousel.next'); ?>"
+                >
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <!-- Indicators -->
+                <div class="hero-carousel-indicators" v-if="images.length > 1">
+                    <button
+                        v-for="(image, index) in images"
+                        :key="index"
+                        class="hero-carousel-dot"
+                        :class="{ active: currentIndex === index }"
+                        @click="goToSlide(index)"
+                        :aria-label="'Slide ' + (index + 1)"
+                    ></button>
                 </div>
             </div>
-
-            <!-- Navigation Arrows -->
-            <button
-                class="hero-carousel-nav left"
-                :class="{
-                    'cursor-not-allowed opacity-40': direction == 'ltr' && currentIndex == 0,
-                    'cursor-pointer': direction == 'ltr' ? currentIndex > 0 : currentIndex <= 0
-                }"
-                role="button"
-                aria-label="<?php echo app('translator')->get('shop::components.carousel.previous'); ?>"
-                tabindex="0"
-                v-if="images?.length >= 2"
-                @click="navigate('prev')"
-            >
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-
-            <button
-                class="hero-carousel-nav right"
-                :class="{
-                    'cursor-not-allowed opacity-40': direction == 'rtl' && currentIndex == 0,
-                    'cursor-pointer': direction == 'rtl' ? currentIndex < 0 : currentIndex >= 0
-                }"
-                role="button"
-                aria-label="<?php echo app('translator')->get('shop::components.carousel.next'); ?>"
-                tabindex="0"
-                v-if="images?.length >= 2"
-                @click="navigate('next')"
-            >
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
         </div>
-    </script>
+    </section>
+</script>
 
-    <script type="module">
-        app.component("v-carousel", {
-            template: '#v-carousel-template',
+<script type="module">
+    app.component("v-hero-carousel", {
+        template: '#v-hero-carousel-template',
 
-            props: ['images'],
+        props: ['images'],
 
-            data() {
-                return {
-                    isDragging: false,
-                    startPos: 0,
-                    currentTranslate: 0,
-                    prevTranslate: 0,
-                    animationID: 0,
-                    currentIndex: 0,
-                    slider: '',
-                    slides: [],
-                    autoPlayInterval: null,
-                    direction: 'ltr',
-                    startFrom: 1,
-                };
+        data() {
+            return {
+                currentIndex: 0,
+                isDragging: false,
+                startPos: 0,
+                currentTranslate: 0,
+                prevTranslate: 0,
+                autoPlayInterval: null,
+            };
+        },
+
+        mounted() {
+            if (this.images && this.images.length > 1) {
+                this.startAutoPlay();
+            }
+        },
+
+        beforeUnmount() {
+            this.stopAutoPlay();
+        },
+
+        methods: {
+            getTitle() {
+                // Берём title из первого изображения или дефолтный
+                if (this.images && this.images[0] && this.images[0].title) {
+                    return this.images[0].title;
+                }
+                return 'НИЖНЕЕ БЕЛЬЁ РУЧНОЙ РАБОТЫ С ИДЕАЛЬНОЙ ПОСАДКОЙ';
             },
 
-            mounted() {
-                this.slider = this.$refs.sliderContainer;
-
-                if (
-                    this.$refs.slide
-                    && typeof this.$refs.slide[Symbol.iterator] === 'function'
-                ) {
-                    this.slides = Array.from(this.$refs.slide);
+            getCatalogLink() {
+                // Берём link из первого изображения или дефолтный
+                if (this.images && this.images[0] && this.images[0].link) {
+                    return this.images[0].link;
                 }
+                return '/categories';
+            },
 
-                if ('requestIdleCallback' in window) {
-                    requestIdleCallback(() => {
-                        this.init();
-                        setTimeout(() => {
-                            this.play();
-                        }, 4000);
-                    });
+            visitLink(image) {
+                if (!this.isDragging && image.link) {
+                    window.location.href = image.link;
+                }
+            },
+
+            navigate(direction) {
+                this.stopAutoPlay();
+                
+                if (direction === 'next') {
+                    this.currentIndex = (this.currentIndex + 1) % this.images.length;
                 } else {
-                    setTimeout(() => {
-                        this.init();
-                        setTimeout(() => {
-                            this.play();
-                        }, 4000);
-                    });
+                    this.currentIndex = this.currentIndex === 0 
+                        ? this.images.length - 1 
+                        : this.currentIndex - 1;
+                }
+                
+                this.startAutoPlay();
+            },
+
+            goToSlide(index) {
+                this.stopAutoPlay();
+                this.currentIndex = index;
+                this.startAutoPlay();
+            },
+
+            handleDragStart(event) {
+                this.isDragging = true;
+                this.startPos = event.type === 'mousedown' 
+                    ? event.clientX 
+                    : event.touches[0].clientX;
+                this.stopAutoPlay();
+            },
+
+            handleDrag(event) {
+                if (!this.isDragging) return;
+                
+                const currentPosition = event.type === 'mousemove' 
+                    ? event.clientX 
+                    : event.touches[0].clientX;
+                this.currentTranslate = currentPosition - this.startPos;
+            },
+
+            handleDragEnd() {
+                if (!this.isDragging) return;
+                
+                this.isDragging = false;
+                const movedBy = this.currentTranslate;
+
+                if (movedBy < -50 && this.currentIndex < this.images.length - 1) {
+                    this.currentIndex++;
+                } else if (movedBy > 50 && this.currentIndex > 0) {
+                    this.currentIndex--;
+                }
+
+                this.currentTranslate = 0;
+                this.startAutoPlay();
+            },
+
+            startAutoPlay() {
+                this.stopAutoPlay();
+                this.autoPlayInterval = setInterval(() => {
+                    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+                }, 5000);
+            },
+
+            stopAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                    this.autoPlayInterval = null;
                 }
             },
-
-            beforeUnmount() {
-                this.cleanup();
-            },
-
-            methods: {
-                init() {
-                    this.direction = document.dir;
-
-                    if (this.direction == 'rtl') {
-                        this.startFrom = -1;
-                    }
-
-                    this.slides.forEach((slide, index) => {
-                        slide.querySelector('img')?.addEventListener('dragstart', (e) => e.preventDefault());
-
-                        slide.addEventListener('mousedown', this.handleDragStart);
-                        slide.addEventListener('touchstart', this.handleDragStart, { passive: true });
-                        slide.addEventListener('mouseup', this.handleDragEnd);
-                        slide.addEventListener('mouseleave', this.handleDragEnd);
-                        slide.addEventListener('touchend', this.handleDragEnd, { passive: true });
-                        slide.addEventListener('mousemove', this.handleDrag);
-                        slide.addEventListener('touchmove', this.handleDrag, { passive: true });
-                    });
-
-                    window.addEventListener('resize', this.setPositionByIndex);
-                },
-
-                handleDragStart(event) {
-                    this.startPos = event.type === 'mousedown' ? event.clientX : event.touches[0].clientX;
-                    this.isDragging = true;
-                    this.animationID = requestAnimationFrame(this.animation);
-                },
-
-                handleDrag(event) {
-                    if (! this.isDragging) {
-                        return;
-                    }
-
-                    const currentPosition = event.type === 'mousemove' ? event.clientX : event.touches[0].clientX;
-                    this.currentTranslate = this.prevTranslate + currentPosition - this.startPos;
-                },
-
-                handleDragEnd(event) {
-                    clearInterval(this.autoPlayInterval);
-                    cancelAnimationFrame(this.animationID);
-                    this.isDragging = false;
-
-                    const movedBy = this.currentTranslate - this.prevTranslate;
-
-                    if (this.direction == 'ltr') {
-                        if (
-                            movedBy < -100
-                            && this.currentIndex < this.slides.length - 1
-                        ) {
-                            this.currentIndex += 1;
-                        }
-
-                        if (
-                            movedBy > 100
-                            && this.currentIndex > 0
-                        ) {
-                            this.currentIndex -= 1;
-                        }
-                    } else {
-                        if (
-                            movedBy > 100
-                            && this.currentIndex < this.slides.length - 1
-                        ) {
-                            if (Math.abs(this.currentIndex) != this.slides.length - 1) {
-                                this.currentIndex -= 1;
-                            }
-                        }
-
-                        if (
-                            movedBy < -100
-                            && this.currentIndex < 0
-                        ) {
-                            this.currentIndex += 1;
-                        }
-                    }
-
-                    this.setPositionByIndex();
-                    this.play();
-                },
-
-                animation() {
-                    this.setSliderPosition();
-
-                    if (this.isDragging) {
-                        requestAnimationFrame(this.animation);
-                    }
-                },
-
-                setPositionByIndex() {
-                    this.currentTranslate = this.currentIndex * -window.innerWidth;
-                    this.prevTranslate = this.currentTranslate;
-                    this.setSliderPosition();
-                },
-
-                setSliderPosition() {
-                    if (this.slider) {
-                        this.slider.style.transform = `translateX(${this.currentTranslate}px)`;
-                    }
-                },
-
-                visitLink(image) {
-                    if (image.link) {
-                        window.location.href = image.link;
-                    }
-                },
-
-                navigate(type) {
-                    clearInterval(this.autoPlayInterval);
-
-                    if (this.direction === 'rtl') {
-                        type === 'next' ? this.prev() : this.next();
-                    } else {
-                        type === 'next' ? this.next() : this.prev();
-                    }
-
-                    this.setPositionByIndex();
-                    this.play();
-                },
-
-                next() {
-                    this.currentIndex = (this.currentIndex + this.startFrom) % this.images.length;
-                },
-
-                prev() {
-                    this.currentIndex = this.direction == 'ltr'
-                        ? this.currentIndex > 0 ? this.currentIndex - 1 : 0
-                        : this.currentIndex < 0 ? this.currentIndex + 1 : 0;
-                },
-
-                play() {
-                    clearInterval(this.autoPlayInterval);
-
-                    this.autoPlayInterval = setInterval(() => {
-                        this.currentIndex = (this.currentIndex + this.startFrom) % this.images.length;
-                        this.setPositionByIndex();
-                    }, 5000);
-                },
-
-                cleanup() {
-                    clearInterval(this.autoPlayInterval);
-                    cancelAnimationFrame(this.animationID);
-
-                    if (this.slides) {
-                        this.slides.forEach(slide => {
-                            slide.removeEventListener('mousedown', this.handleDragStart);
-                            slide.removeEventListener('touchstart', this.handleDragStart);
-                            slide.removeEventListener('mouseup', this.handleDragEnd);
-                            slide.removeEventListener('mouseleave', this.handleDragEnd);
-                            slide.removeEventListener('touchend', this.handleDragEnd);
-                            slide.removeEventListener('mousemove', this.handleDrag);
-                            slide.removeEventListener('touchmove', this.handleDrag);
-                        });
-                    }
-
-                    window.removeEventListener('resize', this.setPositionByIndex);
-                },
-            },
-        });
-    </script>
+        },
+    });
+</script>
 <?php $__env->stopPush(); endif; ?><?php /**PATH D:\Work\sonya_site\sonya_shop\packages\Webkul\Shop\src/resources/views/components/carousel/index.blade.php ENDPATH**/ ?>
