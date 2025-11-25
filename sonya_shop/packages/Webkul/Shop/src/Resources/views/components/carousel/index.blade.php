@@ -2,7 +2,7 @@
 
 <v-carousel :images="{{ json_encode($options['images'] ?? []) }}">
     <div class="overflow-hidden">
-        <div class="shimmer aspect-[2.743/1] max-h-screen w-screen"></div>
+        <div class="shimmer h-screen w-screen carousel-height"></div>
     </div>
 </v-carousel>
 
@@ -50,13 +50,13 @@
             display: none !important;
         }
 
-        /* Высота баннера 100% экрана */
-        .mobile-carousel-slide {
-            max-height: 100vh !important;
+        /* Высота баннера 70% экрана на мобильных */
+        .carousel-height {
+            height: 70vh !important;
         }
 
         .mobile-carousel-slide img {
-            max-height: 100vh !important;
+            height: 70vh !important;
             object-fit: cover;
         }
     }
@@ -75,14 +75,14 @@
                 ref="sliderContainer"
             >
                 <div
-                    class="max-h-screen w-screen bg-cover bg-no-repeat mobile-carousel-slide"
+                    class="h-screen w-screen bg-cover bg-no-repeat mobile-carousel-slide carousel-height"
                     v-for="(image, index) in images"
                     :key="index"
                     @click="visitLink(image)"
                     ref="slide"
                 >
                     <x-shop::media.images.lazy
-                        class="aspect-[2.743/1] max-h-full w-full max-w-full select-none transition-transform duration-300 ease-in-out will-change-transform"
+                        class="h-full w-full object-cover select-none transition-transform duration-300 ease-in-out will-change-transform"
                         ::lazy="index === 0 ? false : true"
                         ::src="image.image"
                         ::srcset="image.image + ' 1920w, ' + image.image.replace('storage', 'cache/large') + ' 1280w,' + image.image.replace('storage', 'cache/medium') + ' 1024w, ' + image.image.replace('storage', 'cache/small') + ' 525w'"
