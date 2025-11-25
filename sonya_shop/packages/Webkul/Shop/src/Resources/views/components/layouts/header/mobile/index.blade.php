@@ -8,7 +8,7 @@
     $showWishlist = (bool) core()->getConfigData('customer.settings.wishlist.wishlist_option');
 @endphp
 
-<v-mobile-header-search>
+<v-mobile-header-search v-slot="{ toggleSearch, isSearchVisible }">
 <div class="flex flex-wrap gap-4 px-4 pb-4 pt-6 shadow-sm lg:hidden">
     <div class="flex w-full items-center justify-between">
         <!-- Left Navigation -->
@@ -263,7 +263,10 @@
 @pushOnce('scripts')
     <script type="text/x-template" id="v-mobile-header-search-template">
         <div>
-            <slot></slot>
+            <slot
+                :toggle-search="toggleSearch"
+                :is-search-visible="isSearchVisible"
+            ></slot>
         </div>
     </script>
 
