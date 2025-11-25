@@ -26,12 +26,12 @@
 
             <a
                 href="<?php echo e(route('shop.home.index')); ?>"
-                class="max-h-[30px]"
                 aria-label="<?php echo app('translator')->get('shop::app.components.layouts.header.mobile.bagisto'); ?>"
             >
                 <img
                     src="<?php echo e(core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg')); ?>"
                     alt="<?php echo e(config('app.name')); ?>"
+                    style="margin-bottom: 15px;"
                     width="131"
                     height="29"
                 >
@@ -106,7 +106,7 @@
 
 </div>
 
-<?php if (! $__env->hasRenderedOnce('5e0c4fe8-2b49-40a7-88c1-ee46f330aafa')): $__env->markAsRenderedOnce('5e0c4fe8-2b49-40a7-88c1-ee46f330aafa');
+<?php if (! $__env->hasRenderedOnce('17a67dfb-8e01-4007-9a04-c16ed3292c94')): $__env->markAsRenderedOnce('17a67dfb-8e01-4007-9a04-c16ed3292c94');
 $__env->startPush('scripts'); ?>
     <script type="text/x-template" id="v-mobile-drawer-template">
         <?php if (isset($component)) { $__componentOriginal2b3e2da8ab003ef79d854b1862e64fc8 = $component; } ?>

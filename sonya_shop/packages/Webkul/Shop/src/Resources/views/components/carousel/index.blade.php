@@ -30,17 +30,16 @@
         justify-content: center;
         align-items: flex-start;
         padding: 60px 80px;
-        background-color: #FDF8F5;
+        background-color: #6d992f0e;
         position: relative;
     }
 
     .hero-title {
-        font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
         font-size: clamp(32px, 4vw, 56px);
         font-weight: 700;
         font-style: italic;
         line-height: 1.15;
-        color: #8B2942;
+        color: #6c992f;
         margin: 0 0 30px 0;
         max-width: 500px;
     }
@@ -48,7 +47,7 @@
     .hero-link {
         font-family: inherit;
         font-size: 16px;
-        color: #8B2942;
+        color: #6c992f;
         text-decoration: underline;
         text-underline-offset: 4px;
         transition: opacity 0.3s ease;
@@ -67,7 +66,7 @@
         transform: translateY(-50%);
         width: 20px;
         height: 20px;
-        background-color: #8B2942;
+        background-color: #6c992f;
         z-index: 5;
     }
 
@@ -77,7 +76,7 @@
         position: relative;
         overflow: hidden;
         height: 100%;
-        background-color: #FDF8F5;
+        background-color: #6d992f0e;
     }
 
     .hero-carousel-container {
@@ -279,11 +278,11 @@
     <section class="hero-section">
         <!-- Text Content Block -->
         <div class="hero-content">
-            <h1 class="hero-title">
+            <h1 class="hero-title font-dmserif">
                 Магазин нижнего белья
             </h1>
             <a 
-                :href="getCatalogLink()" 
+                href="/search" 
                 class="hero-link"
             >
                 В каталог

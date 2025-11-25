@@ -39,7 +39,7 @@ unset($__defined_vars); ?>
     </div>
 </v-hero-carousel>
 
-<?php if (! $__env->hasRenderedOnce('e7eea223-2b2c-478f-9733-615b7c203864')): $__env->markAsRenderedOnce('e7eea223-2b2c-478f-9733-615b7c203864');
+<?php if (! $__env->hasRenderedOnce('ff81695a-5943-424d-8b05-5bbdae46863e')): $__env->markAsRenderedOnce('ff81695a-5943-424d-8b05-5bbdae46863e');
 $__env->startPush('styles'); ?>
 <style>
     /* ===== HERO SECTION ===== */
@@ -59,17 +59,16 @@ $__env->startPush('styles'); ?>
         justify-content: center;
         align-items: flex-start;
         padding: 60px 80px;
-        background-color: #FDF8F5;
+        background-color: #6d992f0e;
         position: relative;
     }
 
     .hero-title {
-        font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
         font-size: clamp(32px, 4vw, 56px);
         font-weight: 700;
         font-style: italic;
         line-height: 1.15;
-        color: #8B2942;
+        color: #6c992f;
         margin: 0 0 30px 0;
         max-width: 500px;
     }
@@ -77,7 +76,7 @@ $__env->startPush('styles'); ?>
     .hero-link {
         font-family: inherit;
         font-size: 16px;
-        color: #8B2942;
+        color: #6c992f;
         text-decoration: underline;
         text-underline-offset: 4px;
         transition: opacity 0.3s ease;
@@ -96,7 +95,7 @@ $__env->startPush('styles'); ?>
         transform: translateY(-50%);
         width: 20px;
         height: 20px;
-        background-color: #8B2942;
+        background-color: #6c992f;
         z-index: 5;
     }
 
@@ -106,7 +105,7 @@ $__env->startPush('styles'); ?>
         position: relative;
         overflow: hidden;
         height: 100%;
-        background-color: #FDF8F5;
+        background-color: #6d992f0e;
     }
 
     .hero-carousel-container {
@@ -267,13 +266,13 @@ $__env->startPush('styles'); ?>
             height: 100%;
         }
 
-        .hero-carousel-image,
+        /* .hero-carousel-image,
         .hero-carousel-slide img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             object-position: center center;
-        }
+        } */
 
         /* Скрываем стрелки на мобильных */
         .hero-carousel-nav {
@@ -303,17 +302,17 @@ $__env->startPush('styles'); ?>
 </style>
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('1c3aca64-5c06-488c-8e37-d60c7b149fc8')): $__env->markAsRenderedOnce('1c3aca64-5c06-488c-8e37-d60c7b149fc8');
+<?php if (! $__env->hasRenderedOnce('ce1d5e6c-ecf8-4209-856b-06672c070cb1')): $__env->markAsRenderedOnce('ce1d5e6c-ecf8-4209-856b-06672c070cb1');
 $__env->startPush('scripts'); ?>
 <script type="text/x-template" id="v-hero-carousel-template">
     <section class="hero-section">
         <!-- Text Content Block -->
         <div class="hero-content">
-            <h1 class="hero-title">
+            <h1 class="hero-title font-dmserif">
                 Магазин нижнего белья
             </h1>
             <a 
-                :href="getCatalogLink()" 
+                href="/search" 
                 class="hero-link"
             >
                 В каталог
