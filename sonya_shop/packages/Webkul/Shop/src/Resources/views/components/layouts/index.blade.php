@@ -105,6 +105,9 @@
             <!-- Confirm Modal Blade Component -->
             <x-shop::modal.confirm />
 
+            <!-- Promo Popup Blade Component -->
+            <x-shop::promo-popup />
+
             <!-- Page Header Blade Component -->
             @if ($hasHeader)
                 <x-shop::layouts.header />
