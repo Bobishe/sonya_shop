@@ -1,0 +1,7 @@
+/**
+ * The storefront stylesheet of the default theme, with this theme's views added to the
+ * classes Tailwind scans, so a utility used only in an overridden view is still generated.
+ */
+@import "../../../../../../Webkul/Shop/src/Resources/assets/css/app.css";
+
+@source "../../views";

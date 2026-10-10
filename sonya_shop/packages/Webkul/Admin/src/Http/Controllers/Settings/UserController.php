@@ -3,13 +3,18 @@
 namespace Webkul\Admin\Http\Controllers\Settings;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Webkul\Admin\DataGrids\Settings\UserDataGrid;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Admin\Http\Requests\UserForm;
+use Webkul\User\Contracts\Admin;
 use Webkul\User\Repositories\AdminRepository;
 use Webkul\User\Repositories\RoleRepository;
 
@@ -28,7 +33,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function index()
     {
@@ -36,7 +41,7 @@ class UserController extends Controller
             return datagrid(UserDataGrid::class)->process();
         }
 
-        $roles = $this->roleRepository->all();
+        $roles = $this->getGrantableRoles();
 
         return view('admin::settings.users.index', compact('roles'));
     }
@@ -79,7 +84,7 @@ class UserController extends Controller
     }
 
     /**
-     * User Details
+     * Get a user with the roles the signed-in admin may assign them.
      *
      * @param  int  $id
      */
@@ -87,11 +92,13 @@ class UserController extends Controller
     {
         $user = $this->adminRepository->findOrFail($id);
 
-        $roles = $this->roleRepository->all();
+        $this->abortUnlessManageable($user);
+
+        $roles = $this->getGrantableRoles();
 
         return new JsonResponse([
             'roles' => $roles,
-            'user'  => $user,
+            'user' => $user,
         ]);
     }
 
@@ -102,9 +109,11 @@ class UserController extends Controller
     {
         $id = request()->id;
 
+        $this->abortUnlessManageable($this->adminRepository->findOrFail($id));
+
         $data = $this->prepareUserData($request, $id);
 
-        if ($data instanceof \Illuminate\Http\RedirectResponse) {
+        if ($data instanceof RedirectResponse) {
             return new JsonResponse([
                 'message' => trans('admin::app.settings.users.update-success'),
             ]);
@@ -166,6 +175,8 @@ class UserController extends Controller
             ], 403);
         }
 
+        $this->abortUnlessManageable($this->adminRepository->findOrFail($id));
+
         try {
             Event::dispatch('user.admin.delete.before', $id);
 
@@ -188,7 +199,7 @@ class UserController extends Controller
      * Show the form for confirming the user password.
      *
      * @param  int  $id
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function confirm($id)
     {
@@ -200,7 +211,7 @@ class UserController extends Controller
     /**
      * Destroy current after confirming.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroySelf(): JsonResponse
     {
@@ -208,7 +219,9 @@ class UserController extends Controller
 
         if (Hash::check($password, auth()->guard('admin')->user()->password)) {
             if ($this->adminRepository->count() == 1) {
-                session()->flash('error', trans('admin::app.settings.users.delete-last'));
+                return new JsonResponse([
+                    'message' => trans('admin::app.settings.users.last-delete-error'),
+                ], 400);
             } else {
                 $id = auth()->guard('admin')->user()->id;
 
@@ -220,7 +233,7 @@ class UserController extends Controller
 
                 return new JsonResponse([
                     'redirectUrl' => route('admin.session.create'),
-                    'message'     => trans('admin::app.settings.users.delete-success'),
+                    'message' => trans('admin::app.settings.users.delete-success'),
                 ]);
             }
         } else {
@@ -231,10 +244,30 @@ class UserController extends Controller
     }
 
     /**
+     * Get the roles the signed-in admin may grant.
+     */
+    protected function getGrantableRoles(): Collection
+    {
+        return $this->roleRepository->all()
+            ->filter(fn ($role) => bouncer()->canGrantRole($role))
+            ->values();
+    }
+
+    /**
+     * Abort unless the signed-in admin holds every permission of the given user's role.
+     *
+     * @param  Admin  $user
+     */
+    protected function abortUnlessManageable($user): void
+    {
+        abort_unless(bouncer()->canGrantRole($user->role), 403, trans('admin::app.settings.users.user-not-manageable'));
+    }
+
+    /**
      * Prepare user data.
      *
      * @param  int  $id
-     * @return array|\Illuminate\Http\RedirectResponse
+     * @return array|RedirectResponse
      */
     private function prepareUserData(UserForm $request, $id)
     {
@@ -242,18 +275,12 @@ class UserController extends Controller
 
         $user = $this->adminRepository->find($id);
 
-        /**
-         * Password check.
-         */
         if (! $data['password']) {
             unset($data['password']);
         } else {
             $data['password'] = bcrypt($data['password']);
         }
 
-        /**
-         * Is user with `permission_type` all changed status.
-         */
         $data['status'] = isset($data['status']);
 
         $isStatusChangedToInactive = ! $data['status'] && (bool) $user->status;
@@ -267,9 +294,6 @@ class UserController extends Controller
             return $this->cannotChangeRedirectResponse('status');
         }
 
-        /**
-         * Is user with `permission_type` all role changed.
-         */
         $isRoleChanged = $user->role->permission_type === 'all'
             && isset($data['role_id'])
             && (int) $data['role_id'] !== $user->role_id;
@@ -287,7 +311,7 @@ class UserController extends Controller
     /**
      * Cannot change redirect response.
      */
-    private function cannotChangeRedirectResponse(string $columnName): \Illuminate\Http\RedirectResponse
+    private function cannotChangeRedirectResponse(string $columnName): RedirectResponse
     {
         session()->flash('error', trans('admin::app.settings.users.cannot-change', [
             'name' => $columnName,

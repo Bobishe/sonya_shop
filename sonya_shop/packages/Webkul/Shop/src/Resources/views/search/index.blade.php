@@ -22,36 +22,21 @@
         {{ $title }}
     </x-slot>
 
-    <div class="container px-[60px] max-lg:px-8 max-sm:px-4">
+    <div class="container px-15 max-lg:px-8 max-sm:px-4">
         @if (request()->has('image-search'))
             @include('shop::search.images.results')
         @endif
 
-        <div class="mt-8 max-md:mt-5">
-            <v-search-categories>
-                <div class="flex items-center justify-center gap-5">
-                    <span
-                        class="shimmer h-6 w-20 rounded"
-                        role="presentation"
-                    ></span>
-
-                    <span
-                        class="shimmer h-6 w-20 rounded"
-                        role="presentation"
-                    ></span>
-
-                    <span
-                        class="shimmer h-6 w-20 rounded"
-                        role="presentation"
-                    ></span>
-                </div>
-            </v-search-categories>
+        <div class="mt-8 flex items-center justify-between max-md:mt-5">
+            <h2 class="break-all text-2xl font-medium max-sm:text-base">
+                <span v-text="'{{ preg_replace('/[,\\"\\\']+/', '', $title) }}'" ></span>
+            </h2>
         </div>
 
         @if ($searchInstead)
             <form
                 action="{{ route('shop.search.index', ['suggest' => false]) }}"
-                class="flex max-w-[445px] items-center"
+                class="flex max-w-111.25 items-center"
                 role="search"
             >
                 <input
@@ -68,7 +53,10 @@
                     value="0"
                 >
 
-                <p class="mt-1 text-sm text-gray-600">
+                <p
+                    class="mt-1 text-sm text-gray-600"
+                    v-pre
+                >
                     {{ trans('shop::app.search.suggest') }}
 
                     <button
@@ -93,10 +81,10 @@
             type="text/x-template"
             id="v-search-template"
         >
-            <div class="container px-[60px] max-lg:px-8 max-sm:px-4">
+            <div class="container px-15 max-lg:px-8 max-sm:px-4">
                 <div class="flex items-start gap-10 max-lg:gap-5 md:mt-10">
                     <!-- Product Listing Filters -->
-                    {{-- @include('shop::categories.filters') --}}
+                    @include('shop::categories.filters')
 
                     <!-- Product Listing Container -->
                     <div class="flex-1">
@@ -128,7 +116,7 @@
                                 <template v-else>
                                     <div class="m-auto grid w-full place-content-center items-center justify-items-center py-32 text-center">
                                         <img
-                                            class="max-sm:h-[100px] max-sm:w-[100px]"
+                                            class="max-sm:h-25 max-sm:w-25"
                                             src="{{ bagisto_asset('images/thank-you.png') }}"
                                             alt="Empty result"
                                             loading="lazy"
@@ -150,7 +138,7 @@
                         <div v-else>
                             <!-- Product Card Shimmer Effect -->
                             <template v-if="isLoading">
-                                <div class="mt-8 grid grid-cols-4 gap-8 max-1060:grid-cols-2 max-md:gap-x-4 max-sm:mt-5 max-sm:justify-items-center max-sm:gap-y-5">
+                                <div class="mt-8 grid grid-cols-3 gap-8 max-1060:grid-cols-2 max-md:gap-x-4 max-sm:mt-5 max-sm:justify-items-center max-sm:gap-y-5">
                                     <x-shop::shimmer.products.cards.grid count="12" />
                                 </div>
                             </template>
@@ -158,7 +146,7 @@
                             <!-- Product Card Listing -->
                             <template v-else>
                                 <template v-if="products.length">
-                                    <div class="mt-8 grid grid-cols-4 gap-8 max-1060:grid-cols-2 max-md:mt-5 max-md:justify-items-center max-md:gap-x-4 max-md:gap-y-5">
+                                    <div class="mt-8 grid grid-cols-3 gap-8 max-1060:grid-cols-2 max-md:mt-5 max-md:justify-items-center max-md:gap-x-4 max-md:gap-y-5">
                                         <x-shop::products.card
                                             ::mode="'grid'"
                                             v-for="product in products"
@@ -171,7 +159,7 @@
                                 <template v-else>
                                     <div class="m-auto grid w-full place-content-center items-center justify-items-center py-32 text-center">
                                         <img
-                                            class="max-sm:h-[100px] max-sm:w-[100px]"
+                                            class="max-sm:h-25 max-sm:w-25"
                                             src="{{ bagisto_asset('images/thank-you.png') }}"
                                             alt="Empty result"
                                             loading="lazy"
@@ -191,7 +179,7 @@
 
                         <!-- Load More Button -->
                         <button
-                            class="secondary-button mx-auto mt-[60px] block w-max rounded-2xl px-11 py-3 text-center text-base max-md:rounded-lg max-md:text-sm max-sm:mt-7 max-sm:px-7 max-sm:py-2"
+                            class="secondary-button mx-auto mt-15 block w-max rounded-2xl px-11 py-3 text-center text-base max-md:rounded-lg max-md:text-sm max-sm:mt-7 max-sm:px-7 max-sm:py-2"
                             @click="loadMoreProducts"
                             v-if="links.next"
                         >
@@ -322,124 +310,6 @@
                         return parameters.toString();
                     }
                 },
-            });
-
-            app.component('v-search-categories', {
-                template: `
-                    <div>
-                        <!-- Loading State -->
-                        <div
-                            class="flex items-center justify-center gap-5 max-md:gap-3"
-                            v-if="isLoading"
-                        >
-                            <span
-                                class="shimmer h-6 w-20 rounded max-sm:h-5 max-sm:w-16"
-                                role="presentation"
-                            ></span>
-
-                            <span
-                                class="shimmer h-6 w-20 rounded max-sm:h-5 max-sm:w-16"
-                                role="presentation"
-                            ></span>
-
-                            <span
-                                class="shimmer h-6 w-20 rounded max-sm:h-5 max-sm:w-16"
-                                role="presentation"
-                            ></span>
-                        </div>
-
-                        <!-- Categories Display -->
-                        <div
-                            class="flex items-center justify-center flex-wrap gap-y-2 max-md:justify-start max-md:px-[10px]"
-                            v-else-if="categories.length"
-                        >
-                            <div
-                                class="group relative flex h-[77px] items-center border-b-4 border-transparent hover:border-b-4 hover:border-[#659c44] max-lg:h-[65px] max-md:h-[55px] max-sm:h-[50px]"
-                                v-for="category in categories"
-                                :key="category.id"
-                            >
-                                <span>
-                                    <a
-                                        :href="category.url"
-                                        class="inline-block px-5 uppercase font-dmserif text-black max-lg:px-4 max-md:px-3 max-md:text-sm max-sm:px-2 max-sm:text-xs whitespace-nowrap"
-                                    >
-                                        @{{ category.name }}
-                                    </a>
-                                </span>
-
-                                <div
-                                    class="ms-1 mt-10 max-sm:mt-5 p-4 pointer-events-none absolute top-full left-0 z-[9999] mt-[10vh] max-h-[580px] w-max max-w-[1260px] overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t-[3px] border-[rgb(108,153,47)] bg-white p-[1.5rem] opacity-0 shadow-[0_4px_10px_rgba(0,0,0,0.1)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in max-lg:max-w-[900px] max-md:hidden"
-                                    v-if="category.children && category.children.length"
-                                >
-                                    <div class="flex flex-wrap gap-x-[70px] gap-y-5 max-lg:gap-x-[50px]">
-                                        <div
-                                            class="flex gap-3"
-                                            v-for="pairCategoryChildren in pairCategoryChildren(category)"
-                                        >
-                                            <template v-for="secondLevelCategory in pairCategoryChildren">
-                                                <p class="text-[14px] font-normal text-black leading-relaxed">
-                                                    <a :href="secondLevelCategory.url" class="hover:text-[rgb(108,153,47)] transition-colors duration-200">
-                                                        @{{ secondLevelCategory.name }}
-                                                    </a>
-                                                </p>
-
-                                                <ul
-                                                    class="flex flex-wrap gap-x-4 gap-y-2"
-                                                    v-if="secondLevelCategory.children && secondLevelCategory.children.length"
-                                                >
-                                                    <li
-                                                        class="text-[14px] font-normal text-black leading-relaxed"
-                                                        v-for="thirdLevelCategory in secondLevelCategory.children"
-                                                    >
-                                                        <a :href="thirdLevelCategory.url" class="hover:text-[rgb(108,153,47)] transition-colors duration-200 cursor-pointer">
-                                                            @{{ thirdLevelCategory.name }}
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </template>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `,
-
-                data() {
-                    return {
-                        isLoading: true,
-                        categories: []
-                    }
-                },
-
-                mounted() {
-                    this.getCategories();
-                },
-
-                methods: {
-                    getCategories() {
-                        this.$axios.get("{{ route('shop.api.categories.tree') }}")
-                            .then(response => {
-                                this.categories = response.data.data;
-                                this.isLoading = false;
-                            })
-                            .catch(error => {
-                                console.log(error);
-                                this.isLoading = false;
-                            });
-                    },
-
-                    pairCategoryChildren(category) {
-                        if (!category.children) return [];
-
-                        return category.children.reduce((result, value, index, array) => {
-                            if (index % 2 === 0) {
-                                result.push(array.slice(index, index + 2));
-                            }
-                            return result;
-                        }, []);
-                    }
-                }
             });
         </script>
     @endPushOnce

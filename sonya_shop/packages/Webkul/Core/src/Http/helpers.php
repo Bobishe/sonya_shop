@@ -1,8 +1,10 @@
 <?php
 
 use Stevebauman\Purify\Facades\Purify;
+use Webkul\Core\Contracts\DatabaseGrammar;
 use Webkul\Core\Facades\Acl;
 use Webkul\Core\Facades\Core;
+use Webkul\Core\Facades\DbGrammar;
 use Webkul\Core\Facades\Menu;
 use Webkul\Core\Facades\SystemConfig;
 
@@ -10,7 +12,7 @@ if (! function_exists('core')) {
     /**
      * Core helper.
      *
-     * @return \Webkul\Core\Core
+     * @return Webkul\Core\Core
      */
     function core()
     {
@@ -22,7 +24,7 @@ if (! function_exists('menu')) {
     /**
      * Menu helper.
      *
-     * @return \Webkul\Core\Menu
+     * @return Webkul\Core\Menu
      */
     function menu()
     {
@@ -34,7 +36,7 @@ if (! function_exists('acl')) {
     /**
      * Acl helper.
      *
-     * @return \Webkul\Core\Acl
+     * @return Webkul\Core\Acl
      */
     function acl()
     {
@@ -46,11 +48,23 @@ if (! function_exists('system_config')) {
     /**
      * System Config helper.
      *
-     * @return \Webkul\Core\SystemConfig
+     * @return Webkul\Core\SystemConfig
      */
     function system_config()
     {
         return SystemConfig::getFacadeRoot();
+    }
+}
+
+if (! function_exists('db_grammar')) {
+    /**
+     * Database grammar helper.
+     *
+     * @return DatabaseGrammar
+     */
+    function db_grammar()
+    {
+        return DbGrammar::getFacadeRoot();
     }
 }
 

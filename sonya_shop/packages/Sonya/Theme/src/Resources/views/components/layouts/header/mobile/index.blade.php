@@ -1,0 +1,451 @@
+<!--
+    This code needs to be refactored to reduce the amount of PHP in the Blade
+    template as much as possible.
+-->
+@php
+    $showCompare = (bool) core()->getConfigData('catalog.products.settings.compare_option');
+
+    $showWishlist = (bool) core()->getConfigData('customer.settings.wishlist.wishlist_option');
+@endphp
+
+<v-mobile-header-search v-slot="{ toggleSearch, isSearchVisible }">
+<div class="flex flex-wrap gap-4 px-4 pt-6 pb-4 shadow-xs lg:hidden">
+    <div class="flex items-center justify-between w-full">
+        <!-- Left Navigation -->
+        <div class="flex items-center gap-x-1.5">
+            {!! view_render_event('bagisto.shop.components.layouts.header.mobile.drawer.before') !!}
+
+            <!-- Drawer -->
+            <v-mobile-drawer></v-mobile-drawer>
+
+            {!! view_render_event('bagisto.shop.components.layouts.header.mobile.drawer.after') !!}
+
+            {!! view_render_event('bagisto.shop.components.layouts.header.mobile.logo.before') !!}
+
+            <a
+                href="{{ route('shop.home.index') }}"
+                class="flex items-center"
+                aria-label="@lang('shop::app.components.layouts.header.mobile.bagisto')"
+            >
+                <img
+                    class="mb-3.75 block"
+                    src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                    alt="{{ core()->getCurrentChannel()->logo_alt ?: config('app.name') }}"
+                    width="131"
+                    height="29"
+                >
+            </a>
+
+            {!! view_render_event('bagisto.shop.components.layouts.header.mobile.logo.after') !!}
+        </div>
+
+        <!-- Right Navigation -->
+        <div>
+            <div class="flex items-center gap-x-5 max-md:gap-x-4">
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.compare.before') !!}
+
+                @if($showCompare)
+                    <a
+                        href="{{ route('shop.compare.index') }}"
+                        aria-label="@lang('shop::app.components.layouts.header.mobile.compare')"
+                    >
+                        <span class="text-2xl cursor-pointer icon-compare"></span>
+                    </a>
+                @endif
+
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.compare.after') !!}
+
+                <button
+                    type="button"
+                    aria-label="@lang('shop::app.components.layouts.header.mobile.search')"
+                    @click="toggleSearch"
+                >
+                    <span class="icon-search cursor-pointer text-2xl"></span>
+                </button>
+
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.mini_cart.before') !!}
+
+                @if(core()->getConfigData('sales.checkout.shopping_cart.cart_page'))
+                    @include('shop::checkout.cart.mini-cart')
+                @endif
+
+                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.mini_cart.after') !!}
+
+            </div>
+        </div>
+    </div>
+
+    {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search.before') !!}
+
+    <!-- Serach Catalog Form -->
+    <form
+        action="{{ route('shop.search.index') }}"
+        class="flex w-full items-center gap-2"
+        v-show="isSearchVisible"
+    >
+        <label
+            for="mobile-organic-search"
+            class="sr-only"
+        >
+            @lang('shop::app.components.layouts.header.mobile.search')
+        </label>
+
+        <div class="relative w-full">
+            <div class="icon-search pointer-events-none absolute top-3 flex items-center text-2xl max-md:text-xl max-sm:top-2.5 ltr:left-3 rtl:right-3"></div>
+
+            @php
+                $maxQueryLength = ((int) core()->getConfigData('search_engines.elastic.settings.max_query_length')) ?: 1000;
+
+                $minQueryLength = (int) core()->getConfigData('search_engines.elastic.settings.min_query_length');
+
+                $minQueryLength = $minQueryLength > 0 && $minQueryLength <= $maxQueryLength ? $minQueryLength : 0;
+            @endphp
+
+            <input
+                type="text"
+                id="mobile-organic-search"
+                class="block w-full rounded-xl border border-['#E3E3E3'] px-11 py-3.5 text-sm font-medium text-gray-900 max-md:rounded-lg max-md:px-10 max-md:py-3 max-md:font-normal max-sm:text-xs"
+                name="query"
+                value="{{ request('query') }}"
+                minlength="{{ $minQueryLength }}"
+                maxlength="{{ $maxQueryLength }}"
+                placeholder="@lang('shop::app.components.layouts.header.mobile.search-text')"
+                pattern="[^\\]+"
+                required
+            >
+
+            @if (core()->getConfigData('catalog.products.settings.image_search'))
+                @include('shop::search.images.index')
+            @endif
+        </div>
+
+        <button
+            type="button"
+            aria-label="@lang('shop::app.components.layouts.header.mobile.close-search')"
+            @click="toggleSearch"
+        >
+            <span class="icon-cancel cursor-pointer text-2xl"></span>
+        </button>
+    </form>
+
+    {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search.after') !!}
+</div>
+</v-mobile-header-search>
+
+@pushOnce('scripts')
+    <script
+        type="text/x-template"
+        id="v-mobile-header-search-template"
+    >
+        <div>
+            <slot
+                :toggle-search="toggleSearch"
+                :is-search-visible="isSearchVisible"
+            ></slot>
+        </div>
+    </script>
+
+    <script type="module">
+        app.component('v-mobile-header-search', {
+            template: '#v-mobile-header-search-template',
+
+            data() {
+                return {
+                    isSearchVisible: false,
+                };
+            },
+
+            methods: {
+                toggleSearch() {
+                    this.isSearchVisible = ! this.isSearchVisible;
+
+                    if (this.isSearchVisible) {
+                        this.$nextTick(() => this.$el.querySelector('input[name="query"]')?.focus());
+                    }
+                },
+            },
+        });
+    </script>
+
+    <script type="text/x-template" id="v-mobile-drawer-template">
+            <x-shop::drawer
+                position="left"
+                width="100%"
+                @close="onDrawerClose"
+            >
+                <x-slot:toggle>
+                    <button
+                        type="button"
+                        class="text-2xl cursor-pointer icon-hamburger"
+                        aria-label="Menu"
+                    ></button>
+                </x-slot>
+
+                <x-slot:header>
+                    <div class="flex items-center justify-between">
+                        <a href="{{ route('shop.home.index') }}">
+                            <img
+                                src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                                alt="{{ core()->getCurrentChannel()->logo_alt ?: config('app.name') }}"
+                                width="131"
+                                height="29"
+                            >
+                        </a>
+                    </div>
+                </x-slot>
+
+                <x-slot:content class="p-0!">
+                    {!! view_render_event('bagisto.shop.components.layouts.header.mobile.drawer.categories.before') !!}
+
+                    <!-- Mobile category view -->
+                    <v-mobile-category ref="mobileCategory"></v-mobile-category>
+
+                    {!! view_render_event('bagisto.shop.components.layouts.header.mobile.drawer.categories.after') !!}
+                </x-slot>
+
+                <x-slot:footer>
+                    <!-- Localization & Currency Section -->
+                    @if (
+                        core()->getCurrentChannel()->locales()->count() > 1
+                        || core()->getCurrentChannel()->currencies()->count() > 1
+                    )
+                        <div class="fixed bottom-0 z-10 grid w-full max-w-full grid-cols-[1fr_auto_1fr] items-center justify-items-center border-t border-zinc-200 bg-white px-5 ltr:left-0 rtl:right-0">
+                            <!-- Filter Drawer -->
+                            <x-shop::drawer
+                                position="bottom"
+                                width="100%"
+                            >
+                                <!-- Drawer Toggler -->
+                                <x-slot:toggle>
+                                    <button
+                                        type="button"
+                                        class="flex cursor-pointer items-center gap-x-2.5 px-2.5 py-3.5 text-lg font-medium uppercase max-md:py-3 max-sm:text-base"
+                                        v-pre
+                                    >
+                                        {{ core()->getCurrentCurrency()->symbol . ' ' . core()->getCurrentCurrencyCode() }}
+                                    </button>
+                                </x-slot>
+
+                                <!-- Drawer Header -->
+                                <x-slot:header>
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-lg font-semibold">
+                                            @lang('shop::app.components.layouts.header.mobile.currencies')
+                                        </p>
+                                    </div>
+                                </x-slot>
+
+                                <!-- Drawer Content -->
+                                <x-slot:content class="px-0!">
+                                    <div
+                                        class="overflow-auto"
+                                        :style="{ height: getCurrentScreenHeight }"
+                                    >
+                                        <v-currency-switcher></v-currency-switcher>
+                                    </div>
+                                </x-slot>
+                            </x-shop::drawer>
+
+                            <!-- Seperator -->
+                            <span class="h-5 w-0.5 bg-zinc-200"></span>
+
+                            <!-- Sort Drawer -->
+                            <x-shop::drawer
+                                position="bottom"
+                                width="100%"
+                            >
+                                <!-- Drawer Toggler -->
+                                <x-slot:toggle>
+                                    <button
+                                        type="button"
+                                        class="flex cursor-pointer items-center gap-x-2.5 px-2.5 py-3.5 text-lg font-medium uppercase max-md:py-3 max-sm:text-base"
+                                        v-pre
+                                    >
+                                        <img
+                                            src="{{ ! empty(core()->getCurrentLocale()->logo_url)
+                                                ? core()->getCurrentLocale()->logo_url
+                                                : bagisto_asset('images/default-language.svg')
+                                            }}"
+                                            class="h-full"
+                                            alt="Default locale"
+                                            width="24"
+                                            height="16"
+                                        />
+
+                                        {{ core()->getCurrentChannel()->locales()->orderBy('name')->where('code', app()->getLocale())->value('name') }}
+                                    </button>
+                                </x-slot>
+
+                                <!-- Drawer Header -->
+                                <x-slot:header>
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-lg font-semibold">
+                                            @lang('shop::app.components.layouts.header.mobile.locales')
+                                        </p>
+                                    </div>
+                                </x-slot>
+
+                                <!-- Drawer Content -->
+                                <x-slot:content class="px-0!">
+                                    <div
+                                        class="overflow-auto"
+                                        :style="{ height: getCurrentScreenHeight }"
+                                    >
+                                        <v-locale-switcher></v-locale-switcher>
+                                    </div>
+                                </x-slot>
+                            </x-shop::drawer>
+                        </div>
+                    @endif
+                </x-slot>
+            </x-shop::drawer>
+        </script>
+
+    <script
+        type="text/x-template"
+        id="v-mobile-category-template"
+    >
+            <!-- Wrapper with transition effects -->
+    <div class="relative h-full overflow-hidden">
+        <!-- Sliding container -->
+            <div
+                class="flex h-full transition-transform duration-300"
+                :class="{
+                        'ltr:translate-x-0 rtl:translate-x-0': currentViewLevel !== 'third',
+                        'ltr:-translate-x-full rtl:translate-x-full': currentViewLevel === 'third'
+                }"
+            >
+            <!-- First level view -->
+            <div class="shrink-0 w-full h-full px-6 overflow-auto">
+                <nav
+                    class="grid gap-2 py-4"
+                    aria-label="@lang('shop::app.components.layouts.header.navigation.title')"
+                >
+                    @foreach (trans('shop::app.components.layouts.header.navigation.links') as $link)
+                        <a
+                            href="{{ url($link['url']) }}"
+                            class="flex items-center py-2 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-100"
+                        >
+                            {{ $link['title'] }}
+                        </a>
+                    @endforeach
+                </nav>
+            </div>
+
+            <!-- Third level view -->
+                <div
+                    class="shrink-0 w-full h-full"
+                    v-if="currentViewLevel === 'third'"
+                >
+                <div class="px-6 py-4 border-b border-gray-200">
+                        <button
+                            @click="goBackToMainView"
+                            class="flex items-center justify-center gap-2 focus:outline-hidden"
+                            aria-label="Go back"
+                        >
+                        <span class="text-lg icon-arrow-left rtl:icon-arrow-right"></span>
+                        <div class="text-base font-medium text-black">
+                            @lang('shop::app.components.layouts.header.mobile.back-button')
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Third Level Content -->
+                <div class="px-6 py-4">
+                        <div
+                            v-for="thirdLevelCategory in currentSecondLevelCategory?.children"
+                            :key="thirdLevelCategory.id"
+                            class="mb-2"
+                        >
+                            <a
+                                :href="thirdLevelCategory.url"
+                                class="block py-2 text-sm transition-colors duration-200"
+                            >
+                            @{{ thirdLevelCategory.name }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </script>
+
+    <script type="module">
+        app.component('v-mobile-category', {
+            template: '#v-mobile-category-template',
+
+            data() {
+                return  {
+                    categories: [],
+                    currentViewLevel: 'main',
+                    currentSecondLevelCategory: null,
+                    currentParentCategory: null
+                }
+            },
+
+            mounted() {
+                this.initCategories();
+            },
+
+            computed: {
+                getCurrentScreenHeight() {
+                    return window.innerHeight - (window.innerWidth < 920 ? 61 : 0) + 'px';
+                },
+            },
+
+            methods: {
+                initCategories() {
+                    try {
+                        const stored = localStorage.getItem('categories');
+
+                        if (stored) {
+                            this.categories = JSON.parse(stored);
+                            this.isLoading = false;
+                            return;
+                        }
+
+                    } catch (e) {}
+
+                    this.getCategories();
+                },
+                getCategories() {
+                    this.$axios.get("{{ route('shop.api.categories.tree') }}")
+                        .then(response => {
+                            this.categories = response.data.data;
+                            localStorage.setItem('categories', JSON.stringify(this.categories));
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+
+                showThirdLevel(secondLevelCategory, parentCategory, event) {
+                    if (secondLevelCategory.children && secondLevelCategory.children.length) {
+                        this.currentSecondLevelCategory = secondLevelCategory;
+                        this.currentParentCategory = parentCategory;
+                        this.currentViewLevel = 'third';
+
+                        if (event) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                    }
+                },
+
+                goBackToMainView() {
+                    this.currentViewLevel = 'main';
+                }
+            },
+        });
+
+        app.component('v-mobile-drawer', {
+            template: '#v-mobile-drawer-template',
+
+            methods: {
+                onDrawerClose() {
+                    this.$refs.mobileCategory.currentViewLevel = 'main';
+                }
+            },
+        });
+    </script>
+@endPushOnce

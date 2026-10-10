@@ -14,13 +14,13 @@
             class="1180:transtion-all group w-full rounded-md 1180:relative 1180:grid 1180:content-start 1180:overflow-hidden 1180:duration-300 1180:hover:shadow-[0_5px_10px_rgba(0,0,0,0.1)]"
             v-if="mode != 'list'"
         >
-            <div class="relative max-h-[340px] max-w-[291px] overflow-hidden max-md:max-h-[280px] max-md:max-w-full max-md:rounded-lg max-sm:max-h-[240px] max-sm:max-w-full">
+            <div class="relative max-h-75 max-w-72.75 overflow-hidden max-md:max-h-60 max-md:max-w-full max-md:rounded-lg max-sm:max-h-50 max-sm:max-w-full">
                 {!! view_render_event('bagisto.shop.components.products.card.image.before') !!}
 
                 <!-- Product Image -->
                 <a
-                    :href="`{{ route('shop.product_or_category.index', '') }}/${product.url_key}`"
-                    :aria-label="product.name + ' '"
+                    :href="'{{ route('shop.product_or_category.index', ':slug') }}'.replace(':slug', product.url_key)"
+                    :aria-label="product.name"
                 >
                     <x-shop::media.images.lazy
                         class="after:content-[' '] relative bg-zinc-100 transition-all duration-300 after:block after:pb-[calc(100%+9px)] group-hover:scale-105"
@@ -33,8 +33,8 @@
                         ::key="product.id"
                         ::index="product.id"
                         width="291"
-                        height="340"
-                        ::alt="product.name"
+                        height="300"
+                        ::alt="product.base_image.alt"
                     />
                 </a>
 
@@ -45,7 +45,7 @@
 
                 @if (core()->getConfigData('catalog.products.review.summary') == 'star_counts')
                     <x-shop::products.ratings
-                        class="absolute bottom-1.5 items-center !border-white bg-white/80 !px-2 !py-1 text-xs max-sm:!px-1.5 max-sm:!py-0.5 ltr:left-1.5 rtl:right-1.5"
+                        class="absolute bottom-1.5 items-center border-white! bg-white/80 px-2! py-1! text-xs max-sm:px-1.5! max-sm:py-0.5! ltr:left-1.5 rtl:right-1.5"
                         ::average="product.ratings.average"
                         ::total="product.ratings.total"
                         ::rating="false"
@@ -53,7 +53,7 @@
                     />
                 @else
                     <x-shop::products.ratings
-                        class="absolute bottom-1.5 items-center !border-white bg-white/80 !px-2 !py-1 text-xs max-sm:!px-1.5 max-sm:!py-0.5 ltr:left-1.5 rtl:right-1.5"
+                        class="absolute bottom-1.5 items-center border-white! bg-white/80 px-2! py-1! text-xs max-sm:px-1.5! max-sm:py-0.5! ltr:left-1.5 rtl:right-1.5"
                         ::average="product.ratings.average"
                         ::total="product.reviews.total"
                         ::rating="false"
@@ -84,7 +84,7 @@
 
                         {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.before') !!}
 
-                        {{-- @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
+                        @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
                             <span
                                 class="absolute top-2.5 flex h-6 w-6 items-center justify-center rounded-full border border-zinc-200 bg-white text-lg md:hidden ltr:right-1.5 rtl:left-1.5"
                                 role="button"
@@ -94,14 +94,13 @@
                                 @click="addToWishlist()"
                             >
                             </span>
-                        @endif --}}
+                        @endif
 
                         {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.after') !!}
 
                         {!! view_render_event('bagisto.shop.components.products.card.compare_option.before') !!}
 
-                        {{-- COMMENTED: Compare button in grid card --}}
-                        {{-- @if (core()->getConfigData('catalog.products.settings.compare_option'))
+                        @if (core()->getConfigData('catalog.products.settings.compare_option'))
                             <span
                                 class="icon-compare absolute top-10 flex h-6 w-6 items-center justify-center rounded-full border border-zinc-200 bg-white text-lg sm:hidden ltr:right-1.5 rtl:left-1.5"
                                 role="button"
@@ -110,7 +109,7 @@
                                 @click="addToCompare(product.id)"
                             >
                             </span>
-                        @endif --}}
+                        @endif
 
                         {!! view_render_event('bagisto.shop.components.products.card.compare_option.after') !!}
 
@@ -119,11 +118,11 @@
             </div>
 
             <!-- Product Information Section -->
-            <div class="-mt-9 text-center grid max-w-[291px] translate-y-9 content-start gap-2.5 bg-white p-2.5 transition-transform duration-300 ease-out group-hover:-translate-y-0 group-hover:rounded-t-lg max-md:relative max-md:mt-0 max-md:translate-y-0 max-md:gap-0 max-md:px-0 max-md:py-1.5 max-sm:min-w-[170px] max-sm:max-w-[192px]">
+            <div class="-mt-9 grid max-w-72.75 translate-y-9 content-start gap-2.5 bg-white p-2.5 transition-transform duration-300 ease-out group-hover:translate-y-0 group-hover:rounded-t-lg max-md:relative max-md:mt-0 max-md:translate-y-0 max-md:gap-0 max-md:px-0 max-md:py-1.5 max-sm:min-w-42.5 max-sm:max-w-48">
 
                 {!! view_render_event('bagisto.shop.components.products.card.name.before') !!}
 
-                <p class="text-center break-all text-base font-medium max-md:mb-1.5 max-md:max-w-56 max-md:whitespace-break-spaces max-md:leading-6 max-sm:max-w-[192px] max-sm:text-sm max-sm:leading-4">
+                <p class="wrap-break-word text-base font-medium max-md:mb-1.5 max-md:max-w-56 max-md:whitespace-break-spaces max-md:leading-6 max-sm:max-w-48 max-sm:text-sm max-sm:leading-4">
                     @{{ product.name }}
                 </p>
 
@@ -133,9 +132,8 @@
                 {!! view_render_event('bagisto.shop.components.products.card.price.before') !!}
 
                 <div
-                    class="m-auto flex items-center gap-2.5 text-lg font-normal max-sm:text-sm max-sm:leading-6"
+                    class="flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-lg font-semibold max-sm:text-sm max-sm:leading-6"
                     v-html="product.price_html"
-                    style="font-weight: normal !important; font-size: 14px;"
                 >
                 </div>
 
@@ -159,7 +157,7 @@
 
                     {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.before') !!}
 
-                    {{-- @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
+                    @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
                         <span
                             class="cursor-pointer p-2.5 text-2xl max-sm:hidden"
                             role="button"
@@ -169,13 +167,13 @@
                             @click="addToWishlist()"
                         >
                         </span>
-                    @endif --}}
+                    @endif
 
                     {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.after') !!}
 
                     {!! view_render_event('bagisto.shop.components.products.card.compare_option.before') !!}
 
-                    <!-- @if (core()->getConfigData('catalog.products.settings.compare_option'))
+                    @if (core()->getConfigData('catalog.products.settings.compare_option'))
                         <span
                             class="icon-compare cursor-pointer p-2.5 text-2xl max-sm:hidden"
                             role="button"
@@ -184,7 +182,7 @@
                             @click="addToCompare(product.id)"
                         >
                         </span>
-                    @endif -->
+                    @endif
 
                     {!! view_render_event('bagisto.shop.components.products.card.compare_option.after') !!}
                 </div>
@@ -193,22 +191,22 @@
 
         <!-- List Card -->
         <div
-            class="relative flex max-w-max grid-cols-2 gap-4 overflow-hidden rounded max-sm:flex-wrap"
+            class="relative flex max-w-max grid-cols-2 gap-4 overflow-hidden rounded-sm max-sm:flex-wrap"
             v-else
         >
-            <div class="group relative max-h-[298px] max-w-[250px] overflow-hidden">
+            <div class="group relative max-h-64.5 max-w-62.5 overflow-hidden">
 
                 {!! view_render_event('bagisto.shop.components.products.card.image.before') !!}
 
-                <a :href="`{{ route('shop.product_or_category.index', '') }}/${product.url_key}`">
+                <a :href="'{{ route('shop.product_or_category.index', ':slug') }}'.replace(':slug', product.url_key)">
                     <x-shop::media.images.lazy
-                        class="after:content-[' '] relative min-w-[250px] bg-zinc-100 transition-all duration-300 after:block after:pb-[calc(100%+9px)] group-hover:scale-105"
+                        class="after:content-[' '] relative min-w-62.5 bg-zinc-100 transition-all duration-300 after:block after:pb-[calc(100%+9px)] group-hover:scale-105"
                         ::src="product.base_image.medium_image_url"
                         ::key="product.id"
                         ::index="product.id"
                         width="291"
-                        height="340"
-                        ::alt="product.name"
+                        height="300"
+                        ::alt="product.base_image.alt"
                     />
                 </a>
 
@@ -233,9 +231,9 @@
 
                         {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.before') !!}
 
-                        {{-- @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
+                        @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
                             <span
-                                class="absolute top-5 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-md bg-white text-2xl ltr:right-5 rtl:left-5"
+                                class="absolute top-5 flex h-7.5 w-7.5 cursor-pointer items-center justify-center rounded-md bg-white text-2xl ltr:right-5 rtl:left-5"
                                 role="button"
                                 aria-label="@lang('shop::app.components.products.card.add-to-wishlist')"
                                 tabindex="0"
@@ -243,23 +241,22 @@
                                 @click="addToWishlist()"
                             >
                             </span>
-                        @endif --}}
+                        @endif
 
                         {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.after') !!}
 
                         {!! view_render_event('bagisto.shop.components.products.card.compare_option.before') !!}
 
-                        {{-- COMMENTED: Compare button in list card --}}
-                        {{-- @if (core()->getConfigData('catalog.products.settings.compare_option'))
+                        @if (core()->getConfigData('catalog.products.settings.compare_option'))
                             <span
-                                class="icon-compare absolute top-16 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-md bg-white text-2xl ltr:right-5 rtl:left-5"
+                                class="icon-compare absolute top-16 flex h-7.5 w-7.5 cursor-pointer items-center justify-center rounded-md bg-white text-2xl ltr:right-5 rtl:left-5"
                                 role="button"
                                 aria-label="@lang('shop::app.components.products.card.add-to-compare')"
                                 tabindex="0"
                                 @click="addToCompare(product.id)"
                             >
                             </span>
-                        @endif --}}
+                        @endif
 
                         {!! view_render_event('bagisto.shop.components.products.card.compare_option.after') !!}
                     </div>
@@ -279,21 +276,12 @@
                 {!! view_render_event('bagisto.shop.components.products.card.price.before') !!}
 
                 <div
-                    class="flex gap-2.5 text-lg font-semibold"
+                    class="flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-lg font-semibold"
                     v-html="product.price_html"
                 >
                 </div>
 
                 {!! view_render_event('bagisto.shop.components.products.card.price.after') !!}
-
-                <!-- Needs to implement that in future -->
-                <div class="flex hidden gap-4">
-                    <span class="block h-[30px] w-[30px] rounded-full bg-[#B5DCB4]">
-                    </span>
-
-                    <span class="block h-[30px] w-[30px] rounded-full bg-zinc-500">
-                    </span>
-                </div>
 
                 {!! view_render_event('bagisto.shop.components.products.card.average_ratings.before') !!}
 
@@ -357,21 +345,21 @@
             },
 
             methods: {
-                // addToWishlist() {
-                //     if (this.isCustomer) {
-                //         this.$axios.post(`{{ route('shop.api.customers.account.wishlist.store') }}`, {
-                //                 product_id: this.product.id
-                //             })
-                //             .then(response => {
-                //                 this.product.is_wishlist = ! this.product.is_wishlist;
+                addToWishlist() {
+                    if (this.isCustomer) {
+                        this.$axios.post(`{{ route('shop.api.customers.account.wishlist.store') }}`, {
+                                product_id: this.product.id
+                            })
+                            .then(response => {
+                                this.product.is_wishlist = ! this.product.is_wishlist;
 
-                //                 this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
-                //             })
-                //             .catch(error => {});
-                //         } else {
-                //             window.location.href = "{{ route('shop.customer.session.index')}}";
-                //         }
-                // },
+                                this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                            })
+                            .catch(error => {});
+                        } else {
+                            window.location.href = "{{ route('shop.customer.session.index')}}";
+                        }
+                },
 
                 addToCompare(productId) {
                     /**
