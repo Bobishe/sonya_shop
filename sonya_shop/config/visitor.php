@@ -34,4 +34,12 @@ return [
         'jenssegers' => \Shetabit\Visitor\Drivers\JenssegersAgent::class,
         'UAParser'   => \Shetabit\Visitor\Drivers\UAParser::class,
     ],
+
+    // GeoIP enrichment (required since shetabit/visitor 4.5)
+    'geoip'     => false,
+    'resolver'  => 'null',
+    'resolvers' => [
+        'stevebauman' => \Shetabit\Visitor\Resolvers\GeoIp\SteveBaumanResolver::class,
+        'null'        => \Shetabit\Visitor\Resolvers\GeoIp\NullResolver::class,
+    ],
 ];

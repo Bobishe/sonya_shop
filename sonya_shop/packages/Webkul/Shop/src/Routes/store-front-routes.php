@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Webkul\Shop\Http\Controllers\BookingProductController;
+use Webkul\Shop\Http\Controllers\CatalogController;
 use Webkul\Shop\Http\Controllers\CompareController;
 use Webkul\Shop\Http\Controllers\HomeController;
 use Webkul\Shop\Http\Controllers\PageController;
@@ -47,6 +48,13 @@ Route::get('search', [SearchController::class, 'index'])
     ->middleware('cache.response');
 
 Route::post('search/upload', [SearchController::class, 'upload'])->name('shop.search.upload');
+
+/**
+ * Store front catalog (all top-level categories).
+ */
+Route::get('catalog', [CatalogController::class, 'index'])
+    ->name('shop.catalog.index')
+    ->middleware('cache.response');
 
 /**
  * Subscription routes.

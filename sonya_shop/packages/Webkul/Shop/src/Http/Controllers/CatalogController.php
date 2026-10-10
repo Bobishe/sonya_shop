@@ -25,7 +25,7 @@ class CatalogController extends Controller
         $categories = $this->categoryRepository
             ->getModel()
             ->where('status', 1)
-            ->whereNull('parent_id')
+            ->where('parent_id', core()->getCurrentChannel()->root_category_id)
             ->orderBy('position', 'ASC')
             ->with(['children' => function ($query) {
                 $query->where('status', 1)->orderBy('position', 'ASC');

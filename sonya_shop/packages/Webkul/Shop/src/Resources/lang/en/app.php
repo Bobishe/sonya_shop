@@ -879,6 +879,16 @@ return [
         ],
     ],
 
+    'catalog' => [
+        'title'                => 'Catalog',
+        'meta-description'     => 'All product categories of the store',
+        'meta-keywords'        => 'catalog, categories, products',
+        'products-count'       => ':count product|:count products',
+        'subcategories-count'  => ':count subcategory|:count subcategories',
+        'view-category'        => 'View category',
+        'empty'                => 'No categories yet',
+    ],
+
     'search' => [
         'title'   => 'These are results for : :query',
         'suggest' => 'Search instead for',

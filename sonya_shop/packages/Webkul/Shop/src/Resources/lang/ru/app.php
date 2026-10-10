@@ -879,6 +879,16 @@ return [
         ],
     ],
 
+    'catalog' => [
+        'title'                => 'Каталог',
+        'meta-description'     => 'Все категории товаров магазина',
+        'meta-keywords'        => 'каталог, категории, товары',
+        'products-count'       => ':count товар|:count товара|:count товаров',
+        'subcategories-count'  => ':count подкатегория|:count подкатегории|:count подкатегорий',
+        'view-category'        => 'Смотреть категорию',
+        'empty'                => 'Категории пока не добавлены',
+    ],
+
     'search' => [
         'title'   => 'Вот результаты для : :query',
         'suggest' => 'Искать вместо этого',
