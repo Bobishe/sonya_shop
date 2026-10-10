@@ -45,6 +45,19 @@ class ActivateTheme extends Command
     ];
 
     /**
+     * The payment gateways switched off until the store has its own credentials for them.
+     */
+    public const UNCONFIGURED_PAYMENT_METHODS = [
+        'stripe',
+        'razorpay',
+        'payu',
+        'phonepe',
+        'paypal_smart_button',
+        'paypal_standard',
+        'payglocal',
+    ];
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -56,7 +69,7 @@ class ActivateTheme extends Command
      *
      * @var string
      */
-    protected $description = 'Switch the store to the OneShe theme: channels, their name, home page sections and the storefront features it leaves out.';
+    protected $description = 'Switch the store to the OneShe theme: channels, their name, home page sections, the storefront features it leaves out and unconfigured payment gateways.';
 
     /**
      * Create a new command instance.
@@ -84,9 +97,11 @@ class ActivateTheme extends Command
 
         $this->nameChannels();
 
+        $this->disableUnconfiguredPaymentMethods();
+
         $this->coreConfigRepository->create(self::DISABLED_FEATURES);
 
-        $this->info("Channels switched: {$channels}, home page sections moved: {$sections}, compare, wishlist and newsletter switched off.");
+        $this->info("Channels switched: {$channels}, home page sections moved: {$sections}, compare, wishlist, newsletter and unconfigured payment gateways switched off.");
 
         return self::SUCCESS;
     }
@@ -109,6 +124,27 @@ class ActivateTheme extends Command
                     'home_seo' => array_merge((array) $translation->home_seo, ['meta_title' => self::STORE_NAME]),
                 ]);
             }
+        }
+    }
+
+    /**
+     * Switch off, on every channel of the theme, the payment gateways that have no credentials yet.
+     */
+    protected function disableUnconfiguredPaymentMethods(): void
+    {
+        $paymentMethods = array_fill_keys(self::UNCONFIGURED_PAYMENT_METHODS, ['active' => 0]);
+
+        $channelCodes = $this->channelRepository->getModel()
+            ->where('theme', self::THEME_CODE)
+            ->pluck('code');
+
+        foreach ($channelCodes as $channelCode) {
+            $this->coreConfigRepository->create([
+                'sales' => [
+                    'payment_methods' => $paymentMethods,
+                ],
+                'channel' => $channelCode,
+            ]);
         }
     }
 }
