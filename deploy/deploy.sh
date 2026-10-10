@@ -36,6 +36,9 @@ rsync -az --delete -e "$SSH" \
     --rsync-path="sudo rsync" \
     "$BUILD"/ "$SERVER:$APP_DIR/"
 
+rsync -az --ignore-existing -e "$SSH" --rsync-path="sudo rsync" \
+    "$BUILD"/storage/ "$SERVER:$APP_DIR/storage/"
+
 echo "==> Миграции и кеши"
 $SSH "$SERVER" "cd $APP_DIR && sudo chown -R www-data:www-data storage bootstrap/cache \
     && sudo docker exec -u www-data oneshe-app php artisan package:discover -q \
