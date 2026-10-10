@@ -1,15 +1,15 @@
 <?php
 
-namespace Sonya\Theme\Providers;
+namespace OneShe\Theme\Providers;
 
 use Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Sonya\Theme\Console\Commands\ActivateTheme;
+use OneShe\Theme\Console\Commands\ActivateTheme;
 use Webkul\Theme\ViewRenderEventManager;
 
-class SonyaThemeServiceProvider extends ServiceProvider
+class OneSheThemeServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the theme's routes, console commands, translations and storefront hooks.

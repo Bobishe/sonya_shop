@@ -1,6 +1,6 @@
 <?php
 
-namespace Sonya\Theme\Console\Commands;
+namespace OneShe\Theme\Console\Commands;
 
 use Illuminate\Console\Command;
 use Webkul\Core\Repositories\ChannelRepository;
@@ -12,7 +12,12 @@ class ActivateTheme extends Command
     /**
      * The code the theme is registered under in config/themes.php.
      */
-    public const THEME_CODE = 'sonya';
+    public const THEME_CODE = 'oneshe';
+
+    /**
+     * The store name every channel on the theme is given.
+     */
+    public const STORE_NAME = 'OneShe';
 
     /**
      * The storefront features the theme leaves out, switched off in the configuration.
@@ -44,14 +49,14 @@ class ActivateTheme extends Command
      *
      * @var string
      */
-    protected $signature = 'sonya-theme:activate';
+    protected $signature = 'oneshe-theme:activate';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Switch the store to the Sonya theme: channels, home page sections and the storefront features it leaves out.';
+    protected $description = 'Switch the store to the OneShe theme: channels, their name, home page sections and the storefront features it leaves out.';
 
     /**
      * Create a new command instance.
@@ -77,10 +82,33 @@ class ActivateTheme extends Command
             ->where('theme_code', 'default')
             ->update(['theme_code' => self::THEME_CODE]);
 
+        $this->nameChannels();
+
         $this->coreConfigRepository->create(self::DISABLED_FEATURES);
 
         $this->info("Channels switched: {$channels}, home page sections moved: {$sections}, compare, wishlist and newsletter switched off.");
 
         return self::SUCCESS;
+    }
+
+    /**
+     * Give every channel on the theme the store name, in each locale and its home page title.
+     */
+    protected function nameChannels(): void
+    {
+        $channels = $this->channelRepository->getModel()
+            ->with('translations')
+            ->where('theme', self::THEME_CODE)
+            ->get();
+
+        foreach ($channels as $channel) {
+            foreach ($channel->translations as $translation) {
+                $translation->update([
+                    'name' => self::STORE_NAME,
+                    'logo_alt' => self::STORE_NAME,
+                    'home_seo' => array_merge((array) $translation->home_seo, ['meta_title' => self::STORE_NAME]),
+                ]);
+            }
+        }
     }
 }

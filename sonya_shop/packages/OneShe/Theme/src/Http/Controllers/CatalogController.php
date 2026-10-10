@@ -1,6 +1,6 @@
 <?php
 
-namespace Sonya\Theme\Http\Controllers;
+namespace OneShe\Theme\Http\Controllers;
 
 use Illuminate\View\View;
 use Webkul\Category\Repositories\CategoryRepository;

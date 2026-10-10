@@ -56,9 +56,9 @@ export default defineConfig(({ mode }) => {
             tailwindcss(),
 
             laravel({
-                hotFile: "../../../public/shop-sonya-vite.hot",
+                hotFile: "../../../public/shop-oneshe-vite.hot",
                 publicDirectory: "../../../public",
-                buildDirectory: "themes/shop/sonya/build",
+                buildDirectory: "themes/shop/oneshe/build",
                 input: [
                     "src/Resources/assets/css/app.css",
                     "src/Resources/assets/js/app.js",

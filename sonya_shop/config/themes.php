@@ -28,15 +28,15 @@ return [
     */
 
     'shop' => [
-        'sonya' => [
-            'name' => 'Sonya',
+        'oneshe' => [
+            'name' => 'OneShe',
             'parent' => 'default',
-            'assets_path' => 'public/themes/shop/sonya',
-            'views_path' => 'packages/Sonya/Theme/src/Resources/views',
+            'assets_path' => 'public/themes/shop/oneshe',
+            'views_path' => 'packages/OneShe/Theme/src/Resources/views',
 
             'vite' => [
-                'hot_file' => 'shop-sonya-vite.hot',
-                'build_directory' => 'themes/shop/sonya/build',
+                'hot_file' => 'shop-oneshe-vite.hot',
+                'build_directory' => 'themes/shop/oneshe/build',
                 'package_assets_directory' => '../../Webkul/Shop/src/Resources/assets',
             ],
         ],

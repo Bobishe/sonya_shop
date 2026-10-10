@@ -114,7 +114,7 @@
             "Webkul\\Tax\\": "packages/Webkul/Tax/src",
             "Webkul\\Theme\\": "packages/Webkul/Theme/src",
             "Webkul\\User\\": "packages/Webkul/User/src",
-            "Sonya\\Theme\\": "packages/Sonya/Theme/src"
+            "OneShe\\Theme\\": "packages/OneShe/Theme/src"
         }
     },
     "autoload-dev": {

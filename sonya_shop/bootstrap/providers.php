@@ -1,7 +1,7 @@
 <?php
 
 use App\Providers\AppServiceProvider;
-use Sonya\Theme\Providers\SonyaThemeServiceProvider;
+use OneShe\Theme\Providers\OneSheThemeServiceProvider;
 use Webkul\Admin\Providers\AdminServiceProvider;
 use Webkul\Attribute\Providers\AttributeServiceProvider;
 use Webkul\BookingProduct\Providers\BookingProductServiceProvider;
@@ -98,5 +98,5 @@ return [
     TaxServiceProvider::class,
     ThemeServiceProvider::class,
     UserServiceProvider::class,
-    SonyaThemeServiceProvider::class,
+    OneSheThemeServiceProvider::class,
 ];
