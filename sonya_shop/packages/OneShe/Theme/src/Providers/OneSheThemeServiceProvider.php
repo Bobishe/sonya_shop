@@ -2,11 +2,11 @@
 
 namespace OneShe\Theme\Providers;
 
-use Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use OneShe\Theme\Console\Commands\ActivateTheme;
+use Webkul\Core\Http\Middleware\PreventRequestsDuringMaintenance;
 use Webkul\Theme\ViewRenderEventManager;
 
 class OneSheThemeServiceProvider extends ServiceProvider
