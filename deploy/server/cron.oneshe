@@ -1,0 +1,3 @@
+SHELL=/bin/bash
+* * * * * root docker exec -u www-data oneshe-app php artisan schedule:run >> /dev/null 2>&1
+30 3 * * * root /usr/local/bin/oneshe-backup >> /var/log/oneshe-backup.log 2>&1
