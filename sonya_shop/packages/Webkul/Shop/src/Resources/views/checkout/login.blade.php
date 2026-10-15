@@ -1,11 +1,11 @@
-{{-- COMMENTED: Checkout Login Link --}}
-{{-- <v-checkout-login>
+<!-- Checkout Login Vue JS Component -->
+<v-checkout-login>
     <div class="flex items-center">
         <span class="cursor-pointer text-base font-medium text-blue-700">
             @lang('shop::app.checkout.login.title')
         </span>
     </div>
-</v-checkout-login> --}}
+</v-checkout-login>
 
 @pushOnce('scripts')
     {!! \Webkul\Customer\Facades\Captcha::renderJS() !!}
@@ -68,7 +68,7 @@
                             </x-shop::form.control-group>
 
                             <!-- Password -->
-                            <x-shop::form.control-group class="!mb-0">
+                            <x-shop::form.control-group class="mb-0!">
                                 <x-shop::form.control-group.label class="required">
                                     @lang('shop::app.checkout.login.password')
                                 </x-shop::form.control-group.label>
@@ -93,7 +93,7 @@
                                 <x-shop::form.control-group class="mt-5">
                                     {!! \Webkul\Customer\Facades\Captcha::render() !!}
 
-                                    <x-shop::form.control-group.error control-name="g-recaptcha-response" />
+                                    <x-shop::form.control-group.error control-name="recaptcha_token" />
                                 </x-shop::form.control-group>
                             @endif
                         </x-slot>
@@ -102,7 +102,7 @@
                         <x-slot:footer>
                             <div class="flex flex-wrap items-center gap-4">
                                 <x-shop::button
-                                    class="primary-button max-w-none flex-auto rounded-sm px-11 py-3 max-md:rounded-lg max-md:py-1.5"
+                                    class="primary-button max-w-none flex-auto rounded-xs px-11 py-3 max-md:rounded-lg max-md:py-1.5"
                                     :title="trans('shop::app.checkout.login.title')"
                                     ::loading="isStoring"
                                     ::disabled="isStoring"
@@ -136,10 +136,10 @@
                 }) {
                     this.isStoring = true;
 
-                    const captchaResponse = document.querySelector('[name="g-recaptcha-response"]')?.value
+                    const captchaResponse = document.querySelector('[name="recaptcha_token"]')?.value
 
-                    params['g-recaptcha-response'] = captchaResponse;
-                   
+                    params['recaptcha_token'] = captchaResponse;
+
                     this.$axios.post("{{ route('shop.api.customers.session.create') }}", params)
                         .then((response) => {
                             this.isStoring = false;

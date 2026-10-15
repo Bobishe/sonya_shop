@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+DIR=/var/backups/oneshe
+mkdir -p "$DIR" && chmod 700 "$DIR"
+umask 077
+STAMP=$(date +%F_%H%M)
+mysqldump --single-transaction --quick --routines oneshe | gzip > "$DIR/oneshe-db-$STAMP.sql.gz"
+tar -czf "$DIR/oneshe-uploads-$STAMP.tar.gz" -C /var/www/oneshe/storage/app public
+find "$DIR" -type f -mtime +14 -delete

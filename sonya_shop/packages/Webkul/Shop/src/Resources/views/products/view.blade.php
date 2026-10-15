@@ -1,5 +1,5 @@
-@inject ('reviewHelper', 'Webkul\Product\Helpers\Review')
-@inject ('productViewHelper', 'Webkul\Product\Helpers\View')
+@inject ('reviewHelper', \Webkul\Product\Helpers\Review::class)
+@inject ('productViewHelper', \Webkul\Product\Helpers\View::class)
 
 @php
     $avgRatings = $reviewHelper->getAverageRating($product);
@@ -19,7 +19,7 @@
 
     @if (core()->getConfigData('catalog.rich_snippets.products.enable'))
         <script type="application/ld+json">
-            {!! app('Webkul\Product\Helpers\SEO')->getProductJsonLd($product) !!}
+            {!! app(\Webkul\Product\Helpers\SEO::class)->getProductJsonLd($product) !!}
         </script>
     @endif
 
@@ -82,12 +82,12 @@
 
                 <x-shop::tabs.item
                     id="descritpion-tab"
-                    class="container mt-[60px] !p-0"
+                    class="container mt-15 p-0!"
                     :title="trans('shop::app.products.view.description')"
                     :is-selected="true"
                 >
-                    <div class="container mt-[60px] max-1180:px-5">
-                        <p class="text-lg  max-1180:text-sm">
+                    <div class="container mt-15 max-1180:px-5">
+                        <p class="text-lg text-zinc-500 max-1180:text-sm">
                             {!! $product->description !!}
                         </p>
                     </div>
@@ -95,52 +95,21 @@
 
                 {!! view_render_event('bagisto.shop.products.view.description.after', ['product' => $product]) !!}
 
-                <!-- Delivery and Payment Tab -->
-                <x-shop::tabs.item
-                    id="delivery-tab"
-                    class="container mt-[60px] !p-0"
-                    title="Доставка и оплата"
-                    :is-selected="false"
-                >
-                    <div class="container mt-[60px] max-1180:px-5">
-                        <p class="text-lg  max-1180:text-sm">
-                            Доставка осуществляется транспортной компанией СДЭК и Почтой России, действует по всей территории РФ.<br><br>
-                            В Красноярске заказы доставляются на следующий день после отправления. Сроки доставки в регионы составляют от 1 до 8 дней. Стоимость рассчитывается по тарифам СДЭК и Почты России для вашего адреса.
-                        </p>
-                    </div>
-                </x-shop::tabs.item>
-
-                <!-- What to Do if the Set Doesn't Fit Tab -->
-                <x-shop::tabs.item
-                    id="returns-tab"
-                    class="container mt-[60px] !p-0"
-                    title="Что делать, если комплект не подошел"
-                    :is-selected="false"
-                >
-                    <div class="container mt-[60px] max-1180:px-5">
-                        <p class="text-lg  max-1180:text-sm">
-                            Если вам не подошел комплект, мы с удовольствием перешьем изделие и подгоним под ваши мерки, чтобы он стал комфортным в носке. Все затраты за доставку и доработки мы возьмем на себя.<br><br>
-                            Как только вы получили комплект, померили и поняли, что вам в нём некомфортно, напишите нам в Тelegram. Опишите проблему и приложите фото/видео, как на вас сидит комплект.<br><br>
-                            Мы отправим вам трек-номер для возврата товара, и вы сможете отнести его в пункт выдачи и отправить нам. Когда доработки будут завершены, мы отправим вам изделие.
-                        </p>
-                    </div>
-                </x-shop::tabs.item>
-
                 <!-- Additional Information Tab -->
                 @if(count($attributeData))
                     <x-shop::tabs.item
                         id="information-tab"
-                        class="container mt-[60px] !p-0"
+                        class="container mt-15 p-0!"
                         :title="trans('shop::app.products.view.additional-information')"
                         :is-selected="false"
                     >
-                        <div class="container mt-[60px] max-1180:px-5">
+                        <div class="container mt-15 max-1180:px-5">
                             <div class="mt-8 grid max-w-max grid-cols-[auto_1fr] gap-4">
                                 @foreach ($customAttributeValues as $customAttributeValue)
                                     @if (! empty($customAttributeValue['value']))
                                         <div class="grid">
                                             <p class="text-base text-black">
-                                                {!! $customAttributeValue['label'] !!}
+                                                {{ $customAttributeValue['label'] }}
                                             </p>
                                         </div>
 
@@ -157,14 +126,14 @@
                                                 download="{{ $customAttributeValue['label'] }}"
                                             >
                                                 <img
-                                                    class="h-5 min-h-5 w-5 min-w-5"
+                                                    class="min-h-5 min-w-5 h-5 w-5"
                                                     src="{{ Storage::url($customAttributeValue['value']) }}"
                                                 />
                                             </a>
                                         @else
                                             <div class="grid">
-                                                <p class="text-base ">
-                                                    {!! $customAttributeValue['value'] !!}
+                                                <p class="text-base text-zinc-500">
+                                                    {{ $customAttributeValue['value'] }}
                                                 </p>
                                             </div>
                                         @endif
@@ -175,74 +144,35 @@
                     </x-shop::tabs.item>
                 @endif
 
-                {{-- COMMENTED: Reviews Tab --}}
-                {{-- <x-shop::tabs.item
+                <!-- Reviews Tab -->
+                <x-shop::tabs.item
                     id="review-tab"
-                    class="container mt-[60px] !p-0"
+                    class="container mt-15 p-0!"
                     :title="trans('shop::app.products.view.review')"
                     :is-selected="false"
                 >
                     @include('shop::products.view.reviews')
-                </x-shop::tabs.item> --}}
+                </x-shop::tabs.item>
             </x-shop::tabs>
         </div>
     </div>
 
     <!-- Information Section -->
-    <div class="container mt-6 grid gap-3 !p-0 max-1180:px-5 1180:hidden">
+    <div class="container mt-6 grid gap-3 p-0! max-1180:px-5 1180:hidden">
         <!-- Description Accordion -->
         <x-shop::accordion
             class="max-md:border-none"
             :is-active="true"
         >
-            <x-slot:header class="bg-gray-100 max-md:!py-3 max-sm:!py-2">
+            <x-slot:header class="bg-gray-100 max-md:py-3! max-sm:py-2!">
                 <p class="text-base font-medium 1180:hidden">
                     @lang('shop::app.products.view.description')
                 </p>
             </x-slot>
 
             <x-slot:content class="max-sm:px-0">
-                <div class="mb-5 text-lg  max-1180:text-sm max-md:mb-1 max-md:px-4">
+                <div class="mb-5 text-lg text-zinc-500 max-1180:text-sm max-md:mb-1 max-md:px-4">
                     {!! $product->description !!}
-                </div>
-            </x-slot>
-        </x-shop::accordion>
-
-        <!-- Delivery and Payment Accordion -->
-        <x-shop::accordion
-            class="max-md:border-none"
-            :is-active="false"
-        >
-            <x-slot:header class="bg-gray-100 max-md:!py-3 max-sm:!py-2">
-                <p class="text-base font-medium 1180:hidden">
-                    Доставка и оплата
-                </p>
-            </x-slot>
-
-            <x-slot:content class="max-sm:px-0">
-                <div class="mb-5 text-lg  max-1180:text-sm max-md:mb-1 max-md:px-4">
-                    Доставка осуществляется транспортной компанией СДЭК и Почтой России, действует по всей территории РФ.<br><br>
-                    В Красноярске заказы доставляются на следующий день после отправления. Сроки доставки в регионы составляют от 1 до 8 дней. Стоимость рассчитывается по тарифам СДЭК и Почты России для вашего адреса.
-                </div>
-            </x-slot>
-        </x-shop::accordion>
-
-        <!-- What to Do if the Set Doesn't Fit Accordion -->
-        <x-shop::accordion
-            class="max-md:border-none"
-            :is-active="false"
-        >
-            <x-slot:header class="bg-gray-100 max-md:!py-3 max-sm:!py-2">
-                <p class="text-base font-medium 1180:hidden">
-                    Что делать, если комплект не подошел
-                </p>
-            </x-slot>
-
-            <x-slot:content class="max-sm:px-0">
-                <div class="mb-5 text-lg  max-1180:text-sm max-md:mb-1 max-md:px-4">
-                    Если вам не подошел комплект, мы с удовольствием перешьем изделие и подгоним под ваши мерки, чтобы он стал комфортным в носке. Все затраты за доставку и доработки мы возьмем на себя.<br><br>
-                    Как только вы получили комплект, померили и поняли, что вам в нём некомфортно, напишите нам в Тelegram. Опишите проблему и приложите фото/видео, как на вас сидит комплект.<br><br>
-                    Мы отправим вам трек-номер для возврата товара, и вы сможете отнести его в пункт выдачи и отправить нам. Когда доработки будут завершены, мы отправим вам изделие.
                 </div>
             </x-slot>
         </x-shop::accordion>
@@ -253,7 +183,7 @@
                 class="max-md:border-none"
                 :is-active="false"
             >
-                <x-slot:header class="bg-gray-100 max-md:!py-3 max-sm:!py-2">
+                <x-slot:header class="bg-gray-100 max-md:py-3! max-sm:py-2!">
                     <p class="text-base font-medium 1180:hidden">
                         @lang('shop::app.products.view.additional-information')
                     </p>
@@ -261,11 +191,14 @@
 
                 <x-slot:content class="max-sm:px-0">
                     <div class="container max-1180:px-5">
-                        <div class="grid max-w-max grid-cols-[auto_1fr] gap-4 text-lg  max-1180:text-sm">
+                        <div class="grid max-w-max grid-cols-[auto_1fr] gap-4 text-lg text-zinc-500 max-1180:text-sm">
                             @foreach ($customAttributeValues as $customAttributeValue)
                                 @if (! empty($customAttributeValue['value']))
                                     <div class="grid">
-                                        <p class="text-base text-black">
+                                        <p
+                                            class="text-base text-black"
+                                            v-pre
+                                        >
                                             {{ $customAttributeValue['label'] }}
                                         </p>
                                     </div>
@@ -283,14 +216,17 @@
                                             download="{{ $customAttributeValue['label'] }}"
                                         >
                                             <img
-                                                class="h-5 min-h-5 w-5 min-w-5"
+                                                class="min-h-5 min-w-5 h-5 w-5"
                                                 src="{{ Storage::url($customAttributeValue['value']) }}"
                                                 alt="Product Image"
                                             />
                                         </a>
                                     @else
                                         <div class="grid">
-                                            <p class="text-base ">
+                                            <p
+                                                class="text-base text-zinc-500"
+                                                v-pre
+                                            >
                                                 {{ $customAttributeValue['value'] ?? '-' }}
                                             </p>
                                         </div>
@@ -303,13 +239,13 @@
             </x-shop::accordion>
         @endif
 
-        {{-- COMMENTED: Reviews Accordion --}}
-        {{-- <x-shop::accordion
+        <!-- Reviews Accordion -->
+        <x-shop::accordion
             class="max-md:border-none"
             :is-active="false"
         >
             <x-slot:header
-                class="bg-gray-100 max-md:!py-3 max-sm:!py-2"
+                class="bg-gray-100 max-md:py-3! max-sm:py-2!"
                 id="review-accordian-button"
             >
                 <p class="text-base font-medium">
@@ -320,10 +256,10 @@
             <x-slot:content>
                 @include('shop::products.view.reviews')
             </x-slot>
-        </x-shop::accordion> --}}
+        </x-shop::accordion>
     </div>
 
-    <v-product-associations />
+    <v-product-associations></v-product-associations>
 
     {!! view_render_event('bagisto.shop.products.view.after', ['product' => $product]) !!}
 
@@ -352,23 +288,23 @@
                         v-model="is_buy_now"
                     >
 
-                    <div class="container px-[60px] max-1180:px-0">
+                    <div class="container px-15 max-1180:px-0">
                         <div class="mt-12 flex gap-9 max-1180:flex-wrap max-lg:mt-0 max-sm:gap-y-4">
                             <!-- Gallery Blade Inclusion -->
                             @include('shop::products.view.gallery')
 
                             <!-- Details -->
-                            <div class="relative max-w-[590px] max-1180:w-full max-1180:max-w-full max-1180:px-5 max-sm:px-4">
+                            <div class="relative max-w-147.5 max-1180:w-full max-1180:max-w-full max-1180:px-5 max-sm:px-4">
                                 {!! view_render_event('bagisto.shop.products.name.before', ['product' => $product]) !!}
 
                                 <div class="flex justify-between gap-4">
-                                    <h1 class="font-dmserif break-words text-3xl font-medium max-sm:text-xl">
+                                    <h1 class="wrap-break-word text-3xl font-medium max-sm:text-xl" v-pre>
                                         {{ $product->name }}
                                     </h1>
 
-                                    {{-- @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
+                                    @if (core()->getConfigData('customer.settings.wishlist.wishlist_option'))
                                         <div
-                                            class="flex max-h-[46px] min-h-[46px] min-w-[46px] cursor-pointer items-center justify-center rounded-full border bg-white text-2xl transition-all hover:opacity-[0.8] max-sm:max-h-7 max-sm:min-h-7 max-sm:min-w-7 max-sm:text-base"
+                                            class="max-sm:min-h-7 max-sm:min-w-7 flex max-h-11.5 min-h-11.5 min-w-11.5 cursor-pointer items-center justify-center rounded-full border bg-white text-2xl transition-all hover:opacity-[0.8] max-sm:max-h-7 max-sm:text-base"
                                             role="button"
                                             aria-label="@lang('shop::app.products.view.add-to-wishlist')"
                                             tabindex="0"
@@ -376,7 +312,7 @@
                                             @click="addToWishlist"
                                         >
                                         </div>
-                                    @endif --}}
+                                    @endif
                                 </div>
 
                                 {!! view_render_event('bagisto.shop.products.name.after', ['product' => $product]) !!}
@@ -406,12 +342,12 @@
                                 <!-- Pricing -->
                                 {!! view_render_event('bagisto.shop.products.price.before', ['product' => $product]) !!}
 
-                                <p class="mt-[22px] flex items-center gap-2.5 text-2xl !font-medium max-sm:mt-2 max-sm:gap-x-2.5 max-sm:gap-y-0 max-sm:text-lg">
+                                <p class="mt-5.5 flex items-center gap-2.5 text-2xl font-medium! max-sm:mt-2 max-sm:gap-x-2.5 max-sm:gap-y-0 max-sm:text-lg">
                                     {!! $product->getTypeInstance()->getPriceHtml() !!}
                                 </p>
 
                                 @if (\Webkul\Tax\Facades\Tax::isInclusiveTaxProductPrices())
-                                    <span class="text-sm font-normal  max-sm:text-xs">
+                                    <span class="text-sm font-normal text-zinc-500 max-sm:text-xs">
                                         (@lang('shop::app.products.view.tax-inclusive'))
                                     </span>
                                 @endif
@@ -419,7 +355,7 @@
                                 @if (count($product->getTypeInstance()->getCustomerGroupPricingOffers()))
                                     <div class="mt-2.5 grid gap-1.5">
                                         @foreach ($product->getTypeInstance()->getCustomerGroupPricingOffers() as $offer)
-                                            <p class=" [&>*]:text-black">
+                                            <p class="text-zinc-500 [&>*]:text-black">
                                                 {!! $offer !!}
                                             </p>
                                         @endforeach
@@ -428,9 +364,11 @@
 
                                 {!! view_render_event('bagisto.shop.products.price.after', ['product' => $product]) !!}
 
+                                {!! app(\Webkul\Omnibus\Services\OmnibusPriceManager::class)->getOmnibusPriceHtml($product) !!}
+
                                 {!! view_render_event('bagisto.shop.products.short_description.before', ['product' => $product]) !!}
 
-                                <p class="mt-6 text-lg  max-sm:mt-1.5 max-sm:text-sm">
+                                <p class="mt-6 text-lg text-zinc-500 max-sm:mt-1.5 max-sm:text-sm">
                                     {!! $product->short_description !!}
                                 </p>
 
@@ -449,7 +387,7 @@
                                 @include('shop::products.view.types.booking')
 
                                 <!-- Product Actions and Quantity Box -->
-                                <div class="mt-8 flex max-w-[470px] gap-4 max-sm:mt-4">
+                                <div class="mt-8 flex max-w-117.5 gap-4 max-sm:mt-4 max-sm:flex-wrap">
 
                                     {!! view_render_event('bagisto.shop.products.view.quantity.before', ['product' => $product]) !!}
 
@@ -469,7 +407,7 @@
 
                                         <x-shop::button
                                             type="submit"
-                                            class="secondary-button w-full max-w-full max-md:py-3 max-sm:rounded-lg max-sm:py-1.5"
+                                            class="secondary-button w-full max-w-full max-sm:max-w-none! max-sm:w-auto! max-md:py-3 max-sm:rounded-lg max-sm:py-1.5"
                                             button-type="secondary-button"
                                             :loading="false"
                                             :title="trans('shop::app.products.view.add-to-cart')"
@@ -480,6 +418,14 @@
                                         />
 
                                         {!! view_render_event('bagisto.shop.products.view.add_to_cart.after', ['product' => $product]) !!}
+                                    @else
+                                        <button
+                                            type="button"
+                                            class="secondary-button w-full max-w-full max-sm:max-w-none! max-sm:w-auto! max-md:py-3 max-sm:rounded-lg max-sm:py-1.5"
+                                            @click="$refs.contactUsModal.open()"
+                                        >
+                                            @lang('shop::app.components.layouts.footer.contact-us')
+                                        </button>
                                     @endif
                                 </div>
 
@@ -487,10 +433,10 @@
                                 @if (core()->getConfigData('sales.checkout.shopping_cart.cart_page'))
                                     {!! view_render_event('bagisto.shop.products.view.buy_now.before', ['product' => $product]) !!}
 
-                                    @if (core()->getConfigData('catalog.products.storefront.buy_now_button_display'))
+                                    @if (core()->getConfigData('catalog.products.product_view_page.buy_now_button_display'))
                                         <x-shop::button
                                             type="submit"
-                                            class="primary-button mt-5 w-full max-w-[470px] max-md:py-3 max-sm:mt-3 max-sm:rounded-lg max-sm:py-1.5"
+                                            class="primary-button mt-5 w-full max-w-117.5 max-md:py-3 max-sm:mt-3 max-sm:rounded-lg max-sm:py-1.5"
                                             button-type="primary-button"
                                             :title="trans('shop::app.products.view.buy-now')"
                                             :disabled="! $product->isSaleable(1)"
@@ -505,8 +451,8 @@
 
                                 {!! view_render_event('bagisto.shop.products.view.additional_actions.before', ['product' => $product]) !!}
 
-                                {{-- COMMENTED: Share Buttons (Compare) --}}
-                                {{-- <div class="mt-10 flex gap-9 max-md:mt-4 max-md:flex-wrap max-sm:justify-center max-sm:gap-3">
+                                <!-- Share Buttons -->
+                                <div class="mt-10 flex gap-9 max-md:mt-4 max-md:flex-wrap max-sm:justify-center max-sm:gap-3">
                                     {!! view_render_event('bagisto.shop.products.view.compare.before', ['product' => $product]) !!}
 
                                     <div
@@ -526,7 +472,7 @@
                                     </div>
 
                                     {!! view_render_event('bagisto.shop.products.view.compare.after', ['product' => $product]) !!}
-                                </div> --}}
+                                </div>
 
                                 {!! view_render_event('bagisto.shop.products.view.additional_actions.after', ['product' => $product]) !!}
                             </div>
@@ -534,6 +480,111 @@
                     </div>
                 </form>
             </x-shop::form>
+
+            <!-- Contact Us Modal -->
+            <x-shop::modal ref="contactUsModal">
+                <x-slot:header>
+                <h2 class="text-lg font-semibold max-md:text-base">
+                        @lang('shop::app.products.view.contact-us.title')
+                    </h2>
+                </x-slot>
+
+                <x-slot:content>
+                    <x-shop::form :action="route('shop.home.contact_us.send_mail')">
+                        <x-shop::form.control-group>
+                            <x-shop::form.control-group.label class="required">
+                                @lang('shop::app.products.view.contact-us.name')
+                            </x-shop::form.control-group.label>
+
+                            <x-shop::form.control-group.control
+                                type="text"
+                                name="name"
+                                rules="required"
+                                :value="old('name')"
+                                :label="trans('shop::app.products.view.contact-us.name')"
+                                :placeholder="trans('shop::app.products.view.contact-us.name')"
+                                :aria-label="trans('shop::app.products.view.contact-us.name')"
+                                aria-required="true"
+                            />
+
+                            <x-shop::form.control-group.error control-name="name" />
+                        </x-shop::form.control-group>
+
+                        <x-shop::form.control-group>
+                            <x-shop::form.control-group.label class="required">
+                                @lang('shop::app.products.view.contact-us.email')
+                            </x-shop::form.control-group.label>
+
+                            <x-shop::form.control-group.control
+                                type="email"
+                                name="email"
+                                rules="required|email"
+                                :value="old('email')"
+                                :label="trans('shop::app.products.view.contact-us.email')"
+                                :placeholder="trans('shop::app.products.view.contact-us.email')"
+                                :aria-label="trans('shop::app.products.view.contact-us.email')"
+                                aria-required="true"
+                            />
+
+                            <x-shop::form.control-group.error control-name="email" />
+                        </x-shop::form.control-group>
+
+                        <x-shop::form.control-group>
+                            <x-shop::form.control-group.label>
+                                @lang('shop::app.products.view.contact-us.phone-number')
+                            </x-shop::form.control-group.label>
+
+                            <x-shop::form.control-group.control
+                                type="text"
+                                name="contact"
+                                rules="phone"
+                                :value="old('contact')"
+                                :label="trans('shop::app.products.view.contact-us.phone-number')"
+                                :placeholder="trans('shop::app.products.view.contact-us.phone-number')"
+                                :aria-label="trans('shop::app.products.view.contact-us.phone-number')"
+                            />
+
+                            <x-shop::form.control-group.error control-name="contact" />
+                        </x-shop::form.control-group>
+
+                        <x-shop::form.control-group>
+                            <x-shop::form.control-group.label class="required">
+                                @lang('shop::app.products.view.contact-us.desc')
+                            </x-shop::form.control-group.label>
+
+                            <x-shop::form.control-group.control
+                                type="textarea"
+                                name="message"
+                                rules="required"
+                                :label="trans('shop::app.products.view.contact-us.message')"
+                                :placeholder="trans('shop::app.products.view.contact-us.describe-here')"
+                                :aria-label="trans('shop::app.products.view.contact-us.message')"
+                                aria-required="true"
+                                rows="6"
+                            />
+
+                            <x-shop::form.control-group.error control-name="message" />
+                        </x-shop::form.control-group>
+
+                        @if (core()->getConfigData('customer.captcha.credentials.status'))
+                            <x-shop::form.control-group class="mt-5">
+                                {!! \Webkul\Customer\Facades\Captcha::render() !!}
+
+                                <x-shop::form.control-group.error control-name="recaptcha_token" />
+                            </x-shop::form.control-group>
+                        @endif
+
+                        <div class="mt-6 flex justify-end">
+                            <button
+                                type="submit"
+                                class="primary-button rounded-2xl px-8 py-3 max-sm:rounded-lg max-sm:px-6 max-sm:py-2"
+                            >
+                                @lang('shop::app.products.view.contact-us.submit')
+                            </button>
+                        </div>
+                    </x-shop::form>
+                </x-slot>
+            </x-shop::modal>
         </script>
 
         <script type="module">
@@ -542,7 +593,7 @@
 
                 data() {
                     return {
-                        isWishlist: Boolean("{{ (boolean) auth()->guard()->user()?->wishlist_items->where('channel_id', core()->getCurrentChannel()->id)->where('product_id', $product->id)->count() }}"),
+                        isWishlist: false,
 
                         isCustomer: '{{ auth()->guard('customer')->check() }}',
 
@@ -554,6 +605,10 @@
                             buyNow: false,
                         },
                     }
+                },
+
+                mounted() {
+                    this.checkWishlistStatus();
                 },
 
                 methods: {
@@ -593,21 +648,42 @@
                             });
                     },
 
-                    // addToWishlist() {
-                    //     if (this.isCustomer) {
-                    //         this.$axios.post('{{ route('shop.api.customers.account.wishlist.store') }}', {
-                    //                 product_id: "{{ $product->id }}"
-                    //             })
-                    //             .then(response => {
-                    //                 this.isWishlist = ! this.isWishlist;
+                    checkWishlistStatus() {
+                        if (this.isCustomer) {
+                            /**
+                             * Fetches the wishlist items for the customer and checks whether the current
+                             * product exists in the wishlist. If found, `isWishlist` is set to true;
+                             * otherwise, it is set to false.
+                             *
+                             * This approach is used due to Full Page Cache (FPC) limitations. We cannot
+                             * use a replacer here because `product_id` is dynamic, and the replacer
+                             * cannot reliably detect it.
+                             */
+                            this.$axios.get('{{ route('shop.api.customers.account.wishlist.index') }}')
+                                .then(response => {
+                                    const wishlistItems = response.data.data || [];
 
-                    //                 this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
-                    //             })
-                    //             .catch(error => {});
-                    //     } else {
-                    //         window.location.href = "{{ route('shop.customer.session.index')}}";
-                    //     }
-                    // },
+                                    this.isWishlist = Boolean(wishlistItems.find(item => item.product.id == "{{ $product->id }}")?.product?.is_wishlist);
+                                })
+                                .catch(error => {});
+                        }
+                    },
+
+                    addToWishlist() {
+                        if (this.isCustomer) {
+                            this.$axios.post('{{ route('shop.api.customers.account.wishlist.store') }}', {
+                                    product_id: "{{ $product->id }}"
+                                })
+                                .then(response => {
+                                    this.isWishlist = ! this.isWishlist;
+
+                                    this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                                })
+                                .catch(error => {});
+                        } else {
+                            window.location.href = "{{ route('shop.customer.session.index')}}";
+                        }
+                    },
 
                     addToCompare(productId) {
                         /**
@@ -738,7 +814,7 @@
                     <!-- Up-sell Products -->
                     <x-shop::products.carousel
                         :title="trans('shop::app.products.view.up-sell-title')"
-                        :src="route('shop.api.products.up-sell.index', ['id' => $product->id])"
+                        :src="route('shop.api.products.up_sell.index', ['id' => $product->id])"
                     />
                 </template>
             </div>
@@ -771,5 +847,9 @@
                 }
             });
         </script>
+
+        @if (core()->getConfigData('customer.captcha.credentials.status'))
+            {!! \Webkul\Customer\Facades\Captcha::renderJS() !!}
+        @endif
     @endPushOnce
 </x-shop::layouts>
