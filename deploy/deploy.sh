@@ -7,7 +7,7 @@
 #
 set -euo pipefail
 
-SERVER="${ONESHE_SERVER:-deploy@94.103.90.14}"
+SERVER="${ONESHE_SERVER:-deploy@192.144.58.83}"
 SSH_KEY="${ONESHE_SSH_KEY:-$HOME/.ssh/id_ed25519_oneshe_vps}"
 APP_DIR=/var/www/oneshe
 REV="${1:-HEAD}"
